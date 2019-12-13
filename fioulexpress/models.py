@@ -287,7 +287,6 @@ class Panier(models.Model):
         retour['total_ht'] = round(retour['total_ht'], 2)
         retour['prix_litre'] = round(retour['prix_litre'], 4)
         retour['livraison_ttc'] = round(retour['livraison_ttc'], 2)
-        print retour
         return retour
 
     def creer_commande(self):

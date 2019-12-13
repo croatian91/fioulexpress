@@ -1,6 +1,5 @@
 {% load static from staticfiles %}
 {% load contenu_tags %}
-{% load pipeline %}
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,10 +17,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
-    
-    {% stylesheet 'base_css' %}
-    
-    {% comment %}
+
     <link rel="stylesheet" href="{% static 'fioul/css/nouislider.min.css' %}">
     <link rel="stylesheet" href="{% static 'fioul/css/plugin.field.css' %}">
     <link rel="stylesheet" href="{% static 'fioul/css/plugin.popin.css' %}">
@@ -30,8 +26,6 @@
     <link rel="stylesheet" href="{% static 'fioul/css/checkout.css' %}">
     <link rel="stylesheet" href="{% static 'fioul/css/actualite.css' %}">
     <link rel="stylesheet" href="{% static 'fioul/css/static.css' %}">
-    {% endcomment %}
-    
     
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -143,15 +137,13 @@
             {% endfor %}
         </div>
     {% endif %}
-    
-    {% javascript 'base_js' %}
-    <!-- <script src="{% static 'fioul/js/jquery-3.0.0.min.js' %}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script src="{% static 'fioul/js/jquery-3.0.0.min.js' %}"></script>
     <script src="{% static 'fioul/js/nouislider.min.js' %}"></script>
     <script src="{% static 'fioul/js/plugin.field.js' %}"></script>
     <script src="{% static 'fioul/js/plugin.popin.js' %}"></script>
     <script src="{% static 'fioul/js/master.js' %}"></script>
-    <script src="{% static 'fioul/js/fioul.js' %}"></script> --> 
+    <script src="{% static 'fioul/js/jquery.unveil.js' %}"></script>
     <script type="text/javascript">
     $(document).ready(function() {
         $("head").append('<link href="https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">');

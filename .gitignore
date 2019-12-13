@@ -9,3 +9,4 @@
 /admin_templates/
 .settings/
 /.idea/
+/.env

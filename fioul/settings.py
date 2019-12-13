@@ -20,13 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e^22h+okck2oi$=*k@d#8^6ql4u%^mameszt_*40z$@)#glxh@'
+SECRET_KEY = os.getenv("SECRET_KEY", None)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-THUMBNAIL_DEBUG = False
+DEBUG = os.getenv("DEBUG", False)
+THUMBNAIL_DEBUG = os.getenv("THUMBNAIL_DEBUG", False)
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,12 +44,14 @@ INSTALLED_APPS = [
     'import_export',
     'contenu',
     'sorl.thumbnail',
+    'markdownx',
     'ckeditor',
     'ckeditor_uploader',
 ]
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -57,7 +59,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'pipeline.middleware.MinifyHTMLMiddleware',
 ]
 
 ROOT_URLCONF = 'fioul.urls'
@@ -82,16 +83,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'fioul.wsgi.application'
 
 
-# Database
+# Dev database settings, no password, to be overridden by prod settings
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fioultest',
-        'USER': 'fioultest',
-        'PASSWORD': 'SioYai7Ij7Mi',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
     }
 }
 
@@ -143,6 +141,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -166,78 +165,3 @@ EMAIL_HOST_USER = 'a898feda5779e6bf7a3d34ae96039c4b'
 EMAIL_HOST_PASSWORD = 'd3660ed64570d6ac9c4b529596f1b5a0'
 ADMINS = ['matthieu@m-dev.fr', ]
 SERVER_EMAIL = 'fioul@m-dev.fr'
-
-
-
-
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'pipeline.finders.CachedFileFinder',
-    'pipeline.finders.PipelineFinder',
-)
-
-PIPELINE = {
-    # 'PIPELINE_ENABLED': True,
-    'DISABLE_WRAPPER' : True,
-    'JAVASCRIPT': {
-        'base_js': {
-            'source_filenames': (
-                'fioul/js/jquery-3.0.0.min.js',
-                'fioul/js/nouislider.min.js',
-                'fioul/js/plugin.field.js',
-                'fioul/js/plugin.popin.js',
-                'fioul/js/jquery.unveil.js',
-                'fioul/js/master.js',
-                # 'fioul/js/fioul.js',
-            ),
-            'output_filename': 'comp.js',
-            'extra_context': {
-               'async': False,
-            },
-        }
-    },
-    'STYLESHEETS': {
-        'base_css': {
-            'source_filenames': (
-                'fioul/css/nouislider.min.css',
-                'fioul/css/plugin.field.css',
-                'fioul/css/plugin.popin.css',
-                'fioul/css/fioul.css',
-                'fioul/css/hp.css',
-                'fioul/css/checkout.css',
-                'fioul/css/actualite.css',
-                'fioul/css/static.css',
-            ),
-            'output_filename': 'comp.css',
-            'extra_context': {
-            #   'media': 'none',
-            },
-        }
-    },
-}
-
-"""
-    'fioul/css/nouislider.min.css',
-    'fioul/css/plugin.field.css',
-    'fioul/css/plugin.popin.css',
-    'fioul/css/fioul.css',
-    'fioul/css/hp.css',
-    'fioul/css/checkout.css',
-    'fioul/css/actualite.css',
-    'fioul/css/static.css',
-    
-    
-    'fioul/js/jquery-3.0.0.min.js',
-    'fioul/js/nouislider.min.js',
-    'fioul/js/plugin.field.js',
-    'fioul/js/plugin.popin.js',
-    'fioul/js/fioul.js', 
-    'fioul/js/master.js',
-    
-    
-"""
-
-
-from settings_current import *
