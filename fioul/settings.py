@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+import django_on_heroku
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -165,3 +167,6 @@ EMAIL_HOST_USER = 'a898feda5779e6bf7a3d34ae96039c4b'
 EMAIL_HOST_PASSWORD = 'd3660ed64570d6ac9c4b529596f1b5a0'
 ADMINS = ['matthieu@m-dev.fr', ]
 SERVER_EMAIL = 'fioul@m-dev.fr'
+
+# Activate Django-Heroku.
+django_on_heroku.settings(locals())
