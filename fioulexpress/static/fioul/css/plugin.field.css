@@ -1,0 +1,30 @@
+.field {
+    position: relative;
+}
+.field-label {
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    display: inline-block;
+    margin: 0;
+    padding: 2px 5px;
+    border-radius: 3px;
+    background-color: #fff;
+    line-height: 30px;
+    color: #545454;
+    font-size: 13px;
+    font-family: "Droid Serif", serif;
+    font-style: italic;
+    will-change: top, font-size, line-height;
+    -webkit-transition-property: top, font-size, line-height;
+            transition-property: top, font-size, line-height;
+    -webkit-transition-duration: 0.2s;
+            transition-duration: 0.2s;
+    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.field-label.active {
+    top: -6px;
+    font-size: 12px;
+    line-height: 14px;
+}

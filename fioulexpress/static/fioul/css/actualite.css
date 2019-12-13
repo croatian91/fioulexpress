@@ -1,0 +1,164 @@
+/*titre des actus en hp*/
+.actus-title {
+    position: relative;
+    margin: 20px 0 50px;
+}
+.actus-title::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    margin-top: -1px;
+    background-color: #ff6c00;
+}
+.actus-title-text {
+    position: relative;
+    z-index: 1;
+    padding-right: 10px;
+    background-color: #fff;
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #444;
+}
+.actus-title-aside {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #fff;
+    padding-left: 10px;
+    font-size: 13px;
+    font-style: italic;
+    font-family: "Droid Serif", serif;
+    color: #666;
+}
+@media (min-width: 768px) {
+    .actus-title {
+        position: relative;
+        margin-bottom: 30px;
+    }
+    .actus-title-aside {
+        position: absolute;
+        top: 5px;
+    }
+}
+
+/*bloc actus*/
+.actus-item {
+    max-width: 390px;
+    margin: 0 auto 40px;
+    font-size: 14px;
+    color: #444;
+}
+.actus-item-picture {
+    position: relative;
+    margin-bottom: 20px;
+}
+.actus-item-date {
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    left: 50px;
+    font-weight: 400;
+    text-align: center;
+    text-transform: uppercase;
+    color: #f7f7f7;
+}
+.actus-item-date::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin-top: -30px;
+    margin-left: -30px;
+    border-radius: 30px;
+    background-color: #ff6c00;
+}
+.actus-item-date-day {
+    font-weight: 900;
+}
+.actus-item-link {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 25px 0;
+    background-color: rgba(237, 237, 237, .5);
+    text-align: center;
+    text-transform: uppercase;
+}
+.actus-item-link-text {
+    padding-left: 13px;
+    font-weight: 700;
+    color: #212121;
+
+    padding-left: 0; /*en attendant d'avoir un autre icon à mettre à la place*/
+}
+.actus-item-link-text::before {
+    top: 50%;
+    left: 3px;
+    width: 6px;
+    height: 10px;
+    margin-top: -5px;
+    background-position: -3px -2px;
+
+    background: none; /*en attendant d'avoir un autre icon à mettre à la place*/
+}
+.actus-item-title {
+    height: 32px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.actus-item-text {
+    height: 22px;
+    line-height: 20px;
+}
+
+/*pages actu*/
+.actu-container {
+    border-top: 2px solid #ff6c00;
+}
+
+/*page single actu*/
+.actu-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #444;
+}
+.actu {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #444;
+}
+.actu-img {
+    margin-bottom: 15px;
+    text-align: center;
+}
+.actu-text {
+    text-align: justify;
+    line-height: 20px;
+}
+.actu-text p {
+    margin-bottom: 15px;
+}
+@media (min-width: 992px) {
+    .actu {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+}
+@media (min-width: 1280px) {
+    .actu-text {
+        padding-left: 30px;
+    }
+}

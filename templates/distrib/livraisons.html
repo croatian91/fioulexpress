@@ -1,0 +1,84 @@
+{% extends "distrib/base.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+
+{% block distrib %}{% if zone_form %}
+<form action="" method="post">{% csrf_token %}
+    <div class="module" id="distrib-jours" style="float:left;width:30%;margin-right:3%;">
+        <h2>Informations</h2>
+        <fieldset class="module aligned ">
+        <div class="form-row{% if zone_form.errors.nom %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.nom.id_for_label }}">Nom de la zone :</label>
+            {{zone_form.nom}}
+        </div>
+        <div class="form-row{% if zone_form.errors.telephone %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.telephone.id_for_label }}">{{zone_form.telephone.label}} :</label>
+            {{zone_form.telephone}}
+        </div>
+        <div class="form-row{% if zone_form.errors.email %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.email.id_for_label }}">{{zone_form.email.label}} :</label>
+            {{zone_form.email}}
+        </div>
+        <div class="form-row{% if zone_form.errors.raison_sociale %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.raison_sociale.id_for_label }}">{{zone_form.raison_sociale.label}} :</label>
+            {{zone_form.raison_sociale}}
+        </div>
+        <div class="form-row{% if zone_form.errors.siret %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.siret.id_for_label }}">{{zone_form.siret.label}} :</label>
+            {{zone_form.siret}}
+        </div>
+        <div class="form-row{% if zone_form.errors.adresse %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.adresse.id_for_label }}">{{zone_form.adresse.label}} :</label>
+            {{zone_form.adresse}}
+        </div>
+        <div class="form-row{% if zone_form.errors.code_postal %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.code_postal.id_for_label }}">{{zone_form.code_postal.label}} :</label>
+            {{zone_form.code_postal}}
+        </div>
+        <div class="form-row{% if zone_form.errors.ville %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.ville.id_for_label }}">{{zone_form.ville.label}} :</label>
+            {{zone_form.ville}}
+        </div>
+        </fieldset>
+    </div>
+    <div class="module" id="distrib-jours" style="float:left;width:30%;margin-right:3%;">
+        <h2>Livraison</h2>
+        {{zone_form.jours_livraison}}
+    </div>
+    <div class="module" id="distrib-jours" style="float:left;width:30%;">
+        <h2>Type de paiements</h2>
+        {{zone_form.types_paiement}}
+    </div>
+    <br style="float:none;clear:both;" />
+    <div class="submit-row" style="text-align:center;"><input class="default" style="float:none;" type="submit" name="_save" value="Enregistrer"></div>
+</form>
+<form action="{% url 'distrib-import-cp' %}?zone={{zone_active.id}}" method="post">{% csrf_token %}
+    <div class="module">
+        <h2>CODES POSTAUX DE LA ZONE - {{nb_communes}} COMMUNES</h2>
+        {% for departement in code_postaux %}
+        <h3>
+            {{departement.departement}}
+            {% if est_admin %}
+            [
+                <a href="{% url 'distrib-remove-cp' departement.departement %}?zone={{zone_active.id}}">retirer tous</a>{% if request.user.is_superuser %} |
+                <a href="/distributeur/fioulexpress/codepostal/?code_postal__startswith={{departement.departement}}">voir en admin</a>{% endif %}
+            ]
+            {% endif %}
+        </h3>
+            {% for cp in departement.code_postaux %}
+            <span style="background-color:#f8f8f8;padding:2px 5px;">
+                {{cp}} 
+                {% if est_admin %}<a href="{% url 'distrib-remove-cp' cp %}?zone={{zone_active.id}}">X</a>{% endif %}</span>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    {% if est_admin %}
+    <div class="module">
+        <h2>AJOUTER DES CODES POSTAUX</h2>
+        <textarea rows="5" cols="20" style="margin:20px 2%;width:96%;" name="cp_liste"></textarea>
+        <div class="submit-row" style="text-align:center;"><input class="default" style="float:none;" type="submit" name="_save" value="Ajouter"></div>
+    
+    </div>
+    {% endif %}
+</form>
+{% endif %}{% endblock %}
+

@@ -1,0 +1,80 @@
+{% extends "distrib/base.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+
+{% block distrib %}
+<h1>Commande {{commande.id}}</h1>
+<div style="float:left;width:75%;margin-right:5%">
+    <div class="module">
+        <h2>{{commande.zone.distributeur.nom}} / {{commande.zone.nom}}</h2>
+        <h3><span class="fwn">Statut : </span>{{commande.get_statut_display}}</h3>
+        <h3><span class="fwn">Date de commande : </span>{{commande.date|date:'j F Y'}}</h3>
+        <h3><span class="fwn">Type de fioul : </span>{{commande.type_fioul.nom}}</h3>
+        <h3><span class="fwn">Quantité : </span>{{commande.qte}} Litres</h3>
+    </div>
+    
+    <div class="module" style="float:left;width:47.5%;margin-right:5%">
+        <h2>LIVRAISON {{commande.type_livraison.nom}} / En {{commande.type_livraison.duree}} jour{{commande.type_livraison.duree|pluralize}}</h2>
+        <h3><span class="fwn">Date livraison prévue : </span>{{commande.date_livraison|date:'j F Y'}}</h3>
+        <h3><span class="fwn">Nom client : </span>{{commande.adresse_livraison.prenom}} {{commande.adresse_livraison.nom}}</h3>
+        <h3><span class="fwn">Email client : </span><a href="mailto:{{commande.client.email}}">{{commande.client.email}}</a></h3>
+        <h3><span class="fwn">Tél client : </span><a href="tel:{{commande.client.telephone}}">{{commande.client.telephone}}</a></h3>
+        <h3>
+            <span class="fwn">Adresse : </span>
+            <a href="https://www.google.fr/maps/place/{{commande.adresse_livraison.detail_1}}, {{commande.adresse_livraison.code_postal}} {{commande.adresse_livraison.detail_4}}/" target="_blank">
+                {{commande.adresse_livraison.detail_1}}, {{commande.adresse_livraison.code_postal}} {{commande.adresse_livraison.detail_4}}
+            </a>
+        </h3>
+    </div>
+    {% if commande.adresse_facturation %}
+    <div class="module" style="float:left;width:47.5%;">
+        <h2>FACTURATION</h2>
+        <h3>{{commande.adresse_facturation.prenom}} {{commande.adresse_facturation.nom}}</h3>
+        <h3>
+            <span class="fwn">Adresse : </span>
+            {{commande.adresse_facturation.detail_1}}, {{commande.adresse_facturation.code_postal}} {{commande.adresse_facturation.detail_4}}
+        </h3>
+    </div>
+    {% endif %}
+    
+    <br style="float:none;clear:both;" />
+    
+    <div class="module">
+        <h2>TOTAL</h2>
+        <table class="distrib-table distrib-table-center" style="width:100%;">
+            <thead><tr>
+                <th></th>
+                <th>HT</th>
+                <th>TVA</th>
+                <th>TTC</th>
+            </tr></thead>
+            <tr>
+                <td class="tal">{{commande.qte}} Litres de {{commande.type_fioul.nom}}</td>
+                <td>{{commande.total_ht|floatformat:'-2'}} €</td>
+                <td>{{commande.get_tva|floatformat:'-2'}} €</td>
+                <td>{{commande.total_ttc|floatformat:'-2'}} €</td>
+            </tr>
+            <tr>
+                <td class="tal">Dont commission Fioul Express</td>
+                <td>{{commande.commission_ht|floatformat:'-2'}} €</td>
+                <td>{{commande.get_commission_tva|floatformat:'-2'}} €</td>
+                <td>{{commande.commission_ttc|floatformat:'-2'}} €</td>
+            </tr>
+            <tr>
+                <td class="tal">Reste à payer à la livraison</td>
+                <td>{{commande.get_reste_ht|floatformat:'-2'}} €</td>
+                <td>{{commande.get_reste_tva|floatformat:'-2'}} €</td>
+                <td>{{commande.get_reste_ttc|floatformat:'-2'}} €</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div style="float:left;width:20%;">
+    <div class="module">
+        <h2>Actions</h2>
+        <a target="_blank" href="{% url 'distrib-commande-pdf' commande.id %}">PDF</a><br />
+        {% if admin and commande.statut == '0' %}<a href="{% url 'distrib-commande-annuler' commande.id %}" onclick="return confirm('Êtes-vous sûr ?');">Annuler</a><br />{% endif %}
+    </div>
+</div>
+
+{% endblock %}
+

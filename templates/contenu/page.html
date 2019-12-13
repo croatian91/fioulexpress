@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load contenu_tags %}
+
+{% block head_title %}{{page.seo_title|default:page.titre}}{% endblock %}
+{% block head_description %}{{page.seo_description|default:config.meta_description}}{% endblock %}
+{% block og_title %}{{page.seo_title|default:page.titre}}{% endblock %}
+{% block og_description %}{{page.seo_description|default:config.meta_description}}{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% templatize page.contenu|markdown %}
+</div>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'commande/base.html' %}
+{% load static from staticfiles %}
+{% load contenu_tags %}
+
+{% block head_title %}Fioul Express - Devis{% endblock %}
+{% block commande_devis_actif %}actif{% endblock %}
+
+{% block action_suivant %}
+    <div class="checkout-continue-container">
+        <a href="{% url 'client-commande-livraison' %}" onclick="if(document.getElementById('qte').value < 500){return false;}" class="checkout-continue" id="commande-continue">Continuer</a>
+    </div>
+{% endblock %}
+{% block action_suivant_href %}{% url 'client-commande-livraison' %}{% endblock %}
+
+{% block commande %}
+<script>
+    window.page = 'devis';
+</script>
+<div class="command-title-container">
+    <h2 class="command-title">Votre commande</h2>
+</div>
+<div class="command">
+<!-- onchange="client_commande_devis_valoriser({{zone_active.id}})"> -->
+    <form action="" method="post" id="form-panier" onchange="client_commande_devis_valoriser();" onsubmit="return false;" >
+        {% csrf_token %}
+        <div class="checkout-block checkout-block-type">
+            <div id="type-help" class="checkout-block-help">?</div>
+            <div class="checkout-block-title">
+                <span class="checkout-block-title-text">Type de combustible</span>
+            </div>
+            <ul>
+                {% for tarif in zone_active.fiouls %}
+                    <li class="command-choice">
+                        <input {% if forloop.first %}checked="checked"{% endif %} type="radio" value="{{tarif.type_fioul.id}}" name="type_fioul" id="type_fioul_{{tarif.type_fioul.id}}" class="custom-radio" />
+                        <label for="type_fioul_{{tarif.type_fioul.id}}">{{tarif.type_fioul.nom}}</label>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="checkout-block checkout-block-quantity">
+            <div class="checkout-block-title">Quantité</div>
+            <div class="checkout-slider-container">
+                <div id="slider"></div>
+                <div class="checkout-slider-value">
+                    <input type="number" min="500" max="10000" step="50" id="qte" value="1000" class="checkout-slider-value-input"> litres
+                </div>
+            </div>
+        </div>
+        <div class="checkout-block checkout-block-delivery">
+            <div id="delivery-help" class="checkout-block-help">?</div>
+            <div class="checkout-block-title">
+                <span class="checkout-block-title-text">DÉLAIS DE LIVRAISON SOUHAITÉS</span>
+            </div>
+            <ul>
+                {% for livraison in zone_active.livraisons %}
+                    <li class="command-choice">
+                        <input 
+                            {% if forloop.first %}checked="checked" {% endif %}
+                            type="radio" value="{{livraison.type_livraison.id}}"
+                            name="type_livraison" id="type_livraison_{{livraison.type_livraison.id}}"
+                            class="custom-radio" />
+                        <label for="type_livraison_{{livraison.type_livraison.id}}">{{livraison.type_livraison.nom}}  <span class="command-choice-label-extra">/ sous {{livraison.type_livraison.temps_livraison}}</span></label>
+                        <div class="command-choice-price" id="commande-prix-livraison-{{livraison.id}}">
+                        {% comment %}
+                        {% if not forloop.first %}
+                            {% if livraison.extra >= 0 %}+{% endif %}
+                            {{livraison.extra|floatformat:0}} euro{% if livraison.extra >= 2 or livraison.extra <= -2 %}s{% endif %}
+                        {% endif %}
+                        {% endcomment %}
+                        </div>
+                        <div class="command-choice-infos">au plus tard le <span class="bold" id="commande-livraison-date-{{livraison.type_livraison.id}}">{{livraison.date_livraison|date:'l j F'}}</span></div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </form>
+</div>
+
+<!-- Contenus des popins d'aide -->
+<div class="popin" data-trigger="#type-help">{% html_bloc 'INFO - Devis - type fioul' %}</div>
+<div class="popin" data-trigger="#delivery-help">{% html_bloc 'INFO - Devis - delais livraison' %}</div>
+
+
+<script type="text/javascript">
+var zone_active = "{{zone_active.id}}";
+    document.onreadystatechange = function () {
+        if (document.readyState == "complete") {
+            client_commande_devis_valoriser();
+            
+            /*
+            document.getElementById('qte').addEventListener('change', function() {
+            	client_commande_devis_valoriser({{zone_active.id}});
+            });
+            document.getElementById('qte').addEventListener('keyup', function() {
+            	client_commande_devis_valoriser({{zone_active.id}});
+            });
+            document.getElementById('slider').addEventListener('mouseup', function( values, handle ) {
+            	client_commande_devis_valoriser({{zone_active.id}});
+            });
+            */
+        }
+    };
+</script>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "distrib/base.html" %}
+{% load i18n admin_urls admin_static admin_modify contenu_tags %}
+
+{% block distrib %}
+ <form action="" method="post">{% csrf_token %}
+  <div class="module" style="float:left;width:47.5%;margin-right:5%">
+   <h2>VOS PRODUITS - EN EUROS TTC PAR M3</h2>
+   {{ produits_formset.management_form }}
+    <table class="distrib-table distrib-table-center" style="width:100%;">
+     <thead><tr>
+        <th></th>
+        <th>Actif</th>
+        <th>Prix Distributeur</th>
+        <th>Prix Client</th>
+     </tr></thead>
+     {% for produit_form in produits_formset %}
+     <tr>
+      <td><label for="produit_{{produit.id}}">{{produit_form.instance.type_fioul.nom}}</label></td>
+      <td>{{produit_form.actif}}</td>
+      <td>{% soustraire produit_form.instance.prix_ttc config.commission %}</td>
+      <td>{{produit_form.id}}{{produit_form.prix_ttc}}{{produit_form.prix_ttc.errors}}</td>
+     </tr>
+     {% endfor %}
+    </table>
+  </div>
+  <div class="module" style="float:left;width:47.5%;">
+   <h2>BONUS/MALUS VOLUMETRIQUE - EN EUROS TTC PAR M3</h2>
+   {{decotes_formset.management_form}}
+    <table class="distrib-table">
+     {% for decote_form in decotes_formset %}
+     <tr>
+      <td><label for="decote_{{decote.id}}">{{decote_form.instance.min}} L - {{decote_form.instance.max}} L</label></td>
+      <td class="tar">{{decote_form.id}}{{decote_form.decote}}{{decote_form.decote.errors}}</td>
+     </tr>
+     {% endfor %}
+    </table>
+    
+    <h2>BONUS/MALUS DE LIVRAISON - EN EUROS TTC PAR M3</h2>
+    {{livraisons_formset.management_form}}
+   <table class="distrib-table">
+    <thead>
+     <tr>
+      <th style="width:70%">Délais</th>
+      <th style="width:10%">Activé</th>
+      <th style="width:20%">Extra</th>
+     </tr>
+    </thead>
+    {% for livraison_form in livraisons_formset %}
+    <tr>
+     <td><label for="livraison_{{livraison.id}}">{{livraison_form.instance.type_livraison}}</label></td>
+     <td>{{livraison_form.actif}}{{livraison_form.id}}</td>
+     <td class="tar">{{livraison_form.extra}}{{livraison_form.extra.errors}}</td>
+    </tr>
+    {% endfor %}
+   </table>
+  </div>
+  <br style="float:none;clear:both;" />
+  <div class="submit-row" style="text-align:center;"><input class="default" style="float:none;" type="submit" name="_save" value="Enregistrer"></div>
+  <div class="module" id="distributeur-recap">
+   <h2>VOS TARIFS - EN EUROS TTC PAR M3</h2>
+   {% for tarif in tarifs %}
+   <table>
+    <thead>
+     <tr>
+      <th style="color:black;width:25%;">{{tarif.nom}}</th>
+      {% for livraison in livraisons %}
+      <th style="width:25%;">{{livraison.type_livraison.nom}}</th>
+      {% endfor %}
+     </tr>
+    </thead>
+    {% for decote in tarif.decotes %}
+    <tr>
+        {% for tarif in decote.ligne %}
+        <td {% if decote.jaune and forloop.counter == 2 %}style="background-color:yellow;"{% endif %}>{{tarif}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+   </table>
+   {% endfor %}
+  </div>
+ </form>
+{% endblock %}

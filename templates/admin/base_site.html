@@ -1,0 +1,45 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}Fioulexpress.fr | Interface Distributeur{% endblock %}
+
+{% block branding %}
+<style>
+ #header {height: 62px;line-height: 62px;}
+ {% if request.user.groups.all.0.id == 1 %}
+ div.breadcrumbs a {
+  background-color: #fff;
+  color: #447e9b;
+  display: inline-block;
+  margin-left: 5px;
+  padding: 5px 20px;
+ }
+ {% endif %}
+
+</style>
+<h1 id="site-name"><a href="{% url 'admin:index' %}"><img src="/static/fioul/img/logo.png" alt="Fioul Express" width="143" height="62" /></a></h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+{% if request.user.groups.all.0.id == 1 %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}{% if zone_active %}?zone={{zone_active.id}}{% endif %}">{% trans 'Home' %}</a>
+<a href="{% url 'distrib-commandes' %}{% if zone_active %}?zone={{zone_active.id}}{% endif %}">{% trans 'Commandes' %}</a>
+<a href="{% url 'distrib-produits' %}{% if zone_active %}?zone={{zone_active.id}}{% endif %}">{% trans 'Produits' %}</a>
+<a href="{% url 'distrib-livraisons' %}{% if zone_active %}?zone={{zone_active.id}}{% endif %}">{% trans 'Options de la zone' %}</a>
+</div>
+{% elif request.user.groups.all.0.id == 2 or request.user.groups.all.0.id == 3 %}
+<div class="breadcrumbs">
+<a style="color: #447e9b;background-color: #fff;display: inline-block;margin-left: 5px;padding: 5px 20px;"  href="{% url 'admin:index' %}{% if zone_active %}?zone={{zone_active.id}}{% endif %}">{% trans 'Home' %}</a>
+<a style="color: #447e9b;background-color: #fff;display: inline-block;margin-left: 5px;padding: 5px 20px;"  href="{% url 'distrib-commandes' %}{% if zone_active %}?zone={{zone_active.id}}{% endif %}">{% trans 'Commandes' %}</a>
+</div>
+{% else %}
+<div class="breadcrumbs">
+	<a style="color: #447e9b;background-color: #fff;display: inline-block;margin-left: 5px;padding: 5px 20px;" href="{% url 'admin:index' %}{% if zone_active %}?zone={{zone_active.id}}{% endif %}">Admin</a>
+	<a style="color: #447e9b;background-color: #fff;display: inline-block;margin-left: 5px;padding: 5px 20px;" href="{% url 'distrib-commandes' %}{% if zone_active %}?zone={{zone_active.id}}{% endif %}">{% trans 'Commandes' %}</a>
+    <a style="color: #447e9b;background-color: #fff;display: inline-block;margin-left: 5px;padding: 5px 20px;" href="{% url 'distrib-livraisons' %}{% if zone_active %}?zone={{zone_active.id}}{% endif %}">{% trans 'Options de la zone' %}</a>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

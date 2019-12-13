@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load thumbnail %}
+{% load contenu_tags %}
+
+{% block body %}
+<script>
+    window.page = 'home';
+</script>
+<div class="container">
+    <!-- Bloc principal -->
+    <section class="hp margin-b">
+        <div class="hp-layer">
+            <h1 class="hp-layer-title">Commandez du combustible<br><small class="hp-layer-subtitle">aux meilleurs prix !</small></h1>
+            <form action="{% url 'client-valide-cp' %}" method="post" id="form-hp-cp">{% csrf_token %}
+                <input type="tel" name="cp" maxlength="5" class="hp-layer-cp{% if cp_inconnu %} hp-layer-cp-err{% endif %}" placeholder="votre code postal">
+                <div class="hp-layer-cp-err-msg">{% if cp_inconnu %}Ce code postal n'est pas reconnu{% endif %}</div>
+                <button type="submit" class="hp-layer-btn">voir les tarifs</button>
+            </form>
+        </div>
+    </section>
+    <!-- 3 Blocs de reassurance -->
+    {% html_bloc 'HP - reassurance' %}
+    <!-- Image administrable -->
+    {% html_bloc 'HP - bloc image' %}
+    <!-- Blocs Europ'Energie + Contact -->
+    <div class="row small-gutter">
+        <div class="col-xs-12 col-md-6">
+            {% html_bloc 'HP - Europenergie' %}
+        </div>
+        <div class="col-xs-12 col-md-6">
+            {% html_bloc 'HP - Contact' %}
+        </div>
+    </div>
+    <!-- Actualités -->
+    <aside>
+        <h1 class="actus-title">
+            <span class="actus-title-text">Actualités</span><small class="actus-title-aside">Les dernières actualités du Fioul</small>
+        </h1>
+        <div class="row">
+        {% for actu in actus %}
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="actus-item">
+                    <div class="actus-item-picture">
+                        {% thumbnail actu.image_principale "390x230" crop="center" as im %}
+                        <img data-src="{{im.url}}" width="390" height="230" alt="">
+                        {% endthumbnail %}
+                        <a href="/actu/{{actu.url}}/" class="actus-item-link"><span class="actus-item-link-text icon">Lire la suite</span></a>
+                        <span class="actus-item-date"><span class="actus-item-date-day">{{actu.date.day}}</span><br>{{actu.date|date:'b'}}</span>
+                    </div>
+                    <h2 class="actus-item-title">{{actu.titre}}</h2>
+                    <p class="actus-item-text">{{actu.contenu|striptags|truncatewords:10}}</p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </aside>
+</div>
+{% endblock %}

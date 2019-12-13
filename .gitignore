@@ -1,0 +1,10 @@
+/venv/
+/venv_dev/
+/static/
+/media/
+*\.pyc
+/.project
+/.pydevproject
+/fioul/settings_current.py
+/admin_templates/
+.settings/

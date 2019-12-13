@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Fioul Express</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            color: #818385;
+        }
+        .left { float: left; }
+        .bold { font-weight: bold; }
+        .text-right { text-align: right; }
+        #logo {
+            width: 143px;
+        }
+        #title {
+            display: inline-block;
+            width: 450px;
+            margin-bottom: 40px;
+            padding-bottom: 10px;
+            border-bottom: 8px solid #f38330;
+            text-align: right;
+            font-size: 24px;
+        }
+        #client {
+            display: inline-block;
+            margin-bottom: 30px;
+            line-height: 24px;
+            text-align: left;
+        }
+        #container {
+            padding: 0 30px;
+        }
+        .block-title {
+            margin-top: 50px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .block-title-1 {
+            margin-top: 40px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .block-title-2 {
+            font-weight: bold;
+        }
+        .block-blue {
+            margin-top: 30px;
+            padding: 20px;
+            background-color:#bdcde7;
+        }
+        .label {
+            display: inline-block;
+            width: 200px;
+            margin-right: 10px;
+        }
+        .label-1 {
+            display: inline-block;
+            width: 400px;
+            margin-right: 10px;
+        }
+        #bottom {
+            margin-top: 75px;
+            margin-bottom: 20px;
+        }
+        .sep {
+            margin: 0;
+            padding: 0;
+            border: 2px dotted #6d6f71;
+        }
+        #mention {
+            color: #3c3c3c;
+            font-size: 10px;
+            text-align: center;
+            line-height: 18px;
+        }
+        #mention a {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="text-right">
+        <div class="left">
+            <img id="logo" src="https://www.fioulexpress.fr/static/fioul/img/logo.png" alt="Fioul Express" width="143" height="62">
+        </div>
+        <div id="title">
+            FACTURE n° {{commande.id}}
+        </div>
+    </div>
+
+    <div class="text-right">
+        <div id="client">
+            <div class="bold">ADRESSE DE FACTURATION</div>
+            <div>{{commande.adresse_livraison.prenom}} {{commande.adresse_livraison.nom}}</div>
+            <div>{{commande.adresse_livraison.detail_1}}</div>
+            <div>{{commande.adresse_livraison.code_postal}} {{commande.adresse_livraison.detail_4}}</div>
+            <div>{{commande.client.tel}}</div>
+        </div>
+    </div>
+    
+    <div>
+        Le {{commande.date|date:'d F Y'}}, à Versaille
+    </div>
+    <div class="block-title-1">
+        FACTURE D'ACOMPTE n° {{commande.id}}
+    </div>
+    <div class="block-title-2">
+        Payée le {{commande.date|date:'d F Y'}} par Carte Bancaire
+    </div>
+    
+    <div class="block-blue">
+        <div class="bold"><span class="label-1">Total de l'acompte payé</span>{{commande.commission_ttc|floatformat:'2'}} €</div>
+        <div><span class="label-1">dont TVA</span>{{commande.get_commission_tva|floatformat:'2'}} €</div>
+    </div>
+
+
+        <div class="block-title">RAPPEL DE LA COMMANDE</div>
+        <div><span class="label">Numéro :</span> {{commande.id}}</div>
+        <div><span class="label">Quantité :</span> {{commande.qte}} litres</div>
+        <div><span class="label">Prix au litre :</span> {{commande.get_prix_litre|floatformat:'-3'}} euros TTC</div>
+        <div><span class="label">Produit :</span> {{commande.type_fioul.nom}}</div>
+        <div><span class="label">Livraison {{commande.type_livraison.nom}} :</span> Livraison avant le {{commande.date_livraison|date:'d F Y'}}</div>
+        <div><span class="label">Total commande :</span> {{commande.total_ttc|floatformat:'2'}} euros TTC</div>
+        <div><span class="label">Acompte perçu :</span> {{commande.commission_ttc|floatformat:'2'}} euros TTC</div>
+        <div><span class="label">Restant à régler :</span> {{commande.get_reste_ttc|floatformat:'2'}} euros TTC</div>
+        
+        <div class="block-title">COORDONNÉES DISTRIBUTEUR</div>
+        <div>{{commande.zone.raison_sociale}}</div>
+        <div>{{commande.zone.adresse}}, {{commande.zone.code_postal}} {{commande.zone.ville}}</div>
+        <div>{{commande.zone.email}} - {{commande.zone.telephone}}</div>
+        <div>SIREN : {{commande.zone.siret}}</div>
+
+
+    <div id="bottom">
+        <div class="sep"></div>
+        <div class="sep"></div>
+        <div class="sep"></div>
+        <div class="sep"></div>
+    </div>
+    <div id="mention">
+        <a href="https://www.fioulexpress.fr">www.fioulexpress.fr</a> | SEDEP, 35 RUE DES CHANTIERS, 78000 VERSAILLES | Tél : 01 41 28 27 90 | <a href="mailto:commande@fioulexpress.fr">commande@fioulexpress.fr</a><br>
+        RCS VERSAILLES B 351 481 080 | ID TVA FR 351 481 080 | SIRET 351 481 080 00049
+    </div>
+</body>
+</html>

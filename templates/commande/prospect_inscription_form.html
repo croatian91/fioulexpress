@@ -1,0 +1,13 @@
+<section class="hp margin-b">
+    <div class="hp-layer">
+        <p class="hp-layer-text">
+            Désolé, nous ne délivrons pas encore cette zone.<br>
+            Pour être tenu informé de l'évolution de nos services, merci de bien vouloir saisir votre adresse email.
+        </p>
+        <form method="post" action="{% url 'prospect-inscrire' %}">{% csrf_token %}
+            <input type="hidden" name="cp" value="{{request.POST.cp}}">
+            <input type="email" name="email" class="hp-layer-cp">
+            <input type="submit" value="Enregistrer" class="hp-layer-btn">
+        </form>
+    </div>
+</section>

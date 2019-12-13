@@ -1,0 +1,123 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls admin_static admin_modify contenu_tags %}
+
+
+{% block extrahead %}{{ block.super }}
+<!-- 
+    <script type="text/javascript" src="/distributeur/jsi18n/"></script>
+    <script type="text/javascript" src="/static/admin/js/core.js"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
+     -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/fioul/jquery-ui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/fioul/jquery-ui/jquery-ui.min.css"/>
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+ <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
+ <style>
+  #distrib-gauche {
+   float: left;
+   width: 20%;
+  }
+  #distrib-droite {
+   float: left;
+   width: 75%;
+   margin-left: 5%;
+  }
+  #distrib-zone {
+  }
+  #distrib-zone li {
+   list-style-type:none;
+  }
+  #distrib-zone li a {
+    color: #999;
+    display: block;
+  }
+  #distrib-zone li.selected {
+   border-left: 5px solid #eaeaea;
+   margin-left: -15px;
+   padding-left: 10px;
+  }
+  #distrib-zone li.selected a {
+   color: #5b80b2;
+  }
+  table.distrib-table {
+   margin-bottom:10px;
+   width:100%;
+  }
+  table.distrib-table td {
+   vertical-align: middle;
+  }
+  table.distrib-table th {
+   text-align: center;
+  }
+  table.distrib-table-center th, table.distrib-table-center td {
+    text-align:center;
+  }
+  #distributeur-recap table {
+   float: left;
+   margin: 10px 2%;
+   width: 46%;
+  }
+  #distrib-jours li {
+   list-style-type: none;
+  }
+  .tar, table.distrib-table-center th.tar, table.distrib-table-center td.tar {
+   text-align:right;
+  }
+  .tal, table.distrib-table-center th.tal, table.distrib-table-center td.tal {
+   text-align:left;
+  }
+  .fwn {
+    font-weight:normal;
+  }
+ </style>
+{% endblock %}
+
+{% block coltype %}colM{% endblock %}
+
+
+{% block content %}
+<style>
+#form-distributeur .select2-container {
+    min-width: 17em;
+}
+</style>
+<div id="content-main">
+ <div id="distrib-gauche">
+  <div id="distrib-zone" class="module">
+   <h2>VOS ZONES</h2>
+   {% if admin %}
+   <h3>Distributeur</h3>
+   <form id="form-distributeur" onchange="$('#form-distributeur').submit();">{{distributeur_form.media}}
+	   {{distributeur_form.distributeur}}
+   </form>
+   <h3>Zones</h3>
+   {% endif %}
+   <ul>
+    {% for zone in zones %}
+    <li class="{% if zone == zone_active %}selected{% endif %}"><a href="?{% filter_params 'zone' zone.id %}">{{zone.nom}}</a></li>
+    {% endfor %}
+    <li class="{% if not zone_active %}selected{% endif %}"><a href="?{% filter_params 'zone' '' %}">Toutes</a></li>
+   </ul>
+   {% if not request.user.is_superuser %}
+   <a href="{% url 'distrib-zone-add' %}">Ajouter une zone</a>
+   {% endif %}
+   <br /><br />
+   {% block distrib_extra_gauche %}{% endblock %}
+  </div>
+  
+ </div>
+ <div id="distrib-droite">
+  {% block distrib %}
+  {% endblock %}
+ </div> 
+</div>
+
+{% endblock %}

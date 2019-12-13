@@ -1,0 +1,56 @@
+{% extends "distrib/base.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+
+{% block distrib %}
+<form action="" method="post">{% csrf_token %}
+    <div class="module" id="distrib-jours" style="float:left;width:30%;margin-right:3%;">
+        <h2>Informations</h2>
+        {{zone_form.errors}}
+        <fieldset class="module aligned ">
+        <div class="form-row{% if zone_form.errors.nom %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.nom.id_for_label }}">Nom de la zone :</label>
+            {{zone_form.nom}}
+        </div>
+        <div class="form-row{% if zone_form.errors.telephone %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.telephone.id_for_label }}">{{zone_form.telephone.label}} :</label>
+            {{zone_form.telephone}}
+        </div>
+        <div class="form-row{% if zone_form.errors.email %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.email.id_for_label }}">{{zone_form.email.label}} :</label>
+            {{zone_form.email}}
+        </div>
+        <div class="form-row{% if zone_form.errors.raison_sociale %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.raison_sociale.id_for_label }}">{{zone_form.raison_sociale.label}} :</label>
+            {{zone_form.raison_sociale}}
+        </div>
+        <div class="form-row{% if zone_form.errors.siret %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.siret.id_for_label }}">{{zone_form.siret.label}} :</label>
+            {{zone_form.siret}}
+        </div>
+        <div class="form-row{% if zone_form.errors.adresse %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.adresse.id_for_label }}">{{zone_form.adresse.label}} :</label>
+            {{zone_form.adresse}}
+        </div>
+        <div class="form-row{% if zone_form.errors.code_postal %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.code_postal.id_for_label }}">{{zone_form.code_postal.label}} :</label>
+            {{zone_form.code_postal}}
+        </div>
+        <div class="form-row{% if zone_form.errors.ville %} errors{% endif %}">
+            <label class="required" for="{{ zone_form.ville.id_for_label }}">{{zone_form.ville.label}} :</label>
+            {{zone_form.ville}}
+        </div>
+        </fieldset>
+    </div>
+    <div class="module" id="distrib-jours" style="float:left;width:30%;margin-right:3%;">
+        <h2>Livraison</h2>
+        {{zone_form.jours_livraison}}
+    </div>
+    <div class="module" id="distrib-jours" style="float:left;width:30%;">
+        <h2>Type de paiements</h2>
+        {{zone_form.types_paiement}}
+    </div>
+    <br style="float:none;clear:both;" />
+    <div class="submit-row" style="text-align:center;"><input class="default" style="float:none;" type="submit" name="_save" value="Enregistrer"></div>
+</form>
+{% endblock %}
+

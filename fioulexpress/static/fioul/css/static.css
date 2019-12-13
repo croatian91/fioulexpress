@@ -1,0 +1,192 @@
+/* default style */
+.static-page-default-style {
+    margin-bottom: 30px;
+    border-top: 2px solid #ff6c00;
+    color: #444;
+}
+.static-page-default-style h2 {
+    margin-top: 45px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+.static-page-default-style h3 {
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.static-page-default-style h4 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 17px;
+    font-weight: 700;
+}
+.static-page-default-style p {
+    margin-bottom: 15px;
+    line-height: 20px;
+}
+.static-page-default-style p:first-child {
+    margin-top: 35px;
+}
+.static-page-default-style strong {
+    font-weight: bold;
+}
+.static-page-default-style em {
+    font-style: italic;
+}
+
+/* qui sommes nous */
+.qui-sommes-nous-content {
+    padding: 20px;
+    background-color: #ededed;
+    color: #454545;
+}
+.qui-sommes-nous-content-title {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 700;
+}
+.qui-sommes-nous-content-text {
+    margin-bottom: 30px;
+    line-height: 21px;
+}
+@media (min-width: 768px) {
+    .qui-sommes-nous-content {
+        padding: 50px;
+    }
+}
+@media (min-width: 992px) {
+    .qui-sommes-nous-content {
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
+}
+
+/* commander du fioul */
+@media (min-width: 1280px) {
+    .commander-du-fioul {
+        position: relative;
+    }
+    .commander-du-fioul .hp-layer {
+        margin: 0 0 0 120px;
+    }
+    .commander-du-fioul .reassurance {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        width: 530px;
+    }
+    .commander-du-fioul .reassurance .col-sm-4 {
+        width: 100%;
+    }
+    .commander-du-fioul .reassurance-block {
+        min-height: 160px;
+        margin-bottom: 10px;
+    }
+    .qui-sommes-nous-content {
+        padding-left: 110px;
+        padding-right: 10px;
+    }
+}
+
+/* decouvrez notre nouveau fioul */
+.decouvrez-notre-nouveau-fioul .hp {
+    background-position: 0 center;
+}
+.fioul-cristal-power {
+    padding: 10px 5px;
+    color: #454545;
+}
+.fioul-cristal-power-title {
+    display: inline-block;
+    margin-bottom: 30px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #ff6c00;
+    font-size: 29px;
+    font-family: "Droid Serif", serif;
+    font-weight: 700;
+}
+.fioul-cristal-power-text {
+    margin-bottom: 27px;
+    line-height: 25px;
+}
+.nouveau-fioul-block {
+    margin-bottom: 20px;
+    padding: 16px;
+    background-color: #f5f5f5;
+}
+.nouveau-fioul-sub-block {
+    padding: 15px;
+    border-width: 2px;
+    border-style: solid;
+}
+.nouveau-fioul-sub-block.orange {
+    border-color: #ff6c00;
+}
+.nouveau-fioul-sub-block.green {
+    border-color: #00ba9d;
+}
+.nouveau-fioul-sub-block.blue {
+    border-color: #34a1de;
+}
+.nouveau-fioul-block-title {
+    margin-bottom: 36px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #000;
+}
+.nouveau-fioul-block-text {
+    margin-bottom: 33px;
+    line-height: 25px;
+    font-size: 14px;
+    color: #454545;
+}
+.nouveau-fioul-block-mention {
+    margin-bottom: 10px;
+    line-height: 15px;
+    font-size: 12px;
+    color: #454545;
+}
+.nouveau-fioul-sub-block sup {
+    color: #ff6c00;
+}
+.nouveau-fioul-sub-block figure {
+    margin-top: 30px;
+    text-align: center;
+}
+.nouveau-fioul-sub-block figcaption {
+    margin-top: 25px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #d2503f;
+}
+@media (min-width: 480px) {
+    .fioul-cristal-power {
+        padding: 10px 50px;
+    }
+    .nouveau-fioul-sub-block {
+        padding: 35px 45px;
+    }
+}
+@media (min-width: 768px) {
+    .fioul-cristal-power {
+        padding: 10px 0;
+    }
+}
+@media (min-width: 991px) {
+    .fioul-cristal-power {
+        padding: 10px;
+    }
+}
+@media (min-width: 1280px) {
+    .fioul-cristal-power {
+        padding: 50px 110px;
+    }
+}
+@media (min-width: 1280px) {
+    .nouveau-fioul-sub-block.bottom {
+        height: 470px;
+    }
+}

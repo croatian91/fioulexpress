@@ -1,0 +1,334 @@
+/*HP*/
+.hp {
+    padding: 20px 10px;
+    text-align: center;
+    background: url('../img/hp-bg.png') no-repeat center;
+}
+#messages .hp {
+    margin-bottom: 0;
+}
+.hp-layer {
+    width: 100%;
+    max-width: 384px;
+    height: 344px;
+    margin: 0 auto;
+    padding: 58px 10px 0; 
+    border-radius: 8px;
+    background-color: rgba(237, 237, 237, .87);
+}
+.hp-layer-title {
+    margin-bottom: 56px;
+    font-weight: 900;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #016;
+}
+.hp-layer-subtitle {
+    font-family: "Droid Serif", serif;
+    font-weight: 700;
+    font-size: 18px;
+    font-style: italic;
+    text-transform: lowercase;
+    color: #e15543;
+}
+.hp-layer-text {
+    margin-bottom: 7px;
+}
+.hp-layer-cp {
+    width: 180px;
+    height: 40px;
+    display: block;
+    margin: 0 auto 5px;
+    border: 2px solid #016;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 15px;
+}
+.hp-layer-cp::-webkit-input-placeholder {
+    font-style: italic;
+}
+.hp-layer-cp:-moz-placeholder {
+    font-style: italic;
+}
+.hp-layer-cp::-moz-placeholder {
+    font-style: italic;
+}
+.hp-layer-cp:-ms-input-placeholder {
+    font-style: italic;
+}
+.hp-layer-cp-err {
+	border-color: #e45441;
+}
+.hp-layer-cp-err-msg {
+	color: #e45441;
+	font-style: italic;
+	margin-bottom: 30px;
+}
+.hp-layer-btn {
+    width: 100%;
+    max-width: 300px;
+    height: 58px;
+    border: 0;
+    border-radius: 8px;
+    background: linear-gradient(#00afec, #0d7baf);
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+}
+@media (min-width: 768px) {
+    .hp {
+        padding-top: 105px;
+        padding-bottom: 150px;
+    }
+    .hp-layer {
+        box-shadow: 10px 10px 20px 3px rgba(43, 43, 43, 0.7);
+    }
+}
+.reassurance-block {
+    min-height: 163px;
+    margin-bottom: 20px;
+    padding-top: 32px;
+    padding-left: 67px;
+    border-radius: 8px;
+    background-color: #dceffd;
+}
+.reassurance-title {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #444;
+}
+.reassurance-text {
+    padding-bottom: 20px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #878787;
+}
+.reassurance-block-command::before,
+.reassurance-block-delivery::before,
+.reassurance-block-payment::before {
+    top: 24px;
+    left: 7px;
+    width: 52px;
+    height: 32px;
+}
+.reassurance-block-command::before { background-position: -12px 0; }
+.reassurance-block-delivery::before { background-position: -64px 0; }
+.reassurance-block-payment::before { background-position: -116px 0; }
+@media (min-width: 768px) {
+    .reassurance-block {
+        min-height: 270px;
+        padding-right: 20px;
+    }
+}
+@media (min-width: 992px) {
+    .reassurance-block {
+        min-height: 220px;
+    }
+}
+@media (min-width: 1200px) {
+    .reassurance-block {
+        min-height: 163px;
+        padding-left: 77px;
+    }
+    .reassurance-block-command::before,
+    .reassurance-block-delivery::before,
+    .reassurance-block-payment::before {
+        left: 17px;
+    }
+}
+.europ-energie {
+    margin-bottom: 20px;
+    padding: 40px 10px 45px;
+    border: 1px solid #f75f1e;
+    text-align: center;
+}
+.europ-energie-title {
+    margin-bottom: 60px;
+    font-family: "Droid Serif", serif;
+    font-weight: 700;
+    font-style: italic;
+}
+.europ-energie-intro {
+    margin-bottom: 30px;
+    padding-left: 10px;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 24px;
+}
+.intro-first-line {
+    color: #f75f1e;
+}
+.intro-second-line {
+    color: #f77f1e;
+}
+.intro-third-line {
+    color: #f7931e;
+}
+.europ-energie-description {
+    margin-bottom: 40px;
+    padding-left: 10px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+    color: #454545;
+}
+@media (min-width: 1280px) {
+    .europ-energie-intro,
+    .europ-energie-description {
+        padding-left: 55px;
+    }
+}
+.contact {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.contact-tel {
+    padding: 70px 10px 77px;
+    background-color: #fff16a;
+    font-style: italic;
+    color: #343434;
+}
+.contact-tel-title {
+    margin-bottom: 26px;
+    font-size: 30px;
+    font-weight: 900;
+}
+.contact-tel-info {
+    display: inline-block;
+    text-align: left;
+    font-family: "Droid Serif", serif;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.3;
+}
+.contact-tel-number {
+    padding-left: 45px;
+    font-size: 30px;
+    font-weight: 900;
+    color: #02476d;
+}
+.contact-tel-number::before {
+    left: 0;
+    top: 50%;
+    width: 39px;
+    height: 32px;
+    margin-top: -16px;
+    background-position: -168px 0;
+}
+.contact-email {
+    position: relative;
+    overflow: hidden;
+}
+.contact-email::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-top: -150px;
+    margin-left: -360px;
+    border-top: 150px solid #c0a477;
+    border-bottom: 150px solid #a38558;
+    border-left: 360px solid #a38558;
+    border-right: 360px solid #a38558;
+}
+.contact-email-link {
+    position: relative;
+    display: inline-block;
+    margin: 110px 0;
+    padding: 22px 16px 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    font-size: 18px;
+    font-family: "Droid Serif", serif;
+    font-weight: 700;
+    font-style: italic;
+    box-shadow: 2px 2px 6px 2px rgba(43, 43, 43, 0.9);
+}
+.contact-email-link::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 90%;
+    margin-top: 10px;
+    height: 2px;
+    background-color: #e0ac56;
+}
+@media (min-width: 992px) {
+    .contact {
+        margin-bottom: 10px;
+        padding: 25px 20px;
+    }
+    .contact-email::before {
+        margin-left: -295px;
+        border-left-width: 295px;
+        border-right-width: 295px;
+    }
+}
+
+/*pagination*/
+.pagination {
+    margin-bottom: 20px;
+}
+.pagination-item {
+    display: inline-block;
+    margin-right: 4px;
+    padding: 10px 9px;
+    border: 0;
+    border-radius: 6px;
+    background-color: #043e67;
+    line-height: 18px;
+    font-size: 16px;
+    font-family: "Droid Serif", serif;
+    font-weight: 700;
+    font-style: italic;
+    color: #fff;
+}
+.pagination-item.current {
+    text-decoration: underline;
+}
+
+/*404*/
+.hp-404 .reassurance-block {
+    width: 100%;
+    max-width: 384px;
+    height: auto;
+    min-height: 0 !important;
+    margin: 0 auto 15px;
+    padding: 23px 0 0;
+}
+.hp-404 .reassurance-block .reassurance-text {
+    font-size: 14px;
+    color: #000;
+}
+@media (min-width: 768px) {
+    .hp-404 {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .hp-404 .reassurance-block {
+        height: 120px;
+    }
+}
+@media (min-width: 1280px) {
+    .hp-404 {
+        padding-top: 105px;
+        padding-bottom: 150px;
+    }
+    .hp-404 .reassurance-block {
+        position: absolute;
+        top: 50px;
+        left: 10px;
+        margin: 0 0 0 120px;
+    }
+    .hp-404 .reassurance-block + .hp-layer {
+        margin-top: 85px !important;
+        margin-bottom: -85px !important;
+    }
+}

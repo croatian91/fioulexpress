@@ -1,0 +1,5 @@
+<ul class="footer-block-list">
+	{% for actu in actus %}
+	<li class="footer-block-item footer-block-item-arrow icon"><a href="/actu/{{actu.url}}/">{{actu.titre}}</a></li>
+	{% endfor %}
+</ul>

@@ -1,0 +1,769 @@
+/*stepbar*/
+.checkout-stepbar {
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+.checkout-stepbar-item {
+    position: relative;
+    display: block;
+    padding: 10px 0;
+    background-color: #0172a1;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #fff;
+}
+.checkout-stepbar-item.actif {
+    background-color: #ff6c00;
+}
+@media (min-width: 768px) {
+    .checkout-stepbar-item {
+        position: relative;
+        display: block;
+        padding: 14px 0;
+    }
+    .checkout-stepbar-item::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        right: -17px;
+        width: 34px;
+        height: 34px;
+        margin-top: -18px;
+        border-top: 2px solid #fff;
+        border-right: 2px solid #fff;
+        background-color: #0172a1;
+        transform: rotate(45deg);
+    }
+    .checkout-stepbar-item.actif::after {
+        background-color: #ff6c00;
+    }
+}
+
+/*générique*/
+.checkout-block {
+    position: relative;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    color: #303030;
+}
+.checkout-block-title {
+    position: relative;
+    margin-bottom: 25px;
+    padding-right: 30px;
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.checkout-block-title-text {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding-right: 15px;
+}
+.checkout-block-type {
+    background-color: #9fede1;
+}
+.checkout-block-quantity {
+    background-color: #fff59f;
+}
+.checkout-block-delivery {
+    background-color: #dadada;
+}
+.checkout-block-infos {
+    margin-bottom: 20px;
+    background-color: #c8c3bb;
+}
+.checkout-block-notes {
+    margin: 0 20px 20px;
+    background-color: #ffd98c;
+    font-family: "Droid Serif", serif;
+    font-style: italic;
+}
+.checkout-block-notes .checkout-block-title {
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-family: "Droid Serif", serif;
+    font-weight: 700;
+    font-style: italic;
+    text-transform: none;
+    color: #626262;
+}
+.checkout-block-type .checkout-block-title-text {
+    background-color: #9fede1;
+}
+.checkout-block-delivery .checkout-block-title-text {
+    background-color: #dadada;
+}
+.checkout-block-infos .checkout-block-title-text {
+    background-color: #c8c3bb;
+}
+.checkout-block-help + .checkout-block-title::after,
+.checkout-block-title.liseret::after {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 0;
+    height: 3px;
+}
+.checkout-block-help + .checkout-block-title::after {
+    right: 30px;
+}
+.checkout-block-title.liseret::after {
+    right: 0;
+}
+.checkout-block-type .checkout-block-title::after {
+    background-color: #ff753f;
+}
+.checkout-block-delivery .checkout-block-title::after {
+    background-color: #0172a1;
+}
+.checkout-block-infos .checkout-block-title::after {
+    background-color: #ff6c00;
+}
+.checkout-block-help {
+    position: absolute;
+    z-index: 1;
+    right: 5px;
+    top: 5px;
+    width: 34px;
+    height: 34px;
+    border: 2px solid #2b5c73;
+    border-radius: 17px;
+    background-color: #fff;
+    text-align: center;
+    line-height: 30px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #2b5c73;
+}
+.checkout-input,
+.checkout-select-container select {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    border: 1px solid #dedede;
+    line-height: 38px;
+}
+.checkout-select-container select {
+    background-color: #fff;
+}
+@media (min-width: 768px) {
+    .checkout-block {
+        padding: 30px;
+    }
+    .checkout-block-help {
+        right: 13px;
+        top: 20px;
+    }
+    .how-it-works .checkout-block-help {
+        right: -5px;
+    }
+}
+
+/*commande*/
+.command-title-container {
+    margin-bottom: 5px;
+    text-align: center;
+}
+.command-title {
+    display: inline-block;
+    padding: 20px 34px 18px;
+    border-radius: 8px;
+    background-color: #ededed;
+    font-size: 28px;
+    font-family: "Droid Serif", serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #043e67;
+}
+.command {
+    margin-bottom: 25px;
+    padding: 10px 10px 0;
+    border: 3px solid #0083c4;
+    border-radius: 8px;
+}
+.command-choice {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.command-choice-label-extra {
+    font-size: 13px;
+}
+.command-choice-price {
+    margin-left: 35px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+.command-choice-infos {
+    padding: 10px 0 20px;
+    text-align: center;
+    font-size: 11px;
+    font-family: "Droid Serif", serif;
+    font-weight: 400;
+    font-style: italic;
+}
+.checkout-slider-container {
+    position: relative;
+    margin-bottom: 15px;
+    padding-right: 30px;
+}
+.checkout-slider-value {
+    margin-top: 25px;
+    font-size: 21px;
+    font-family: "Droid Serif", serif;
+    font-weight: 700;
+    font-style: italic;
+    color: #043e67;
+}
+.checkout-slider-value-input {
+    max-width: 100px;
+    border: 0;
+    text-align: center;
+    line-height: 34px;
+    font-size: 24px;
+    font-weight: 900;
+    font-style: normal;
+    color: #000;
+}
+@media (min-width: 768px) {
+    .command-title-container {
+        margin-bottom: -35px;
+    }
+    .command {
+        padding: 50px 15px 5px;
+    }
+    .command-choice-price {
+        float: right;
+        margin-left: 0;
+        margin-top: 0;
+    }
+}
+@media (min-width: 1280px) {
+    .checkout-slider-container {
+        padding-right: 210px;
+    }
+    .checkout-slider-value {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin-top: -18px;
+    }
+    .command-choice {
+        padding-right: 60px;
+    }
+}
+
+/*override slider plugin*/
+.noUi-target {
+    border: 0;
+    border-radius: 5px;
+    box-shadow: none;
+}
+.noUi-background {
+    background-color: #f36400;
+}
+.noUi-horizontal {
+    height: 9px;
+}
+.noUi-origin {
+    border-radius: 5px;
+    background-color: #dad9d9;
+}
+.noUi-handle {
+    border: 3px solid #016;
+    border-radius: 50%;
+    box-shadow: none;
+}
+.noUi-horizontal .noUi-handle {
+    top: -16px;
+    left: -5px;
+    width: 41px;
+    height: 41px;
+}
+.noUi-handle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 37px;
+    height: 37px;
+    background: url('../img/sprite.png') no-repeat;
+    background-position: -238px -3px;
+}
+.noUi-handle::after {
+    display: none;
+}
+
+/*devis*/
+.checkout-devis {
+    margin-bottom: 25px;
+    padding-bottom: 40px;
+    border: 1px solid #2b5c73;
+    border-radius: 8px;
+    background-color: #b9effc;
+    overflow: hidden;
+}
+.checkout-devis-title {
+    margin-bottom: 25px;
+    padding: 25px 15px;
+    border-bottom: 4px solid #e15543;
+    background-color: #2b5c73;
+    text-align: center;
+    color: #fff;
+    font-size: 28px;
+    font-family: "Droid Serif", serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.checkout-devis-infos {
+    padding: 45px 15px;
+}
+.checkout-devis-infos-item {
+    margin-bottom: 15px;
+    border-bottom: 2px dotted #ff6c00;
+    letter-spacing: 1px;
+}
+.checkout-devis-infos-label {
+    display: block;
+    padding: 4px 0;
+    background-color: #b9effc;
+    color: #000;
+    font-size: 18px;
+    font-style: italic;
+}
+.checkout-devis-infos-value {
+    float: right;
+    margin-bottom: -5px;
+    padding: 1px 0 1px 2px;
+    background-color: #b9effc;
+    font-size: 21px;
+    font-weight: 900;
+    color: #043e67;
+}
+.checkout-devis-infos-price-container {
+    text-align: center;
+}
+.checkout-devis-infos-price {
+    position: relative;
+    display: inline-block;
+    margin: 40px 0 45px;
+    padding: 20px 50px;
+    border-radius: 50px;
+    background-color: #fff;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 700;
+    color: #043e67;
+}
+.checkout-devis-infos-price::after {
+    content: "";
+    position: absolute;
+    top: -33px;
+    right: 5px;
+    width: 0;
+    height: 0;
+    border-bottom: 50px solid #fff;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    transform: rotate(33deg);
+}
+.checkout-devis-infos-price-amount {
+    font-size: 42px;
+    font-weight: 900;
+}
+.checkout-devis-infos-price-devise {
+    font-size: 38px;
+    font-weight: 700;
+}
+.checkout-devis-total {
+    padding: 20px 0;
+    background-color: #00ba9d;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+}
+.checkout-devis-total.checkout-devis-deposit {
+    background-color: #0172a1;
+}
+.checkout-devis-total.checkout-devis-delivery {
+    background-color: #fff59f;
+}
+.payment-page .checkout-devis-total {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+.payment-page .checkout-devis-total.checkout-devis-deposit {
+    padding-bottom: 25px;
+}
+.payment-page .checkout-devis-total.checkout-devis-delivery {
+    position: relative;
+    margin-top: 90px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    color: #000;
+}
+.payment-page .checkout-devis-total.checkout-devis-delivery::before {
+    content: "";
+    position: absolute;
+    top: -66px;
+    left: 50%;
+    margin-left: -193px;
+    width: 386px;
+    height: 67px;
+    background: url('../img/payment-delivery-pictos.png') no-repeat center;
+}
+.checkout-devis-total-label {
+    margin-top: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.checkout-devis-total-label small {
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+}
+.checkout-devis-total-price {
+    text-align: center;
+}
+.checkout-devis-total-amount {
+    font-size: 45px;
+    font-weight: 900;
+}
+.checkout-devis-total-devise {
+    font-size: 45px;
+}
+.checkout-devis-total-ht {
+    font-style: italic;
+    color: #000;
+}
+.checkout-devis-total-ht-mention {
+    font-size: 14px;
+}
+.payment-page .checkout-devis-total-price {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.payment-page .checkout-devis-delivery .checkout-devis-total-price {
+    color: #202020;
+}
+.payment-page .checkout-devis-total-amount {
+    font-size: 36px;
+    font-weight: 700;
+}
+.payment-page .checkout-devis-total-devise {
+    font-size: 36px;
+    font-weight: 700;
+}
+.payment-page .checkout-devis-total-ht {
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+.payment-delivery-pictos {
+    padding-top: 20px;
+    text-align: center;
+}
+.payment-delivery-pictos img {
+    max-width: 100%;
+}
+@media (min-width: 768px) {
+    .checkout-devis-infos-label {
+        float: left;
+        margin-bottom: -8px;
+    }
+    .checkout-devis-infos {
+        padding: 45px;
+    }
+    .checkout-devis-total-label {
+        margin-top: 30px;
+    }
+    .payment-page .checkout-devis-total-label {
+        margin-top: 16px;
+        padding-left: 50px;
+        text-align: left;
+    }
+    .checkout-devis-total-price {
+        text-align: left;
+    }
+}
+@media (min-width: 1280px) {
+    .checkout-devis-total-price {
+        padding-left: 25px;
+    }
+    .checkout-devis-total-amount,
+    .checkout-devis-total-devise {
+        font-size: 57px;
+    }
+}
+
+.checkout-continue-container {
+    margin-bottom: 15px;
+    text-align: center;
+}
+.checkout-continue {
+    display: inline-block;
+    padding: 20px 34px 18px;
+    border: 0;
+    border-radius: 8px;
+    background-color: #043e67;
+    line-height: 28px;
+    font-size: 28px;
+    font-family: "Droid Serif", serif;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: #fff;
+    cursor: pointer;
+}
+/*livraison*/
+.infos-header {
+    padding-left: 70px;
+}
+.infos-header-title {
+    margin-bottom: 15px;
+    font-size: 29px;
+    font-family: "Droid Serif", serif;
+    font-weight: 700;
+    font-style: italic;
+    color: #444;
+}
+.infos-header-sub {
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 15px;
+}
+.infos-header-link {
+    color: #f75f1e;
+}
+.infos-create-account {
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #c6f1fc;
+    font-size: 18px;
+    font-weight: 700;
+    color: #666;
+}
+.infos-notes {
+    width: 100%;
+    max-width: 100%;
+    min-height: 150px;
+    padding: 12px;
+    border: 0;
+}
+.checkout-block-title-other-address {
+    margin-bottom: 0;
+}
+#bloc-adresse-facturation {
+    margin-top: 25px;
+}
+
+/*paiement*/
+.how-it-works {
+    margin: 25px 0;
+    padding-top: 0;
+    background-color: #fff59f;
+    color: #444;
+}
+.how-it-works-title {
+    padding: 25px 15px;
+    text-align: center;
+    color: #2b5c73;
+    font-size: 28px;
+    font-family: "Droid Serif", serif;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.how-it-works-block {
+    position: relative;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 55px;
+}
+.how-it-works-block-title {
+    position: relative;
+    margin-bottom: 3px;
+    padding: 5px 50px 5px 0;
+    font-size: 23px;
+    font-weight: 700;
+}
+.how-it-works-block-title-number {
+    position: absolute;
+    top: 50%;
+    left: -60px;
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    border-radius: 50%;
+    background-color: #07bca0;
+    text-align: center;
+    line-height: 48px;
+    font-size: 30px;
+    font-weight: 700;
+    color: #b9effc;
+}
+.how-it-works-block-p {
+    font-size: 19px;
+    line-height: 26px;
+}
+.your-deposit-container {
+    padding: 10px;
+    border: 3px solid #ff6c00;
+    border-radius: 8px;
+}
+.your-deposit {
+    padding: 30px 0;
+    text-align: center;
+    background-color: #0172a1;
+    border-radius: 8px;
+    color: #fffdfd;
+}
+.your-deposit-container.opened {
+    padding-bottom: 0;
+    border-bottom-width: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.your-deposit-container.opened .your-deposit {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.your-deposit-title {
+    display: inline-block;
+    margin-bottom: 30px;
+    padding: 25px 0 25px 80px;
+    font-size: 28px;
+    font-family: "Droid Serif", serif;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.your-deposit-title::before {
+    top: 50%;
+    left: 3px;
+    width: 62px;
+    height: 62px;
+    margin-top: -31px;
+    background-position: -277px 0;
+}
+.your-deposit-text {
+    display: inline-block;
+    margin: 0 10px;
+    line-height: 20px;
+    letter-spacing: 1px;
+    vertical-align: middle;
+}
+.your-deposit-text-first-line {
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+.your-deposit-text-second-line {
+    font-size: 16px;
+    font-style: italic;
+}
+.your-deposit-amount {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: middle;
+    font-size: 48px;
+    font-weight: 700;
+}
+.your-deposit-cgv {
+    margin-top: 25px;
+    font-size: 17px;
+}
+@media (min-width: 768px) {
+    .how-it-works-block {
+        padding-left: 5px;
+    }
+}
+.confirmation-title {
+    margin-bottom: 20px;
+    margin-top: 22px;
+    padding-left: 7px;
+    font-size: 29px;
+    font-family: "Droid Serif", serif;
+    font-style: italic;
+    font-weight: 700;
+    color: #0a0c0d;
+}
+.confirmation-title-first {
+    color: #ff6c00;
+}
+.confirmation {
+    padding-left: 30px;
+    font-size: 19px;
+    line-height: 24px;
+    color: #444;
+}
+.confirmation p {
+    margin-bottom: 30px;
+}
+.confirmation-link {
+    font-weight: 400;
+    font-style: italic;
+    color: #ff6c00;
+}
+.checkout-block-confirmation {
+    font-size: 20px;
+    color: #444;
+}
+.confirmation-coordonnees {
+    padding: 20px 20px 25px 25px;
+}
+.confirmation-coordonnees-item {
+    margin-bottom: 15px;
+    border-bottom: 2px dotted #ff6c00;
+}
+.confirmation-coordonnees-item.address {
+    margin-bottom: 37px;
+}
+.confirmation-coordonnees-label {
+    display: block;
+    padding: 4px 0;
+    background-color: #c8c3bb;
+    font-style: italic;
+}
+.confirmation-coordonnees-value {
+    float: right;
+    margin-bottom: -10px;
+    padding: 1px 0 1px 2px;
+    background-color: #c8c3bb;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 28px;
+}
+.address .confirmation-coordonnees-value {
+    margin-bottom: -37px;
+}
+.confirmation-notes-title {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    font-weight: 700;
+}
+.confirmation-notes-text {
+    margin-bottom: 20px;
+    padding-left: 25px;
+    line-height: 26px;
+}
+@media (min-width: 768px) {
+    .confirmation-coordonnees-label {
+        float: left;
+        margin-bottom: -8px;
+    }
+    .confirmation-coordonnees-value {
+        width: 45%;
+    }
+}

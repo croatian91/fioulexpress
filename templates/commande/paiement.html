@@ -1,0 +1,118 @@
+{% extends 'commande/base.html' %}
+{% load static from staticfiles %}
+{% load contenu_tags %}
+
+{% block commande_devis_href %}{% url 'client-commande-devis' %}{% endblock %}
+{% block commande_livraison_href %}{% url 'client-commande-livraison' %}{% endblock %}
+{% block commande_paiement_actif %}actif{% endblock %}
+{% block page_name %}payment-page{% endblock %}
+{% block commande %}
+<script>
+    window.page = 'paiement';
+</script>
+
+<div class="your-deposit-container">
+    <div class="your-deposit">
+        <div>
+            <span class="your-deposit-title icon">
+                Votre acompte
+            </span>
+        </div>
+        <div class="your-deposit-text">
+            <span class="your-deposit-text-first-line">Montant de l'acompte :</span><br>
+            <span class="your-deposit-text-second-line">(paiement en ligne par carte bleue)</span>
+        </div>
+        <div class="your-deposit-amount">
+            {{panier_valeur.acompte|floatformat:2}}€
+        </div>
+        <div class="your-deposit-cgv">
+            <input type="checkbox" id="yourDepositCgvCheckbox" name="yourDepositCgvCheckbox">
+            <label for="yourDepositCgvCheckbox">J'ai lu et j'accepte les </label>
+            <a href="{% url 'page-detail' 'conditions-generales-de-vente' %}" target="_blank">
+                <span id="openCGV" class="underline">conditions générales de vente</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="commande-monetico-container" class="margin-b" style="display:none;">
+    <iframe src="{{iframe_url}}" width="100%" height="320px"></iframe>
+</div>
+
+<div class="checkout-block how-it-works">
+    <h2 class="how-it-works-title">
+        Comment ça marche ?
+    </h2>
+    <div class="how-it-works-block">
+        <div id="pay-help" class="checkout-block-help">?</div>
+        <div class="how-it-works-block-title">
+            <span class="how-it-works-block-title-number">1</span>
+            Réglez votre acompte en ligne.
+        </div>
+        <p class="how-it-works-block-p">
+            Validez votre commande en réglant votre acompte<br>par carte bancaire sur notre site sécurisé.
+        </p>
+    </div>
+    <div class="how-it-works-block">
+        <div id="delivery-help" class="checkout-block-help">?</div>
+        <div class="how-it-works-block-title">
+            <span class="how-it-works-block-title-number">2</span>
+            Définissez le jour et l'horaire de livraison.
+        </div>
+        <p class="how-it-works-block-p">
+            Le livreur vous contactera pour convenir de la date<br>et du créneau horaire de livraison selon vos disponibilités.
+        </p>
+    </div>
+    <div class="how-it-works-block">
+        <div id="reception-help" class="checkout-block-help">?</div>
+        <div class="how-it-works-block-title">
+            <span class="how-it-works-block-title-number">3</span>
+            Réceptionnez votre commande.
+        </div>
+        <p class="how-it-works-block-p">
+            Réglez le montant restant à payer directement<br>auprès du livreur par chèque, espèces ou carte bancaire.
+        </p>
+    </div>
+</div>
+
+<!-- Contenus des popins d'aide -->
+<div class="popin" data-trigger="#pay-help">{% html_bloc 'INFO - Paiement - acompte' %}</div>
+<div class="popin" data-trigger="#delivery-help">{% html_bloc 'INFO - Paiement - livraison' %}</div>
+<div class="popin" data-trigger="#reception-help">{% html_bloc 'INFO - Paiement - reception' %}</div>
+{% endblock %}
+
+{% block devis_footer %}
+<div class="checkout-devis-total checkout-devis-deposit">
+    <div id="commande-devis-acompte" class="row">
+        <div class="col-xs-12 col-sm-6 col-lg-7">
+            <div class="checkout-devis-total-label">
+                Montant de l'acompte :<br>
+                <small>(paiement en ligne par carte bleue)</small>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-5">
+            <div class="checkout-devis-total-price">
+                <span id="commande-total" class="checkout-devis-total-amount">{{panier_valeur.acompte|floatformat:2}}</span><span class="checkout-devis-total-devise">€</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="checkout-devis-total checkout-devis-delivery">
+    <div id="commande-devis-reste-a-payer" class="row">
+        <div class="col-xs-12 col-sm-6 col-lg-7">
+            <div class="checkout-devis-total-label">
+                à payer à la livraison :<br>
+                <small>(paiement accepté : {{panier.zone.paiements_acceptes}})</small>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-5">
+            <div class="checkout-devis-total-price">
+                <span id="commande-total" class="checkout-devis-total-amount">{{panier_valeur.reste|floatformat:2}}</span><span class="checkout-devis-total-devise">€</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block action_suivant %}{% endblock %}

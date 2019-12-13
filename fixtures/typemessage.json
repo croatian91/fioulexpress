@@ -1,0 +1,34 @@
+[
+{
+ "model": "fioulexpress.typemessage",
+ "pk": 1,
+ "fields": {
+  "nom": "Mot de passe oubli\u00e9",
+  "template_id": "41037"
+ }
+},
+{
+ "model": "fioulexpress.typemessage",
+ "pk": 2,
+ "fields": {
+  "nom": "Commande - client",
+  "template_id": "41031"
+ }
+},
+{
+ "model": "fioulexpress.typemessage",
+ "pk": 3,
+ "fields": {
+  "nom": "Commande - distributeur",
+  "template_id": "41035"
+ }
+},
+{
+ "model": "fioulexpress.typemessage",
+ "pk": 4,
+ "fields": {
+  "nom": "Commande - admin",
+  "template_id": "41036"
+ }
+}
+]

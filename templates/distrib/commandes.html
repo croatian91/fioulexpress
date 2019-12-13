@@ -1,0 +1,95 @@
+{% extends "distrib/base.html" %}
+{% load i18n admin_urls admin_static admin_modify contenu_tags %}
+
+
+{% block distrib_extra_gauche %}
+<h2>RECHERCHE</h2>
+<h3>Statut</h3>
+<ul>
+    <li class="{% if request.GET.statut == '0' %}selected{% endif %}"><a href="?{% filter_params 'statut' '0' %}">Validée</a></li>
+    <li class="{% if request.GET.statut == '1' %}selected{% endif %}"><a href="?{% filter_params 'statut' '1' %}">Annulée</a></li>
+</ul>
+
+<h3>Client</h3>
+<form action="" method="get">
+    {% autoescape off %}{% filter_params_form 'client' %}{% endautoescape %}
+    <input type="text" name="client" value="{{request.GET.client}}" placeholder="Entrez le nom, email ..." />
+</form>
+
+<h3>Date de commande</h3>
+<form action="" method="get" id="form-date">
+    {% autoescape off %}{% filter_params_form 'du,au' %}{% endautoescape %}
+    <label for="{{recherche_form.du.html_name}}" class="field-label">{{recherche_form.du.label}}</label> :
+    {{recherche_form.du}}<br />
+    <label for="{{recherche_form.au.html_name}}" class="field-label">{{recherche_form.au.label}}</label> :
+    {{recherche_form.au}}
+</form>
+<script>
+$.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );
+function form_date_submit(){
+	$('#form-date').submit();
+}
+$( "#form-date input[type='text']" ).datepicker({
+	'firstDay' : 1,
+	'dateFormat' : 'dd/mm/yy',
+	'onSelect' : form_date_submit
+});
+/*
+django.jQuery( document ).ready(function() {
+	django.jQuery("#form-date input[type='text']").on('input', function(){
+    	django.jQuery('#form-date').submit();
+    });
+});
+*/
+</script>
+{% endblock %}
+
+{% block distrib %}
+<form action="" method="post">{% csrf_token %}
+    <div style="float:left;width:75%;margin-right:5%">
+        <div class="module">
+            <h2>VOS COMMANDES</h2>
+            <table>
+                <thead>
+                    <tr>
+                    	{% if request.user.is_superuser %}<th>Distributeur</th>{% endif %}
+                        <th>Zone</th>
+                        <th>N°</th>
+                        <th>Date</th>
+                        <th>Client</th>
+                        <th>Date de livraison</th>
+                        {% if admin %}<th>Facture</th>{% endif %}
+                        {% if admin %}<th>Monetico</th>{% endif %}
+                        <th>Statut</th>
+                        {% if admin %}<th></th>{% endif %}
+                    </tr>
+                </thead>
+                {% for commande in commandes %}
+                <tr>
+                	{% if request.user.is_superuser %}<td>{{commande.zone.distributeur.nom}}</td>{% endif %}
+                    <td>{{commande.zone.nom}}</td>
+                    <td><a href="{% url 'distrib-commande-detail' commande.id %}">{{commande.id}}</a></td>
+                    <td>{{commande.date}}</td>
+                    <td>{{commande.adresse_livraison.prenom}} {{commande.adresse_livraison.nom}}</td>
+                    <td>{{commande.date_livraison}}</td>
+                    {% if admin %}
+                    <td><a target="_blank" href="{% url 'distrib-commande-pdf' commande.id %}">PDF</a></td>
+                    {% endif %}
+                    {% if admin %}
+                    <td><a target="_blank" href="https://www.monetico-services.com/fr/client/Paiement/Paiement_RechercheAvancee.aspx?tpe_id=6322728&dnfta_Reference={{commande.panier_id}}">{{commande.panier_id}}</a></td>
+                    {% endif %}
+                    <td>{{commande.get_statut_display}}</td>
+                    {% if admin %}<td>{% if commande.statut == '0' %}<a href="{% url 'distrib-commande-annuler' commande.id %}" onclick="return confirm('Êtes-vous sûr ?');">annuler</a>{% endif %}</td>{% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div style="float:left;width:20%;">
+    <div class="module">
+        <h2>Actions</h2>
+        <p><a href="?{% filter_params 'export' '1' %}">Exporter</a></p>
+    </div>
+</div>
+</form>
+{% endblock %}

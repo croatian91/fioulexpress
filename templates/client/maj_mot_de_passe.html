@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="checkout-stepbar row no-gutter">
+        <div class="col-xs-12">
+            <a class="checkout-stepbar-item " href="#">Votre espace</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="infos-header">
+                <div class="infos-header-title"> Mettre à jour le mot de passe pour {{client.email}}</div>
+            </div>
+            <form method="post" action="">{% csrf_token %}
+                <div class="checkout-block checkout-block-infos">
+                    <div id="infos-help" class="checkout-block-help"></div>
+                    <div class="checkout-block-title">
+                        <span class="checkout-block-title-text">Saisissez votre nouveau mot de passe</span>
+                    </div>
+                    <div class="row small-gutter">
+                        <div class="col-xs-12">
+                            <div class="field">
+                                <input type="password" name="password"
+                                    value="{{request.POST.email}}"
+                                    id="client-connexion-password"
+                                    class="checkout-input requis{% if adresse_livraison_form.prenom.errors %} erreur{% endif %}">
+                                <label for="client-connexion-password" class="field-label">Mot de passe</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row small-gutter">
+                        <div class="col-xs-12">
+                            <div class="checkout-continue-container">
+                                <input id="client-connexion-submit" class="checkout-continue" type="submit" value="Nouveau mot de passe">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

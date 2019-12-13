@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% load contenu_tags %}
+
+{% block head_title %}{{actu.seo_title|default:actu.titre}}{% endblock %}
+{% block head_description %}{{actu.seo_description|default:config.meta_description}}{% endblock %}
+{% block og_title %}{{actu.seo_title|default:actu.titre}}{% endblock %}
+{% block og_description %}{{actu.seo_description|default:config.meta_description}}{% endblock %}
+{% block og_image %}https://{{request.META.HTTP_HOST}}{{actu.image_principale.url|default:config.meta_img.url}}{% endblock %}
+{% block og_image_width %}{{actu.image_principale.width}}{% endblock %}
+{% block og_image_height %}{{actu.image_principale.height}}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="actu-container">
+        <div class="actus-single">
+            <div class="row actu">
+                <div class="col-xs-12 col-sm-3 col-md-4 actu-img">
+                    {% thumbnail actu.image_principale "390x230" crop="center" as im %}
+                        <img src="{{im.url}}" alt="">
+                    {% endthumbnail %}
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8 actu-text">
+                <h1 class="actu-title">{{actu.titre}}</h1>
+                    <div class="static-page-default-style">
+                        
+                        {{actu.contenu|safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
