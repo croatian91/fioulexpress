@@ -8,6 +8,6 @@ django-markdownx==1.6
 WeasyPrint==0.30
 psycopg2==2.8.4
 python-memcached==1.59
-whitenoise==5.0.1
 gunicorn
 django-on-heroku
+django-storages
