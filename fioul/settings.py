@@ -94,13 +94,6 @@ DATABASES = {
     }
 }
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}
-
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 SESSION_COOKIE_AGE = 3600
@@ -150,6 +143,7 @@ AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", None)
 AWS_STATIC_URL = "http://{}/{}".format(AWS_S3_HOST, AWS_STORAGE_BUCKET_NAME)
 AWS_DEFAULT_ACL = None
 
+STATICFILES_DIRS = ["root"]
 STATIC_URL = '/static/'
 STATIC_ROOT = os.getenv("{}/static/".format(AWS_STATIC_URL), None)
 

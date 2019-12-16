@@ -1,4 +1,6 @@
 from django import template
+from django.conf import settings
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.utils.datetime_safe import datetime
 from django.utils.safestring import mark_safe
 from markdownx.utils import markdownify
@@ -14,7 +16,20 @@ register = template.Library()
 def html_bloc(nom):
     try:
         b = Bloc.objects.get(nom=nom)
-        return mark_safe(b.contenu)
+        content = b.contenu
+        # check for static or media and replace with actual values
+        # extract filepath
+        if "/static/" in content:
+            index = content.find("/static/")
+            quotation_mark = content.find("\"", index)
+            filepath = content[index + 8:quotation_mark]
+            content = content.replace("/static/" + filepath, static(filepath))
+        if "/media/" in content:
+            index = content.find("/media/")
+            quotation_mark = content.find("\"", index)
+            filepath = content[index + 7:quotation_mark]
+            content = content.replace("/media/", settings.AWS_STATIC_URL + "/media/")
+        return mark_safe(content)
     except:
         return ''
 

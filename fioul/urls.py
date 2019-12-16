@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^$', home),
     url(r'^markdownx/', include('markdownx.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-
+    url(r'^admin/', admin.site.urls),
 ]
 
 # Interface distributeur
