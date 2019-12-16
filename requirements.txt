@@ -11,3 +11,4 @@ python-memcached==1.59
 gunicorn
 django-on-heroku
 django-storages
+boto3
