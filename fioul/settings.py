@@ -141,10 +141,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_HOST = 's3.eu-west-3.amazonaws.com'
+AWS_S3_REGION_NAME = 'eu-west-3'
+S3_USE_SIGV4 = True
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", None)
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", None)
 AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", None)
-AWS_STATIC_URL = "http://s3.amazonaws.com/{}".format(AWS_STORAGE_BUCKET_NAME)
+AWS_STATIC_URL = "http://{}/{}".format(AWS_S3_HOST, AWS_STORAGE_BUCKET_NAME)
 AWS_DEFAULT_ACL = None
 
 STATIC_URL = '/static/'

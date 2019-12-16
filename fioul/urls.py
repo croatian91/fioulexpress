@@ -210,18 +210,6 @@ urlpatterns += [
 
 
 # Your other patterns here
-# urlpatterns += [
-    # url(r'^(?P<url>.*/)$', flatpages.views.flatpage),
-#    url(r'^pages/', include('django.contrib.flatpages.urls')),
-#    url(r'^tinymce/', include('tinymce.urls')),
-# ]
-
-if settings.DEBUG:
-    urlpatterns += [
-        url(r'^static/(?P<path>.*)$', views.static.serve),
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    # urlpatterns += s
-
 urlpatterns += [
     url(
         r'^(?P<page_adresse>.+)/$',
