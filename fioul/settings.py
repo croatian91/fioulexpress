@@ -141,7 +141,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", None)
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", None)
 AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", None)
@@ -175,3 +174,5 @@ SERVER_EMAIL = 'fioul@m-dev.fr'
 
 # Activate Django-Heroku.
 django_on_heroku.settings(locals())
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
