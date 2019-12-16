@@ -176,4 +176,6 @@ SERVER_EMAIL = 'fioul@m-dev.fr'
 # Activate Django-Heroku.
 django_on_heroku.settings(locals())
 
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'fioul.storage_backends.StaticStorage'
+DEFAULT_FILE_STORAGE = 'fioul.storage_backends.PublicMediaStorage'
