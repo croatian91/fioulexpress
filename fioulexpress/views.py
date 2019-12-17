@@ -1,21 +1,15 @@
 # -*- coding: utf-8 -*-
-from dal import autocomplete
-from django.conf import settings
-from django.contrib import messages, admin
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.shortcuts import render, redirect, HttpResponse
-from django.template import Template, RequestContext
-from django.templatetags.l10n import localize
-from django.template.defaultfilters import floatformat
+from django.template import RequestContext
 
 import csv
-import json
+import logging
 import re
 import weasyprint
 
-from .admin import ZoneAdminForm
 from .forms import *
 from .models import *
 from monetico.iframe import get_iframe_src
@@ -25,8 +19,10 @@ from django.template.loader import render_to_string, get_template
 from django.utils._os import safe_join
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.admin.views.decorators import staff_member_required
-from time import sleep
+
+logger = logging.getLogger(__name__)
 # Create your views here.
+
 
 class DistributeurAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
@@ -460,6 +456,7 @@ def client_valide_cp(request):
         code_postal = CodePostal.objects.filter(code_postal=request.POST['cp'])[0]
     except:
         request.session['cp_inconnu'] = True
+        logger.error("CP inconnu: {}".format(request.POST['cp']))
         # messages.add_message(request, messages.ERROR, "Désolé, ce code postal est inconnu")
         return redirect('/')
     if not code_postal.zone or code_postal.zone.archive or not code_postal.zone.actif or not code_postal.zone.distributeur.actif:
