@@ -452,6 +452,7 @@ def admin_se_connecter_distrib(request, id_distributeur):
     return redirect('/distributeur/')
 
 def client_valide_cp(request):
+    logger.info("DEBUG in: {}".format(request.POST["cp"]))
     try:
         code_postal = CodePostal.objects.filter(code_postal=request.POST['cp'])[0]
     except:
@@ -459,7 +460,9 @@ def client_valide_cp(request):
         logger.error("CP inconnu: {}".format(request.POST['cp']))
         # messages.add_message(request, messages.ERROR, "Désolé, ce code postal est inconnu")
         return redirect('/')
+    logger.info("DEBUG before: {}".format(code_postal.zone, code_postal.zone.archive, code_postal.zone.actif, code_postal.zone.distributeur.actif))
     if not code_postal.zone or code_postal.zone.archive or not code_postal.zone.actif or not code_postal.zone.distributeur.actif:
+        logger.info("DEBUG redirect to /")
         msg = render_to_string('commande/prospect_inscription_form.html', RequestContext(request))
         messages.add_message(request, messages.INFO, msg)
         return redirect('/')
