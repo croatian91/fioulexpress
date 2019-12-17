@@ -452,7 +452,6 @@ def admin_se_connecter_distrib(request, id_distributeur):
     return redirect('/distributeur/')
 
 def client_valide_cp(request):
-    logger.error("DEBUG in: {}".format(request.POST["cp"]))
     try:
         code_postal = CodePostal.objects.filter(code_postal=request.POST['cp'])[0]
     except:
@@ -463,7 +462,6 @@ def client_valide_cp(request):
         msg = render_to_string('commande/prospect_inscription_form.html', RequestContext(request))
         messages.add_message(request, messages.INFO, msg)
         return redirect('/')
-    logger.error("DEBUG cilent_zone: {}".format(code_postal.zone.id))
     request.session['client_cp'] = request.POST['cp']
     request.session['client_zone'] = code_postal.zone.id
     return redirect('/commande/devis/')
@@ -475,13 +473,10 @@ def prospect_inscrire(request):
     return redirect('/')
 
 def client_commande_devis(request):
-    logger.error("DEBUG devis: {}".format(request.session["client_zone"]))
     try:
         zone_active = Zone.objects.get(id=request.session['client_zone'])
     except:
-        logger.error("DEBUG devis redirect to /")
         return redirect('/')
-    logger.error("DEBUG devis ok")
     return render(request, 'commande/devis.html', {
         'zone_active' : zone_active,
     })
