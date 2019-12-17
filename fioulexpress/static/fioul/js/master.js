@@ -36,7 +36,7 @@ function getCookie(cname) {
 var menu = {};
 menu.init = function() {
     menu.$el = $('.header-menu');
-    menu.$trigger = $('.header-menu-open');
+    menu.$trigger = $('.header-menu-open-hamburger');
 
     menu.$trigger.on('click', function() {
         menu.$el.slideToggle();
