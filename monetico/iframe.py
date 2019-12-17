@@ -32,7 +32,7 @@ def get_iframe_src(panier, request):
         # 'montant_deja_capture' : '0EUR',
         # 'montant_restant' : '0EUR',
         'reference' : str(panier.id),
-        'texte-libre' : texte_libre.encode('ascii', 'replace'),
+        'texte-libre' : texte_libre,
         'mail' : panier.client.email,
         'lgue' : 'FR',
         'societe' : settings.MONETICO_SOCIETE,

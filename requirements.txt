@@ -12,3 +12,4 @@ gunicorn
 django-on-heroku
 django-storages
 boto3
+requests

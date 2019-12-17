@@ -157,18 +157,20 @@ CKEDITOR_UPLOAD_PATH = 'media/ck/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_BROWSE_SHOW_DIRS = True
 
-
+# Email settings
 FIOUL_MJ_URL = 'https://api.mailjet.com/v3/send'
-FIOUL_MJ_USER = 'a898feda5779e6bf7a3d34ae96039c4b'
-FIOUL_MJ_PASS = 'd3660ed64570d6ac9c4b529596f1b5a0'
-FIOUL_CONTACT_EMAIL = 'fioul@m-dev.fr'
+FIOUL_MJ_USER = 'f0ce962d189483385c8bd795a3215454'
+FIOUL_MJ_PASS = '5f80c237d76c0e5173a166923d2c9264'
+FIOUL_CONTACT_EMAIL = 'admin@fioulexpress.fr'
+FIOUL_ADMIN_EMAIL = 'fioul@m-dev.fr'
 FIOUL_CONTACT_NAME = 'Fioul Express'
+FIOUL_DEBUG_EMAIL = 'fioulexpress.test@gmail.com'
 
-EMAIL_HOST = 'in-v3.mailjet.com'
-EMAIL_HOST_USER = 'a898feda5779e6bf7a3d34ae96039c4b'
-EMAIL_HOST_PASSWORD = 'd3660ed64570d6ac9c4b529596f1b5a0'
-ADMINS = ['matthieu@m-dev.fr', ]
-SERVER_EMAIL = 'fioul@m-dev.fr'
+# Monetico payment settings
+MONETICO_URL = 'https://p.monetico-services.com/paiement.cgi'
+MONETICO_TPE = '6322728'
+MONETICO_CLE = '5B0DC68462EE4770386BD18F6A04E31A5F54899E'
+MONETICO_SOCIETE = 'fioulexpreIFRAME'
 
 # Activate Django-Heroku.
 django_on_heroku.settings(locals())

@@ -1,4 +1,4 @@
-import json, os, sys
+import os, sys
 import requests
 
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(sys.argv[0]))))
@@ -8,7 +8,6 @@ import django
 
 django.setup()
 
-from django.conf import settings
 from fioulexpress.models import *
 
 config = Config.objects.filter(actif=True)[0]
