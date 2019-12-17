@@ -11,7 +11,7 @@ def actu_liste(request):
     page_courante = int(request.GET.get('p', 1))
     pagination = []
     if actus.count() > actu_par_page:
-        nb_pages = actus.count() / actu_par_page
+        nb_pages = actus.count() // actu_par_page
         if actus.count() % actu_par_page > 0:
             nb_pages += 1
         pagination = range(1, nb_pages + 1)
