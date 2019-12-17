@@ -509,9 +509,8 @@ def client_commande_valoriser(request):
     request.session['panier_valeur']['total_ttc'] = localize(floatformat(request.session['panier_valeur']['total_ttc'], '-2'))
     request.session['panier_valeur']['total_ht'] = localize(floatformat(request.session['panier_valeur']['total_ht'], '-2'))
 
-
-    # for k in request.session['panier_valeur']:
-    #    request.session['panier_valeur'][k] = unicode(request.session['panier_valeur'][k])
+    for k in ['livraison_ttc', 'acompte', 'acompte_ht', 'reste']:
+        request.session['panier_valeur'][k] = localize(floatformat(request.session['panier_valeur'][k], -2))
 
     return HttpResponse(json.dumps(request.session['panier_valeur']))
 
