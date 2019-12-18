@@ -176,6 +176,16 @@ MONETICO_SOCIETE = 'fioulexpreIFRAME'
 # Debug toolbar settings
 INTERNAL_IPS = ['127.0.0.1']
 
+
+def show_toolbar(request):
+    return request.user.is_staff and DEBUG
+
+
+DEBUG_TOOLBAR_CONFIG = {
+    # ...
+    'SHOW_TOOLBAR_CALLBACK': 'fioul.settings.show_toolbar',
+}
+
 # Activate Django-Heroku.
 django_on_heroku.settings(locals())
 
