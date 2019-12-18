@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'markdownx',
     'ckeditor',
     'ckeditor_uploader',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -60,6 +61,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'fioul.urls'
@@ -133,7 +135,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_HOST = 's3.eu-west-3.amazonaws.com'
 AWS_S3_REGION_NAME = 'eu-west-3'
 S3_USE_SIGV4 = True
@@ -171,6 +172,9 @@ MONETICO_URL = 'https://p.monetico-services.com/paiement.cgi'
 MONETICO_TPE = '6322728'
 MONETICO_CLE = '5B0DC68462EE4770386BD18F6A04E31A5F54899E'
 MONETICO_SOCIETE = 'fioulexpreIFRAME'
+
+# Debug toolbar settings
+INTERNAL_IPS = ['127.0.0.1']
 
 # Activate Django-Heroku.
 django_on_heroku.settings(locals())

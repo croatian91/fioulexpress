@@ -13,3 +13,4 @@ django-on-heroku
 django-storages
 boto3
 requests
+django-debug-toolbar==1.9.1
