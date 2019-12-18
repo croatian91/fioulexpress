@@ -656,6 +656,7 @@ def client_commande_confirmation(request):
 def monetico_s2s(request):
     # sleep(10)
     # yield uwsgi.async_sleep(2)
+    logger.error("DEBUG: {}".format(request.POST))
     if request.POST.get('code-retour', '') not in ('payetest', 'paiement'):
         return HttpResponse('version=2\ncdr=0\n')
     panier = Panier.objects.get(id=request.POST.get('reference', ''))
