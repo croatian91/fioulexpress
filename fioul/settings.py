@@ -168,7 +168,11 @@ FIOUL_CONTACT_NAME = 'Fioul Express'
 FIOUL_DEBUG_EMAIL = 'fioulexpress.test@gmail.com'
 
 # Monetico payment settings
-MONETICO_URL = 'https://p.monetico-services.com/paiement.cgi'
+# Dev and Staging payment
+if DEBUG:
+    MONETICO_URL = 'https://p.monetico-services.com/test/paiement.cgi'
+else:
+    MONETICO_URL = 'https://p.monetico-services.com/paiement.cgi'
 MONETICO_TPE = '6322728'
 MONETICO_CLE = '5B0DC68462EE4770386BD18F6A04E31A5F54899E'
 MONETICO_SOCIETE = 'fioulexpreIFRAME'
