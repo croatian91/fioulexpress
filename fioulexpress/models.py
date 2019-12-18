@@ -23,7 +23,7 @@ class CodePostal(models.Model):
     class Meta:
         verbose_name_plural = 'Codes Postaux'
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s (%s)' % (self.code_postal, self.commune)
 
 class Config(models.Model):
@@ -38,7 +38,7 @@ class Config(models.Model):
     meta_title = models.CharField(max_length=500, null=True, blank=True)
     meta_img = models.ImageField(null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.nom
 
 
@@ -48,7 +48,7 @@ class Distributeur(models.Model):
     informations = models.TextField(blank=True)
     actif = models.BooleanField(default=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.nom
 
     def admin_se_connecter_distributeur(self):
@@ -59,7 +59,7 @@ class Distributeur(models.Model):
 class JourFerie(models.Model):
     date = models.DateField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.date.isoformat()
 
 class TarifDecote(models.Model):
@@ -68,7 +68,7 @@ class TarifDecote(models.Model):
     max = models.IntegerField(default=1000)
     decote = models.DecimalField(max_digits=10, decimal_places=4, default=0)
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self.id)
 
 class TarifFioul(models.Model):
@@ -80,7 +80,7 @@ class TarifFioul(models.Model):
     class Meta:
         ordering = ['type_fioul__position']
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self.id)
 
 
@@ -92,7 +92,7 @@ class TarifLivraison(models.Model):
     extra = models.DecimalField(max_digits=10, decimal_places=4, default=0)
     actif = models.BooleanField(default=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self.id)
 
 
@@ -127,7 +127,7 @@ class TypeFioul(models.Model):
         verbose_name_plural = 'types de fiouls'
         ordering = ['position']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.nom
 
 class TypeLivraison(models.Model):
@@ -140,7 +140,7 @@ class TypeLivraison(models.Model):
         verbose_name_plural = 'types de livraisons'
         ordering = ['position']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.nom
 
     def temps_livraison(self):
@@ -177,7 +177,7 @@ class Zone(models.Model):
     archive = models.BooleanField(default=False)
 
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s - %s' % (self.distributeur.nom, self.nom)
 
     def paiements_acceptes(self):
@@ -217,7 +217,7 @@ class Adresse(models.Model):
     code_postal = models.CharField('Code postal', max_length=10)
     pays = models.CharField(max_length=50, default='France')
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s - %s' % (self.client, self.nom_adresse)
 
 class Client(models.Model):
@@ -227,7 +227,7 @@ class Client(models.Model):
     token_password = models.CharField(max_length=100, null=True, blank=True)
     token_date = models.DateField(null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.email
 
     def set_token(self):
@@ -246,7 +246,7 @@ class Panier(models.Model):
     qte = models.IntegerField(default=1000)
     commentaire = models.TextField(null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.zone.nom
 
     def valeur(self):
@@ -357,7 +357,7 @@ class Commande(models.Model):
     panier_id = models.IntegerField(null=True, blank=True)
     monetico_id = models.CharField(max_length=100, null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.zone.nom
 
     def data(self):
@@ -432,14 +432,14 @@ class Message(models.Model):
     envoye = models.BooleanField('envoyé', default=False)
     external_id = models.CharField(max_length=100, null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return '{0} - {1}'.format(self.destinataire, self.sujet)
 
 class TypeMessage(models.Model):
     nom = models.CharField(max_length=255)
     template_id = models.CharField(max_length=255, blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.nom
 
 class Prospect(models.Model):
@@ -447,5 +447,5 @@ class Prospect(models.Model):
     code_postal = models.CharField('Code postal', max_length=10)
     date = models.DateTimeField(auto_now_add=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s (%s)' % (self.email, self.code_postal)

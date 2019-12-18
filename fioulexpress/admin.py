@@ -203,7 +203,7 @@ class ZoneResource(resources.ModelResource):
 class CodePostalAdmin(ImportExportModelAdmin):
     verbose_name_plural = 'Code Postaux'
     resource_class = CodePostalResource
-    list_display = ['__unicode__', 'zone']
+    list_display = ['__str__', 'zone']
     list_filter = ['zone']
     search_fields = ['code_postal', 'commune']
 
@@ -223,7 +223,7 @@ class TypeMessageAdmin(admin.ModelAdmin):
     pass
 admin.site.register(TypeMessage, TypeMessageAdmin)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ['__unicode__', 'a_envoyer', 'envoye', 'type']
+    list_display = ['__str__', 'a_envoyer', 'envoye', 'type']
     search_fields = ['destinataire', 'data']
 admin.site.register(Message, MessageAdmin)
 
@@ -333,7 +333,7 @@ class CommandeAdmin(admin.ModelAdmin):
 # admin.site.register(Commande, CommandeAdmin)
 
 class PanierAdmin(admin.ModelAdmin):
-    list_display = ['__unicode__', 'type_fioul', 'type_livraison', 'client', ]
+    list_display = ['__str__', 'type_fioul', 'type_livraison', 'client', ]
 # admin.site.register(Panier, PanierAdmin)
 
 
