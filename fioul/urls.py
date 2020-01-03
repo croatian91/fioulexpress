@@ -212,6 +212,12 @@ urlpatterns += [
     ),
 ]
 
+urlpatterns += [
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': settings.STATIC_ROOT,
+    }),
+]
+
 # Debug toolbar
 if settings.DEBUG:
     import debug_toolbar
