@@ -20,15 +20,11 @@ def html_bloc(nom):
         # check for static or media and replace with actual values
         # extract filepath
         if "/static/" in content:
-            index = content.find("/static/")
-            quotation_mark = content.find("\"", index)
-            filepath = content[index + 8:quotation_mark]
-            content = content.replace("/static/" + filepath, static(filepath))
+            content = content.split("/static/")
+            content = settings.STATIC_URL.join(content)
         if "/media/" in content:
-            index = content.find("/media/")
-            quotation_mark = content.find("\"", index)
-            filepath = content[index + 7:quotation_mark]
-            content = content.replace("/media/", settings.AWS_STATIC_URL + "/media/")
+            content = content.split("/media/")
+            content = settings.MEDIA_URL.join(content)
         return mark_safe(content)
     except:
         return ''
