@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}Fioulexpress.fr | Interface Distributeur{% endblock %}
 
@@ -17,7 +17,7 @@
  {% endif %}
 
 </style>
-<h1 id="site-name"><a href="{% url 'admin:index' %}"><img src="/static/fioul/img/logo.png" alt="Fioul Express" width="143" height="62" /></a></h1>
+<h1 id="site-name"><a href="{% url 'admin:index' %}"><img src="{% static 'fioul/img/logo.png' %}" alt="Fioul Express" width="143" height="62" /></a></h1>
 {% endblock %}
 
 {% block breadcrumbs %}
