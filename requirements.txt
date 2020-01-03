@@ -7,7 +7,6 @@ git+git://github.com/mariocesar/sorl-thumbnail@v12.3#egg=sorl-thumbnail
 django-markdownx==1.6
 WeasyPrint==0.30
 psycopg2==2.8.4
-python-memcached==1.59
 gunicorn
 django-on-heroku
 django-storages
@@ -15,3 +14,4 @@ boto3
 requests
 django-debug-toolbar==1.9.1
 APScheduler==3.0.0
+pylibmc==1.6.1
