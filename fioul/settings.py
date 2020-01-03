@@ -195,10 +195,10 @@ AWS_DEFAULT_ACL = None
 
 STATICFILES_DIRS = ["root"]
 STATIC_URL = '/static/'
-STATIC_ROOT = os.getenv("{}/static/".format(AWS_STATIC_URL), None)
+STATIC_ROOT = "{}/static/".format(AWS_STATIC_URL)
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.getenv("{}/media/".format(AWS_STATIC_URL), None)
+MEDIA_ROOT = "{}/media/".format(AWS_STATIC_URL)
 
 # THUMBNAIL_HIGH_RESOLUTION = True
 
