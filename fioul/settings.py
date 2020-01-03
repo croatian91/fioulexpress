@@ -194,11 +194,10 @@ AWS_STATIC_URL = "https://{}/{}".format(AWS_S3_HOST, AWS_STORAGE_BUCKET_NAME)
 AWS_DEFAULT_ACL = None
 
 STATICFILES_DIRS = ["root"]
-STATIC_URL = '/static/'
-STATIC_ROOT = "{}/static/".format(AWS_STATIC_URL)
+STATIC_URL = "{}/static/".format(AWS_STATIC_URL)
+STATIC_ROOT = "staticfiles"
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = "{}/media/".format(AWS_STATIC_URL)
+MEDIA_URL = "{}/media/".format(AWS_STATIC_URL)
 
 # THUMBNAIL_HIGH_RESOLUTION = True
 
@@ -243,5 +242,5 @@ DEBUG_TOOLBAR_CONFIG = {
 django_on_heroku.settings(locals())
 
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'fioul.storage_backends.StaticStorage'
+STATICFILES_STORAGE = 'fioul.storage_backends.StaticStorage'
 DEFAULT_FILE_STORAGE = 'fioul.storage_backends.PublicMediaStorage'
