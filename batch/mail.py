@@ -4,12 +4,12 @@ import requests
 
 import django
 
-from fioulexpress.models import *
-
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(sys.argv[0]))))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'fioul.settings'
 
 django.setup()
+
+from fioulexpress.models import *
 
 
 def main():
