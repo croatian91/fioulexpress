@@ -39,7 +39,7 @@ def templatize(context, input):
 
 @register.simple_tag(takes_context=True)
 def soustraire(context, a, b):
-    return unicode(round(a - b, 2)).replace('.', ',')
+    return str(round(a - b, 2)).replace('.', ',')
 
 
 @register.simple_tag(takes_context=True)

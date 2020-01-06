@@ -164,7 +164,7 @@ def distrib_commandes(request):
                 row += [c.adresse_facturation.nom, c.adresse_facturation.prenom, c.adresse_facturation.detail_1, c.adresse_facturation.code_postal, c.adresse_facturation.detail_4]
             else:
                 row += [c.adresse_livraison.nom, c.adresse_livraison.prenom, c.adresse_livraison.detail_1, c.adresse_livraison.code_postal, c.adresse_livraison.detail_4]
-            writer.writerow([unicode(localize(x)).encode('utf-8') for x in row])
+            writer.writerow([str(localize(x)).encode('utf-8') for x in row])
         return response
     return render(request, 'distrib/commandes.html', {
         'zones': zones,
