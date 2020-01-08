@@ -221,6 +221,7 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 if not os.getenv('DEV', False):
+    # Use Heroku memcache
     CACHES = {
         'default': {
             'BACKEND': 'django_bmemcached.memcached.BMemcached',
@@ -231,6 +232,8 @@ if not os.getenv('DEV', False):
                 }
         }
     }
+    # Force SSL
+    SECURE_SSL_REDIRECT = True
 
 # Activate Django-Heroku.
 django_on_heroku.settings(locals())
