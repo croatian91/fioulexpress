@@ -142,14 +142,14 @@ def distrib_commandes(request):
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="commandes-%s-%s.csv"' % (date_du.strftime('%d%m%Y'), date_au.strftime('%d%m%Y'))
         writer = csv.writer(response)
-        writer.writerow([x.encode('utf-8') for x in [
-            u'Distributeur', u'Zone', u'Statut',
-            u'Commande ID', u'Référence Monetico', u"Numéro d'autorisation",
-            u'Date', u'Date de livraison',
-            u'Quantité', u'Type de fioul', u'Type de livraison',
-            u'Commission TTC', u'Total TTC', u'Commission HT', u'Total HT',
-            u'Livraison Nom', u'Livraison Prénom', u'Livraison adresse', u'Livraison code postal', u'Livraison ville',
-            u'Facturation Nom', u'Facturation Prénom', u'Facturation adresse', u'Facturation code postal', u'Facturation ville',
+        writer.writerow([x for x in [
+            'Distributeur', 'Zone', 'Statut',
+            'Commande ID', 'Référence Monetico', u"Numéro d'autorisation",
+            'Date', 'Date de livraison',
+            'Quantité', 'Type de fioul', 'Type de livraison',
+            'Commission TTC', 'Total TTC', 'Commission HT', 'Total HT',
+            'Livraison Nom', 'Livraison Prénom', 'Livraison adresse', 'Livraison code postal', 'Livraison ville',
+            'Facturation Nom', 'Facturation Prénom', 'Facturation adresse', 'Facturation code postal', 'Facturation ville',
         ]])
         for c in commandes:
             row = [
@@ -164,7 +164,7 @@ def distrib_commandes(request):
                 row += [c.adresse_facturation.nom, c.adresse_facturation.prenom, c.adresse_facturation.detail_1, c.adresse_facturation.code_postal, c.adresse_facturation.detail_4]
             else:
                 row += [c.adresse_livraison.nom, c.adresse_livraison.prenom, c.adresse_livraison.detail_1, c.adresse_livraison.code_postal, c.adresse_livraison.detail_4]
-            writer.writerow([str(localize(x)).encode('utf-8') for x in row])
+            writer.writerow([localize(x) for x in row])
         return response
     return render(request, 'distrib/commandes.html', {
         'zones': zones,
