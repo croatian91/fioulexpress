@@ -36,12 +36,12 @@ def get_iframe_src(panier, request):
         'mail' : panier.client.email,
         'lgue' : 'FR',
         'societe' : settings.MONETICO_SOCIETE,
-        'url_retour' : 'https://%s/commande/paiement/' % request.META['HTTP_HOST'],
         'url_retour_ok' : 'https://%s/commande/monetico_ok/' % request.META['HTTP_HOST'],
-        'url_retour_ko' : 'https://%s/commande/monetico_ko/' % request.META['HTTP_HOST'],
+        'url_retour_err' : 'https://%s/commande/monetico_ko/' % request.META['HTTP_HOST'],
         'MAC' : '',
         'options' : '',
         'mode_affichage' : 'iframe',
+        "ThreeDSecureChallenge": "challenge_mandated",
     }
 
     # sceau_tpl = '{TPE:s}*{date:s}*{montant_a_capturer:s}{montant_deja_capture:s}{montant_restant:s}*{reference:s}*{texte-libre:s}*{version:s}*{lgue:s}*{societe:s}*'
