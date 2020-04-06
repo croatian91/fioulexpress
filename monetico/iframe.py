@@ -1,4 +1,5 @@
 import hmac, hashlib
+import json
 from encodings import hex_codec
 
 from django.conf import settings
@@ -28,9 +29,6 @@ def get_iframe_src(panier, request):
         'TPE' : settings.MONETICO_TPE,
         'date' : datetime.now().strftime("%d/%m/%Y:%H:%M:%S"),
         'montant' : '%sEUR' % panier.valeur()['acompte'],
-        # 'montant_a_capturer' : '%dEUR' % panier.valeur()['acompte'],
-        # 'montant_deja_capture' : '0EUR',
-        # 'montant_restant' : '0EUR',
         'reference' : str(panier.id),
         'texte-libre' : texte_libre,
         'mail' : panier.client.email,
@@ -41,10 +39,18 @@ def get_iframe_src(panier, request):
         'MAC' : '',
         'options' : '',
         'mode_affichage' : 'iframe',
-        "ThreeDSecureChallenge": "challenge_mandated",
+        "contexte_commande": json.dumps(
+            {'billing':
+                 {
+                     'addressLine1': panier.adresse_livraison.detail_1,
+                     'city': panier.adresse_livraison.detail_4,
+                     'postalCode': panier.adresse_livraison.code_postal,
+                     'country': panier.adresse_livraison.pays,
+                 }
+            }
+        ),
     }
 
-    # sceau_tpl = '{TPE:s}*{date:s}*{montant_a_capturer:s}{montant_deja_capture:s}{montant_restant:s}*{reference:s}*{texte-libre:s}*{version:s}*{lgue:s}*{societe:s}*'
     sceau_tpl = u'{TPE:s}*{date:s}*{montant:s}*{reference:s}*{texte-libre:s}*{version:s}*{lgue:s}*{societe:s}*{mail:s}**********'
     sceau = sceau_tpl.format(**data)
 
