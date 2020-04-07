@@ -33,8 +33,10 @@ def main():
             'Mj-TemplateLanguage' : True,
             'Vars' : json.loads(msg.data),
         }
+        print("DEBUG, send emails")
         r = requests.post(settings.FIOUL_MJ_URL, auth=(settings.FIOUL_MJ_USER, settings.FIOUL_MJ_PASS), json=data)
         if r.status_code == 200:
+            print("DEBUG, emails sent")
             msg.external_id = r.json().get('Sent', [{}])[0].get('MessageID', '')
             msg.envoye = True
             msg.save()
