@@ -1,3 +1,4 @@
+import base64
 import hmac, hashlib
 import json
 from encodings import hex_codec
@@ -5,6 +6,7 @@ from encodings import hex_codec
 from django.conf import settings
 from django.utils.datetime_safe import datetime
 from django.utils.http import urlencode
+
 
 def operation_key(key) :
 
@@ -22,20 +24,22 @@ def operation_key(key) :
         c = hex_codec.Codec()
         return c.decode(hexStrKey)[0]
 
+
 def get_iframe_src(panier, request):
     texte_libre = '%s %s %s' % (panier.adresse_livraison.prenom, panier.adresse_livraison.nom, panier.client.email)
+    contexte_commande = json.dumps(
+        {'billing':
+             {
+                 'addressLine1': panier.adresse_livraison.detail_1,
+                 'city': panier.adresse_livraison.detail_4,
+                 'postalCode': panier.adresse_livraison.code_postal,
+                 'country': "FR",
+             },
+        }
+    )
     data = {
         'TPE': settings.MONETICO_TPE,
-        "contexte_commande": json.dumps(
-            {'billing':
-                 {
-                     'addressLine1': panier.adresse_livraison.detail_1,
-                     'city': panier.adresse_livraison.detail_4,
-                     'postalCode': panier.adresse_livraison.code_postal,
-                     'country': panier.adresse_livraison.pays,
-                 },
-            },
-        ),
+        "contexte_commande": base64.b64encode(contexte_commande.encode("utf-8")).decode(),
         'date': datetime.now().strftime("%d/%m/%Y:%H:%M:%S"),
         'lgue': 'FR',
         'mail': panier.client.email,
