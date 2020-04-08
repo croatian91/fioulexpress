@@ -57,7 +57,7 @@ def get_iframe_src(panier, request):
     sceau = sceau_tpl.format(**data)
     print("DEBUG", sceau)
     mac = hmac.HMAC(operation_key(settings.MONETICO_CLE), None, hashlib.sha1)
-    mac.update(sceau.encode('iso8859-1'))
+    mac.update(sceau.encode('utf-8'))
     data['MAC'] = mac.hexdigest()
     print("DEBUG", urlencode(data))
     return settings.MONETICO_URL + '?' + urlencode(data)
