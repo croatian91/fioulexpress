@@ -20,7 +20,10 @@
         </div>
         <div class="your-deposit-text">
             <span class="your-deposit-text-first-line">Montant de l'acompte :</span><br>
-            <span class="your-deposit-text-second-line">(paiement en ligne par carte bleue)</span>
+            <span class="your-deposit-text-second-line">
+              <img src="{% static 'fioul/img/logo_3d_secu.jpg' %}" alt="" width="100">
+              (Paiement CB sécurisé vérifié par 3D secure)
+            </span>
         </div>
         <div class="your-deposit-amount">
             {{panier_valeur.acompte|floatformat:2}}€
