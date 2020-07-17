@@ -17,14 +17,14 @@
             <span class="your-deposit-title icon">
                 Votre acompte :
             </span>
-            <div class="your-deposit-amount">
+            <span class="your-deposit-amount">
                 {{panier_valeur.acompte|floatformat:2}}€
-            </div>
+            </span>
         </div>
         <div class="your-deposit-text">
             <span class="your-deposit-text-second-line">
-              <img src="{% static 'fioul/img/3D_secure.png' %}" alt="" width="100">
-              (Paiement CB sécurisé vérifié par 3D secure)
+              <img src="{% static 'fioul/img/3D_secure.png' %}" alt="" width="150">
+              <span>Paiement CB sécurisé vérifié par 3D secure</span>
             </span>
         </div>
         <div class="your-deposit-cgv">

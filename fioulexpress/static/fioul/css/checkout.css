@@ -675,7 +675,7 @@
 }
 .your-deposit-amount {
     display: inline-block;
-    margin: 0 10px;
+    margin: 0px 10px 15px;
     vertical-align: middle;
     font-size: 48px;
     font-weight: 700;
