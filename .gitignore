@@ -11,3 +11,6 @@
 /.idea/
 /.env
 /staticfiles/
+.vscode
+*.env
+__pycache__/

@@ -8,14 +8,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fioulexpress', '0006_commande_statut'),
+        ("fioulexpress", "0006_commande_statut"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='config',
-            name='email_admin',
-            field=models.EmailField(default='admin@fioulexpress.fr', max_length=254),
+            model_name="config",
+            name="email_admin",
+            field=models.EmailField(default="admin@fioulexpress.fr", max_length=254),
             preserve_default=False,
         ),
     ]

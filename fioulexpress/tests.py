@@ -43,21 +43,23 @@ from contenu.models import *
 class CasperTests(StaticLiveServerTestCase):
     def setUp(self):
         # settings.DEBUG = True
-        Config.objects.create(commission=Decimal('0.1'), actif=True)
+        Config.objects.create(commission=Decimal("0.1"), actif=True)
 
-        Page.objects.create(titre='Qui sommes nous', adresse='qui-sommes-nous')
+        Page.objects.create(titre="Qui sommes nous", adresse="qui-sommes-nous")
 
-        distributeur = Distributeur.objects.create(nom='Distrib 1')
+        distributeur = Distributeur.objects.create(nom="Distrib 1")
         zone = Zone.objects.create(nom="Paris", distributeur=distributeur)
-        zone.jours_livraison = ['0', '1', '2', '3', '4', '5']
-        zone.types_paiement = ['0', '1', '2']
+        zone.jours_livraison = ["0", "1", "2", "3", "4", "5"]
+        zone.types_paiement = ["0", "1", "2"]
         zone.save()
 
-        fioul_ordinaire = TypeFioul.objects.create(nom='Fioul ordinaire')
+        fioul_ordinaire = TypeFioul.objects.create(nom="Fioul ordinaire")
         TarifFioul.objects.create(zone=zone, type_fioul=fioul_ordinaire, prix_ttc=550)
 
-        livraison_express = TypeLivraison.objects.create(nom='Express')
-        TarifLivraison.objects.create(zone=zone, type_livraison=livraison_express, extra=10)
+        livraison_express = TypeLivraison.objects.create(nom="Express")
+        TarifLivraison.objects.create(
+            zone=zone, type_livraison=livraison_express, extra=10
+        )
 
         TarifDecote.objects.create(zone=zone, min=500, max=999, decote=-10)
         TarifDecote.objects.create(zone=zone, min=1000, max=1999, decote=0)
@@ -70,5 +72,15 @@ class CasperTests(StaticLiveServerTestCase):
         CodePostal.objects.create(code_postal="75002", commune="Paris 02", zone=zone)
 
     def test_casper_sequence(self):
-        self.assertEqual(call(['casperjs', '--base_url=' + self.live_server_url, 'test', '/home/matt/dev/fioul/test/base.js']).real, 0)
+        self.assertEqual(
+            call(
+                [
+                    "casperjs",
+                    "--base_url=" + self.live_server_url,
+                    "test",
+                    "/home/matt/dev/fioul/test/base.js",
+                ]
+            ).real,
+            0,
+        )
         print Client.objects.all()

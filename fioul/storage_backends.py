@@ -3,11 +3,11 @@ from django.conf import settings
 
 
 class StaticStorage(S3Boto3Storage):
-    location = 'static'
+    location = "static"
     default_acl = None
 
 
 class PublicMediaStorage(S3Boto3Storage):
-    location = 'media'
-    default_acl = 'public-read'
+    location = "media"
+    default_acl = "public-read"
     file_overwrite = False

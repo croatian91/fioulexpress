@@ -1,5 +1,5 @@
 {% extends 'commande/base.html' %}
-{% load static from staticfiles %}
+{% load static %}
 {% load contenu_tags %}
 
 {% block commande_devis_href %}{% url 'client-commande-devis' %}{% endblock %}
@@ -7,204 +7,206 @@
 {% block commande %}
 
 <style>
-    .erreur {border:1px red solid;}
+  .erreur {
+    border: 1px red solid;
+  }
 </style>
 <div class="infos-header">
-    {% if request.user.is_authenticated %}
-        <div class="infos-header-title">
-            Connecté avec {{request.user}}
-        </div>
-        <div class="infos-header-sub">
-            <a href="{% url 'client-deconnexion' %}" class="infos-header-link">Se déconnecter</a>
-        </div>
-    {% else %}
-        <div class="infos-header-title">
-            Déjà client
-        </div>
-        <div class="infos-header-sub">
-            Vous avez déjà un compte ? <a href="/client/connexion/?next=/commande/livraison/" class="infos-header-link">Connectez-vous à votre compte</a>
-        </div>
-    {% endif %} 
+  {% if request.user.is_authenticated %}
+  <div class="infos-header-title">
+    Connecté avec {{request.user}}
+  </div>
+  <div class="infos-header-sub">
+    <a href="{% url 'client-deconnexion' %}" class="infos-header-link">Se déconnecter</a>
+  </div>
+  {% else %}
+  <div class="infos-header-title">
+    Déjà client
+  </div>
+  <div class="infos-header-sub">
+    Vous avez déjà un compte ? <a href="/client/connexion/?next=/commande/livraison/"
+      class="infos-header-link">Connectez-vous à votre compte</a>
+  </div>
+  {% endif %}
 </div>
 <form method="post" action="" id="commande-checkout">{% csrf_token %}
-    <div class="checkout-block checkout-block-infos">
-        <div id="infos-help" class="checkout-block-help">?</div>
-        <div class="checkout-block-title">
-            <span class="checkout-block-title-text">Vos coordonnées</span>
-        </div>
-        <div class="row small-gutter">
-            <div class="col-xs-12 col-md-6">
-                <div class="field">
-                    <input type="text" name="{{adresse_livraison_form.prenom.html_name}}"
-                        value="{{adresse_livraison_form.prenom.value|default_if_none:''}}"
-                        id="{{adresse_livraison_form.prenom.html_name}}"
-                        class="checkout-input {% if adresse_livraison_form.prenom.field.required %} requis{% endif %}{% if adresse_livraison_form.prenom.errors %} erreur{% endif %}">
-                    <label for="{{adresse_livraison_form.prenom.html_name}}" class="field-label">{{adresse_livraison_form.prenom.label}}</label>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="field">
-                    <input type="text" name="{{adresse_livraison_form.nom.html_name}}"
-                        value="{{adresse_livraison_form.nom.value|default_if_none:''}}"
-                        id="{{adresse_livraison_form.nom.html_name}}"
-                        class="checkout-input {% if adresse_livraison_form.nom.field.required %} requis{% endif %}{% if adresse_livraison_form.nom.errors %} erreur{% endif %}" />
-                    <label for="{{adresse_livraison_form.nom.html_name}}" class="field-label">{{adresse_livraison_form.nom.label}}</label>
-                </div>
-            </div>
-        </div>
+  <div class="checkout-block checkout-block-infos">
+    <div id="infos-help" class="checkout-block-help">?</div>
+    <div class="checkout-block-title">
+      <span class="checkout-block-title-text">Vos coordonnées</span>
+    </div>
+    <div class="row small-gutter">
+      <div class="col-xs-12 col-md-6">
         <div class="field">
-            <input type="text" name="{{adresse_livraison_form.detail_1.html_name}}"
-                value="{{adresse_livraison_form.detail_1.value|default_if_none:''}}"
-                id="{{adresse_livraison_form.detail_1.html_name}}"
-                class="checkout-input {% if adresse_livraison_form.detail_1.field.required %} requis{% endif %}{% if adresse_livraison_form.detail_1.errors %} erreur{% endif %}">
-            <label for="{{adresse_livraison_form.detail_1.html_name}}" class="field-label">{{adresse_livraison_form.detail_1.label}}</label>
+          <input type="text" name="{{adresse_livraison_form.prenom.html_name}}"
+            value="{{adresse_livraison_form.prenom.value|default_if_none:''}}"
+            id="{{adresse_livraison_form.prenom.html_name}}"
+            class="checkout-input {% if adresse_livraison_form.prenom.field.required %} requis{% endif %}{% if adresse_livraison_form.prenom.errors %} erreur{% endif %}">
+          <label for="{{adresse_livraison_form.prenom.html_name}}"
+            class="field-label">{{adresse_livraison_form.prenom.label}}</label>
         </div>
-        <div class="checkout-select-container">
-            <!-- 
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div class="field">
+          <input type="text" name="{{adresse_livraison_form.nom.html_name}}"
+            value="{{adresse_livraison_form.nom.value|default_if_none:''}}"
+            id="{{adresse_livraison_form.nom.html_name}}"
+            class="checkout-input {% if adresse_livraison_form.nom.field.required %} requis{% endif %}{% if adresse_livraison_form.nom.errors %} erreur{% endif %}" />
+          <label for="{{adresse_livraison_form.nom.html_name}}"
+            class="field-label">{{adresse_livraison_form.nom.label}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <input type="text" name="{{adresse_livraison_form.detail_1.html_name}}"
+        value="{{adresse_livraison_form.detail_1.value|default_if_none:''}}"
+        id="{{adresse_livraison_form.detail_1.html_name}}"
+        class="checkout-input {% if adresse_livraison_form.detail_1.field.required %} requis{% endif %}{% if adresse_livraison_form.detail_1.errors %} erreur{% endif %}">
+      <label for="{{adresse_livraison_form.detail_1.html_name}}"
+        class="field-label">{{adresse_livraison_form.detail_1.label}}</label>
+    </div>
+    <div class="checkout-select-container">
+      <!-- 
             <input type="text" name="{{adresse_livraison_form.detail_4.html_name}}"
                 value="{{adresse_livraison_form.detail_4.value|default_if_none:''}}"
                 id="{{adresse_livraison_form.detail_4.html_name}}"
                 class="checkout-input {% if adresse_livraison_form.detail_4.field.required %} requis{% endif %}{% if adresse_livraison_form.detail_4.errors %} erreur{% endif %}">
             <label for="{{adresse_livraison_form.detail_4.html_name}}" class="field-label">{{adresse_livraison_form.detail_4.label}}</label>
              -->
-            {{adresse_livraison_form.detail_4}}
+      {{adresse_livraison_form.detail_4}}
+    </div>
+    <div class="row small-gutter">
+      <div class="col-xs-12 col-md-6">
+        <div class="field">
+          <input type="text" name="nepassauver" value="France" disabled="disabled" class="checkout-input inactif">
         </div>
-        <div class="row small-gutter">
-            <div class="col-xs-12 col-md-6">
-                <div class="field">
-                    <input type="text" name="nepassauver"
-                        value="France"  disabled="disabled"
-                        class="checkout-input inactif">
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="field">
-                    <input type="text" name="nepassauver"
-                        value="{{request.session.client_cp}}"  disabled="disabled"
-                        class="checkout-input inactif">
-                </div>
-            </div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div class="field">
+          <input type="text" name="nepassauver" value="{{request.session.client_cp}}" disabled="disabled"
+            class="checkout-input inactif">
         </div>
-        <div class="row small-gutter">
-            <div class="col-xs-12 col-md-6">
-                <div class="field">
-                    <input type="text" name="{{client_form.email.html_name}}"
-                        value="{{client_form.email.value|default_if_none:''}}"
-                        id="{{client_form.email.html_name}}"
-                        class="checkout-input {% if client_form.email.field.required %} requis{% endif %}{% if client_form.email.errors %} erreur{% endif %}">
-                    <label for="{{client_form.email.html_name}}" class="field-label">{{client_form.email.label}}</label>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="field">
-                    <input type="tel" name="{{client_form.telephone.html_name}}"
-                        value="{{client_form.telephone.value|default_if_none:''}}"
-                        id="{{client_form.telephone.html_name}}"
-                        class="checkout-input {% if client_form.telephone.field.required %} requis{% endif %}{% if client_form.telephone.errors %} erreur{% endif %}" />
-                    <label for="{{client_form.telephone.html_name}}" class="field-label">{{client_form.telephone.label}}</label>
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="row small-gutter">
+      <div class="col-xs-12 col-md-6">
+        <div class="field">
+          <input type="text" name="{{client_form.email.html_name}}"
+            value="{{client_form.email.value|default_if_none:''}}" id="{{client_form.email.html_name}}"
+            class="checkout-input {% if client_form.email.field.required %} requis{% endif %}{% if client_form.email.errors %} erreur{% endif %}">
+          <label for="{{client_form.email.html_name}}" class="field-label">{{client_form.email.label}}</label>
         </div>
-        
-        {% if not request.user.is_authenticated %}
-            <div class="row">
-                <div class="col-xs-12 col-md-7">
-                    <div class="infos-create-account">
-                        <input type="checkbox" name="creer_compte" id="creer-compte" class="custom-checkbox"
-                            {% if request.POST.creer_compte %}checked="checked" {% endif %}
-                            onchange="commande_livraison_compte_checkbox()">
-                        <label for="creer-compte">Créez votre compte client</label>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-5">
-                    <div id="bloc-creer-compte" class="fade">
-                        <div class="field">
-                            <input type="password" name="creer_compte_password" id="creer_compte_password" class="checkout-input {% if erreur_password %}erreur{% endif %}">
-                            <label for="creer_compte_password" class="field-label">Mot de passe</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-    
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div class="field">
+          <input type="tel" name="{{client_form.telephone.html_name}}"
+            value="{{client_form.telephone.value|default_if_none:''}}" id="{{client_form.telephone.html_name}}"
+            class="checkout-input {% if client_form.telephone.field.required %} requis{% endif %}{% if client_form.telephone.errors %} erreur{% endif %}" />
+          <label for="{{client_form.telephone.html_name}}" class="field-label">{{client_form.telephone.label}}</label>
+        </div>
+      </div>
     </div>
 
-    <div class="checkout-block checkout-block-notes">
-        <div id="notes-help" class="checkout-block-help">?</div>
-        <div class="checkout-block-title">
-            <span class="checkout-block-title-text">Notes concernant votre livraison :</span>
+    {% if not request.user.is_authenticated %}
+    <div class="row">
+      <div class="col-xs-12 col-md-7">
+        <div class="infos-create-account">
+          <input type="checkbox" name="creer_compte" id="creer-compte" class="custom-checkbox" {% if request.POST.creer_compte %}checked="checked" {% endif %} onchange="commande_livraison_compte_checkbox()">
+          <label for="creer-compte">Créez votre compte client</label>
         </div>
-        <textarea name="{{commentaire_form.commentaire.html_name}}" class="infos-notes"
-            placeholder="Précisez ici les indications destinées au livreur ..."
-        >{{commentaire_form.commentaire.value|default_if_none:''}}</textarea>
+      </div>
+      <div class="col-xs-12 col-md-5">
+        <div id="bloc-creer-compte" class="fade">
+          <div class="field">
+            <input type="password" name="creer_compte_password" id="creer_compte_password"
+              class="checkout-input {% if erreur_password %}erreur{% endif %}">
+            <label for="creer_compte_password" class="field-label">Mot de passe</label>
+          </div>
+        </div>
+      </div>
     </div>
+    {% endif %}
 
-    <div class="checkout-block checkout-block-infos">
-        <div id="other-address-help" class="checkout-block-help">?</div>
-        <div class="checkout-block-title checkout-block-title-other-address">
-            <input type="checkbox" name="facturation_differente" id="facturation-differente-checkbox" value="0" class="custom-checkbox"
-            {% if panier.adresse_facturation or request.POST.facturation_differente %}checked="checked" {% endif %}
-            onchange="commande_livraison_factu_checkbox()"/>
-            <label for="facturation-differente-checkbox" class="checkout-block-title-text">Facturer à une adresse différente</label>
-        </div>
-        <div id="bloc-adresse-facturation">
-            <div class="row small-gutter">
-                <div class="col-xs-12 col-md-6">
-                    <div class="field">
-                        <input type="text" name="{{adresse_facturation_form.prenom.html_name}}"
-                            value="{{adresse_facturation_form.prenom.value|default_if_none:''}}"
-                            id="{{adresse_facturation_form.prenom.html_name}}"
-                            class="checkout-input {% if adresse_facturation_form.prenom.field.required %} requis{% endif %}{% if adresse_facturation_form.prenom.errors %} erreur{% endif %}">
-                        <label for="{{adresse_facturation_form.prenom.html_name}}" class="field-label">{{adresse_facturation_form.prenom.label}}</label>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <div class="field">
-                        <input type="text" name="{{adresse_facturation_form.nom.html_name}}"
-                            value="{{adresse_facturation_form.nom.value|default_if_none:''}}"
-                            id="{{adresse_facturation_form.nom.html_name}}"
-                            class="checkout-input {% if adresse_facturation_form.nom.field.required %} requis{% endif %}{% if adresse_facturation_form.nom.errors %} erreur{% endif %}" />
-                        <label for="{{adresse_facturation_form.nom.html_name}}" class="field-label">{{adresse_facturation_form.nom.label}}</label>
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <input type="text" name="{{adresse_facturation_form.detail_1.html_name}}"
-                    value="{{adresse_facturation_form.detail_1.value|default_if_none:''}}"
-                    id="{{adresse_facturation_form.detail_1.html_name}}"
-                    class="checkout-input {% if adresse_facturation_form.detail_1.field.required %} requis{% endif %}{% if adresse_facturation_form.detail_1.errors %} erreur{% endif %}">
-                <label for="{{adresse_facturation_form.detail_1.html_name}}" class="field-label">{{adresse_facturation_form.detail_1.label}}</label>
-            </div>
-            <div class="field">
-                <input type="text" name="{{adresse_facturation_form.detail_4.html_name}}"
-                    value="{{adresse_facturation_form.detail_4.value|default_if_none:''}}"
-                    id="{{adresse_facturation_form.detail_4.html_name}}"
-                    class="checkout-input {% if adresse_facturation_form.detail_4.field.required %} requis{% endif %}{% if adresse_facturation_form.detail_4.errors %} erreur{% endif %}">
-                <label for="{{adresse_facturation_form.detail_4.html_name}}" class="field-label">{{adresse_facturation_form.detail_4.label}}</label>
-            </div>
-            <div class="row small-gutter">
-                <div class="col-xs-12 col-md-6">
-                    <div class="field">
-                        <input type="text" name="nepassauver"
-                            value="France"  disabled="disabled"
-                            class="checkout-input inactif">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <div class="field">
-                        <input type="text" name="{{adresse_facturation_form.code_postal.html_name}}"
-                            value="{{adresse_facturation_form.code_postal.value|default_if_none:''}}"
-                            id="{{adresse_facturation_form.code_postal.html_name}}"
-                            class="checkout-input {% if adresse_facturation_form.code_postal.field.required %} requis{% endif %}{% if adresse_facturation_form.code_postal.errors %} erreur{% endif %}">
-                        <label for="{{adresse_facturation_form.code_postal.html_name}}" class="field-label">{{adresse_facturation_form.code_postal.label}}</label>
-                    </div>
-                </div>
-            </div>
-        </div>
+  </div>
+
+  <div class="checkout-block checkout-block-notes">
+    <div id="notes-help" class="checkout-block-help">?</div>
+    <div class="checkout-block-title">
+      <span class="checkout-block-title-text">Notes concernant votre livraison :</span>
     </div>
-    <div class="checkout-continue-container">
-        <input type="submit" value="Continuer" class="checkout-continue" id="commande-continue">
+    <textarea name="{{commentaire_form.commentaire.html_name}}" class="infos-notes"
+      placeholder="Précisez ici les indications destinées au livreur ...">{{commentaire_form.commentaire.value|default_if_none:''}}</textarea>
+  </div>
+
+  <div class="checkout-block checkout-block-infos">
+    <div id="other-address-help" class="checkout-block-help">?</div>
+    <div class="checkout-block-title checkout-block-title-other-address">
+      <input type="checkbox" name="facturation_differente" id="facturation-differente-checkbox" value="0"
+        class="custom-checkbox" {% if panier.adresse_facturation or request.POST.facturation_differente %}checked="checked" {% endif %} onchange="commande_livraison_factu_checkbox()" />
+      <label for="facturation-differente-checkbox" class="checkout-block-title-text">Facturer à une adresse
+        différente</label>
     </div>
+    <div id="bloc-adresse-facturation">
+      <div class="row small-gutter">
+        <div class="col-xs-12 col-md-6">
+          <div class="field">
+            <input type="text" name="{{adresse_facturation_form.prenom.html_name}}"
+              value="{{adresse_facturation_form.prenom.value|default_if_none:''}}"
+              id="{{adresse_facturation_form.prenom.html_name}}"
+              class="checkout-input {% if adresse_facturation_form.prenom.field.required %} requis{% endif %}{% if adresse_facturation_form.prenom.errors %} erreur{% endif %}">
+            <label for="{{adresse_facturation_form.prenom.html_name}}"
+              class="field-label">{{adresse_facturation_form.prenom.label}}</label>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="field">
+            <input type="text" name="{{adresse_facturation_form.nom.html_name}}"
+              value="{{adresse_facturation_form.nom.value|default_if_none:''}}"
+              id="{{adresse_facturation_form.nom.html_name}}"
+              class="checkout-input {% if adresse_facturation_form.nom.field.required %} requis{% endif %}{% if adresse_facturation_form.nom.errors %} erreur{% endif %}" />
+            <label for="{{adresse_facturation_form.nom.html_name}}"
+              class="field-label">{{adresse_facturation_form.nom.label}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <input type="text" name="{{adresse_facturation_form.detail_1.html_name}}"
+          value="{{adresse_facturation_form.detail_1.value|default_if_none:''}}"
+          id="{{adresse_facturation_form.detail_1.html_name}}"
+          class="checkout-input {% if adresse_facturation_form.detail_1.field.required %} requis{% endif %}{% if adresse_facturation_form.detail_1.errors %} erreur{% endif %}">
+        <label for="{{adresse_facturation_form.detail_1.html_name}}"
+          class="field-label">{{adresse_facturation_form.detail_1.label}}</label>
+      </div>
+      <div class="field">
+        <input type="text" name="{{adresse_facturation_form.detail_4.html_name}}"
+          value="{{adresse_facturation_form.detail_4.value|default_if_none:''}}"
+          id="{{adresse_facturation_form.detail_4.html_name}}"
+          class="checkout-input {% if adresse_facturation_form.detail_4.field.required %} requis{% endif %}{% if adresse_facturation_form.detail_4.errors %} erreur{% endif %}">
+        <label for="{{adresse_facturation_form.detail_4.html_name}}"
+          class="field-label">{{adresse_facturation_form.detail_4.label}}</label>
+      </div>
+      <div class="row small-gutter">
+        <div class="col-xs-12 col-md-6">
+          <div class="field">
+            <input type="text" name="nepassauver" value="France" disabled="disabled" class="checkout-input inactif">
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="field">
+            <input type="text" name="{{adresse_facturation_form.code_postal.html_name}}"
+              value="{{adresse_facturation_form.code_postal.value|default_if_none:''}}"
+              id="{{adresse_facturation_form.code_postal.html_name}}"
+              class="checkout-input {% if adresse_facturation_form.code_postal.field.required %} requis{% endif %}{% if adresse_facturation_form.code_postal.errors %} erreur{% endif %}">
+            <label for="{{adresse_facturation_form.code_postal.html_name}}"
+              class="field-label">{{adresse_facturation_form.code_postal.label}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="checkout-continue-container">
+    <input type="submit" value="Continuer" class="checkout-continue" id="commande-continue">
+  </div>
 </form>
 
 <!-- Contenus des popins d'aide -->
@@ -213,26 +215,26 @@
 <div class="popin" data-trigger="#other-address-help">{% html_bloc 'INFO - Livraison - facturation' %}</div>
 
 <script type="text/javascript">
-    function commande_livraison_factu_checkbox() {
-        if (document.getElementById('facturation-differente-checkbox').checked) {
-            document.getElementById('bloc-adresse-facturation').classList.remove('hide');
-        } else {
-            document.getElementById('bloc-adresse-facturation').classList.add('hide');
-        }
+  function commande_livraison_factu_checkbox() {
+    if (document.getElementById('facturation-differente-checkbox').checked) {
+      document.getElementById('bloc-adresse-facturation').classList.remove('hide');
+    } else {
+      document.getElementById('bloc-adresse-facturation').classList.add('hide');
     }
-    function commande_livraison_compte_checkbox() {
-        if (document.getElementById('creer-compte').checked) {
-            document.getElementById('bloc-creer-compte').classList.add('in');
-        } else {
-            document.getElementById('bloc-creer-compte').classList.remove('in');
-        }
+  }
+  function commande_livraison_compte_checkbox() {
+    if (document.getElementById('creer-compte').checked) {
+      document.getElementById('bloc-creer-compte').classList.add('in');
+    } else {
+      document.getElementById('bloc-creer-compte').classList.remove('in');
     }
-    document.onreadystatechange = function () {
-    	if (document.readyState == "complete") {
-    		commande_livraison_factu_checkbox();
-    		commande_livraison_compte_checkbox();
-        }
+  }
+  document.onreadystatechange = function () {
+    if (document.readyState == "complete") {
+      commande_livraison_factu_checkbox();
+      commande_livraison_compte_checkbox();
     }
+  }
 </script>
 
 {% endblock %}

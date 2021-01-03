@@ -1,143 +1,274 @@
-{% load static from staticfiles %}
-{% load contenu_tags %}
+{% load static contenu_tags %}
 
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <title>{% block head_title %}{{config.meta_title|default:"Fioul Express"}}{% endblock %} - FioulExpress</title>
-    <meta name="description" content="{% block head_description %}{{config.meta_description|default:""}}{% endblock %}">
-    
+  <head>
+    <title>
+      {% block head_title %}{{config.meta_title|default:"Fioul Express"}}
+      {% endblock %} - FioulExpress
+    </title>
+    <meta name="description" content="{% block head_description %}{{config.meta_description|default:""}}{% endblock %}"> 
     <meta property="og:title" content="{% block og_title %}{{config.meta_title|default:"Fioul Express"}}{% endblock %}" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{% block og_image %}https://{{request.META.HTTP_HOST}}{{config.meta_img.url}}{% endblock %}" />
-    <meta property="og:image:width" content="{% block og_image_width %}{{config.meta_img.width}}{% endblock %}" />
-    <meta property="og:image:height" content="{% block og_image_height %}{{config.meta_img.height}}{% endblock %}" />
-    <meta property="og:url" content="https://{{request.META.HTTP_HOST}}{{request.META.PATH_INFO}}{% if request.META.QUERY_STRING %}?{{request.META.QUERY_STRING}}{% endif %}" />
+    <meta
+      property="og:image"
+      content="{% block og_image %}https://{{request.META.HTTP_HOST}}{{config.meta_img.url}}{% endblock %}"
+    />
+    <meta
+      property="og:image:width"
+      content="{% block og_image_width %}{{config.meta_img.width}}{% endblock %}"
+    />
+    <meta
+      property="og:image:height"
+      content="{% block og_image_height %}{{config.meta_img.height}}{% endblock %}"
+    />
+    <meta
+      property="og:url"
+      content="https://{{request.META.HTTP_HOST}}{{request.META.PATH_INFO}}{% if request.META.QUERY_STRING %}?{{request.META.QUERY_STRING}}{% endif %}"
+    />
     <meta property="og:description" content="{% block og_description %}{{config.meta_description|default:""}}{% endblock %}" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1"
+    />
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
+    <link rel="stylesheet" href="{% static 'fioul/css/nouislider.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'fioul/css/plugin.field.css' %}" />
+    <link rel="stylesheet" href="{% static 'fioul/css/plugin.popin.css' %}" />
+    <link rel="stylesheet" href="{% static 'fioul/css/fioul.css' %}" />
+    <link rel="stylesheet" href="{% static 'fioul/css/hp.css' %}" />
+    <link rel="stylesheet" href="{% static 'fioul/css/checkout.css' %}" />
+    <link rel="stylesheet" href="{% static 'fioul/css/actualite.css' %}" />
+    <link rel="stylesheet" href="{% static 'fioul/css/static.css' %}" />
 
-    <link rel="stylesheet" href="{% static 'fioul/css/nouislider.min.css' %}">
-    <link rel="stylesheet" href="{% static 'fioul/css/plugin.field.css' %}">
-    <link rel="stylesheet" href="{% static 'fioul/css/plugin.popin.css' %}">
-    <link rel="stylesheet" href="{% static 'fioul/css/fioul.css' %}">
-    <link rel="stylesheet" href="{% static 'fioul/css/hp.css' %}">
-    <link rel="stylesheet" href="{% static 'fioul/css/checkout.css' %}">
-    <link rel="stylesheet" href="{% static 'fioul/css/actualite.css' %}">
-    <link rel="stylesheet" href="{% static 'fioul/css/static.css' %}">
-    
-
-	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
-	<link rel="shortcut icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
-	<link rel="shortcut icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
-	<link rel="manifest" href="{% static 'manifest.json' %}">
-	<link rel="mask-icon" color="#5bbad5" href="{% static 'safari-pinned-tab.svg' %}">
-	<meta name="theme-color" content="#ffffff">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{% static 'apple-touch-icon.png' %}"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      sizes="32x32"
+      href="{% static 'favicon-32x32.png' %}"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      sizes="16x16"
+      href="{% static 'favicon-16x16.png' %}"
+    />
+    <link rel="manifest" href="{% static 'manifest.json' %}" />
+    <link
+      rel="mask-icon"
+      color="#5bbad5"
+      href="{% static 'safari-pinned-tab.svg' %}"
+    />
+    <meta name="theme-color" content="#ffffff" />
 
     {% if config.google_analytics_ua %}
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        
-        ga('create', '{{config.google_analytics_ua}}', 'auto');
-        ga('send', 'pageview');
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "https://www.google-analytics.com/analytics.js",
+        "ga"
+      );
+
+      ga("create", "{{config.google_analytics_ua}}", "auto");
+      ga("send", "pageview");
     </script>
     {% endif %}
-</head>
-<body>
+  </head>
+  <body>
     <header class="header">
-        <div class="container">
-            <h1 class="header-logo"><a href="/"><img src="{% static 'fioul/img/logo.png' %}" alt="Fioul Express" width="143" height="62"></a></h1>
-            <div class="header-menu-container">
-                <div class="header-menu-open-hamburger"><div class="header-menu-open"></div></div>
-                <nav class="header-menu">
-                    <ul>
-                        <li class="header-menu-item"><a href="{% url 'page-detail' 'commander-du-fioul' %}" class="header-menu-link">Commander du combustible</a></li>
-                        <li class="header-menu-item"><a href="{% url 'page-detail' 'cristal-power-fioul' %}" class="header-menu-link">Découvrez notre nouveau combustible</a></li>
-                        <li class="header-menu-item"><a href="/actu/" class="header-menu-link">Les actualités</a></li>
-                        <li class="header-menu-item"><a href="{% url 'page-detail' 'qui-sommes-nous' %}" class="header-menu-link">Qui sommes-nous ?</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <p class="header-contact">Une question ? Contactez-nous au <a href="tel:0141282790" class="header-contact-link">01 41 28 27 90</a> ou par mail à <a href="mailto:commande@fioulexpress.fr" class="header-contact-link">commande@fioulexpress.fr</a></p>
+      <div class="container">
+        <h1 class="header-logo">
+          <a href="/"
+            ><img
+              src="{% static 'fioul/img/logo.png' %}"
+              alt="Fioul Express"
+              width="143"
+              height="62"
+          /></a>
+        </h1>
+        <div class="header-menu-container">
+          <div class="header-menu-open-hamburger">
+            <div class="header-menu-open"></div>
+          </div>
+          <nav class="header-menu">
+            <ul>
+              <li class="header-menu-item">
+                <a
+                  href="{% url 'page-detail' 'commander-du-fioul' %}"
+                  class="header-menu-link"
+                  >Commander du combustible</a
+                >
+              </li>
+              <li class="header-menu-item">
+                <a
+                  href="{% url 'page-detail' 'cristal-power-fioul' %}"
+                  class="header-menu-link"
+                  >Découvrez notre nouveau combustible</a
+                >
+              </li>
+              <li class="header-menu-item">
+                <a href="/actu/" class="header-menu-link">Les actualités</a>
+              </li>
+              <li class="header-menu-item">
+                <a
+                  href="{% url 'page-detail' 'qui-sommes-nous' %}"
+                  class="header-menu-link"
+                  >Qui sommes-nous ?</a
+                >
+              </li>
+            </ul>
+          </nav>
         </div>
+        <p class="header-contact">
+          Une question ? Contactez-nous au
+          <a href="tel:0141282790" class="header-contact-link"
+            >01 41 28 27 90</a
+          >
+          ou par mail à
+          <a href="mailto:commande@fioulexpress.fr" class="header-contact-link"
+            >commande@fioulexpress.fr</a
+          >
+        </p>
+      </div>
     </header>
-    {% block body %}
-    {% endblock %}
+    {% block body %} {% endblock %}
     <footer class="footer">
-        <div class="container">
+      <div class="container">
+        <div class="row no-gutter">
+          <div class="col-xs-12 col-lg-6">
             <div class="row no-gutter">
-                <div class="col-xs-12 col-lg-6">
-                    <div class="row no-gutter">
-                        <div class="col-xs-12 col-sm-6 footer-block">
-                            <h3 class="footer-block-title">
-                                <span class="footer-block-title-text">Qui sommes-nous ?</span>
-                            </h3>
-                            <p class="margin-b">
-                                FIOULEXPRESS.FR est un service en ligne<br>de commande de combustible, rapide et<br>économique mis en place par le réseau<br>Europ'Energie Distribution.
-                            </p>
-                            <p class="footer-darker">
-                                Europenergie Distribution est une société née de la volonté des distributeurs<br>d'énergie indépendants de mettre en commun<br>des moyens afin d'assurer<br>la performance et le développement de leurs<br>activités. Elle regroupe 49 distributeurs dans<br>toute la France.
-                            </p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 footer-block">
-                            <h3 class="footer-block-title">
-                                <span class="footer-block-title-text">Nous contacter</span>
-                            </h3>
-                            <ul class="footer-block-list">
-                                <li class="footer-block-item footer-block-item-address icon">FIOUL EXPRESS - SEDEP</li>
-                                <li class="footer-block-item">5, voie d'Igny, 92140 Clamart</li>
-                                <li class="footer-block-item">RCS VERSAILLES B 351 481 080<br>ID TVA FR 351 481 080</li>
-                                <li class="footer-block-item footer-block-item-tel icon">Tél. <a href="tel:0141282790">01 41 28 27 90</a></li>
-                                <li class="footer-block-item footer-block-item-email icon">Email. <a href="mailto:commande@fioulexpress.fr">commande@fioulexpress.fr</a></li>
+              <div class="col-xs-12 col-sm-6 footer-block">
+                <h3 class="footer-block-title">
+                  <span class="footer-block-title-text">Qui sommes-nous ?</span>
+                </h3>
+                <p class="margin-b">
+                  FIOULEXPRESS.FR est un service en ligne<br />de commande de
+                  combustible, rapide et<br />économique mis en place par le
+                  réseau<br />Europ'Energie Distribution.
+                </p>
+                <p class="footer-darker">
+                  Europenergie Distribution est une société née de la volonté
+                  des distributeurs<br />d'énergie indépendants de mettre en
+                  commun<br />des moyens afin d'assurer<br />la performance et
+                  le développement de leurs<br />activités. Elle regroupe 49
+                  distributeurs dans<br />toute la France.
+                </p>
+              </div>
+              <div class="col-xs-12 col-sm-6 footer-block">
+                <h3 class="footer-block-title">
+                  <span class="footer-block-title-text">Nous contacter</span>
+                </h3>
+                <ul class="footer-block-list">
+                  <li class="footer-block-item footer-block-item-address icon">
+                    FIOUL EXPRESS - SEDEP
+                  </li>
+                  <li class="footer-block-item">
+                    5, voie d'Igny, 92140 Clamart
+                  </li>
+                  <li class="footer-block-item">
+                    RCS VERSAILLES B 351 481 080<br />ID TVA FR 351 481 080
+                  </li>
+                  <li class="footer-block-item footer-block-item-tel icon">
+                    Tél. <a href="tel:0141282790">01 41 28 27 90</a>
+                  </li>
+                  <li class="footer-block-item footer-block-item-email icon">
+                    Email.
+                    <a href="mailto:commande@fioulexpress.fr"
+                      >commande@fioulexpress.fr</a
+                    >
+                  </li>
 
-                                <li class="footer-block-item"><u>Service distributeur :</u></li>
-                                <li class="footer-block-item footer-block-item-address icon">SEC GRAND PARIS</li>
-                                <li class="footer-block-item">7, rue de Versailles</li>
-                                <li class="footer-block-item">RCS 447 906 553 NANTERRE<br>TVA INTRA FR 11 447906553</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-lg-6">
-                    <div class="row no-gutter">
-                        <div class="col-xs-12 col-sm-6 footer-block">
-                            <h3 class="footer-block-title">
-                                <span class="footer-block-title-text">Informations</span>
-                            </h3>
-                            <ul class="footer-block-list">
-                                <li class="footer-block-item footer-block-item-arrow icon"><a href="{% url 'page-detail' 'qui-sommes-nous' %}">QUI SOMMES-NOUS ?</a></li>
-                                <li class="footer-block-item footer-block-item-arrow icon"><a href="{% url 'page-detail' 'commander-du-fioul' %}">COMMANDER DU COMBUSTIBLE</a></li>
-                                <li class="footer-block-item footer-block-item-arrow icon"><a href="{% url 'page-detail' 'mentions-legales' %}">MENTIONS LÉGALES</a></li>
-                                <li class="footer-block-item footer-block-item-arrow icon"><a href="{% url 'page-detail' 'conditions-generales-de-vente' %}">CONDITIONS GÉNÉRALES DE VENTE</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 footer-block">
-                            <h3 class="footer-block-title">
-                                <span class="footer-block-title-text">Actualités</span>
-                            </h3>
-                            {% footer_actu %}
-                        </div>
-                    </div>
-                </div>
+                  <li class="footer-block-item">
+                    <u>Service distributeur :</u>
+                  </li>
+                  <li class="footer-block-item footer-block-item-address icon">
+                    SEC GRAND PARIS
+                  </li>
+                  <li class="footer-block-item">7, rue de Versailles</li>
+                  <li class="footer-block-item">
+                    RCS 447 906 553 NANTERRE<br />TVA INTRA FR 11 447906553
+                  </li>
+                </ul>
+              </div>
             </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                &copy; Copyright 2016 - FioulExpress - Europ'Energie
+          </div>
+          <div class="col-xs-12 col-lg-6">
+            <div class="row no-gutter">
+              <div class="col-xs-12 col-sm-6 footer-block">
+                <h3 class="footer-block-title">
+                  <span class="footer-block-title-text">Informations</span>
+                </h3>
+                <ul class="footer-block-list">
+                  <li class="footer-block-item footer-block-item-arrow icon">
+                    <a href="{% url 'page-detail' 'qui-sommes-nous' %}"
+                      >QUI SOMMES-NOUS ?</a
+                    >
+                  </li>
+                  <li class="footer-block-item footer-block-item-arrow icon">
+                    <a href="{% url 'page-detail' 'commander-du-fioul' %}"
+                      >COMMANDER DU COMBUSTIBLE</a
+                    >
+                  </li>
+                  <li class="footer-block-item footer-block-item-arrow icon">
+                    <a href="{% url 'page-detail' 'mentions-legales' %}"
+                      >MENTIONS LÉGALES</a
+                    >
+                  </li>
+                  <li class="footer-block-item footer-block-item-arrow icon">
+                    <a
+                      href="{% url 'page-detail' 'conditions-generales-de-vente' %}"
+                      >CONDITIONS GÉNÉRALES DE VENTE</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="col-xs-12 col-sm-6 footer-block">
+                <h3 class="footer-block-title">
+                  <span class="footer-block-title-text">Actualités</span>
+                </h3>
+                {% footer_actu %}
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          &copy; Copyright 2016 - FioulExpress - Europ'Energie
+        </div>
+      </div>
     </footer>
 
     {% if messages %}
-        <div id="messages" class="popin">
-            {% for message in messages %}
-                <div class="messages-block {% if message.tags %}{{ message.tags }}{% endif %}">{{ message|safe }}</div>
-            {% endfor %}
-        </div>
+    <div id="messages" class="popin">
+      {% for message in messages %}
+      <div
+        class="messages-block {% if message.tags %}{{ message.tags }}{% endif %}"
+      >
+        {{ message|safe }}
+      </div>
+      {% endfor %}
+    </div>
     {% endif %}
 
     <script src="{% static 'fioul/js/jquery-3.0.0.min.js' %}"></script>
@@ -147,13 +278,16 @@
     <script src="{% static 'fioul/js/master.js' %}"></script>
     <script src="{% static 'fioul/js/jquery.unveil.js' %}"></script>
     <script type="text/javascript">
-    $(document).ready(function() {
-        $("head").append('<link href="https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">');
-        $("head").append('<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400italic,700italic" rel="stylesheet" type="text/css">');
-        
-        
+      $(document).ready(function () {
+        $("head").append(
+          '<link href="https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">'
+        );
+        $("head").append(
+          '<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400italic,700italic" rel="stylesheet" type="text/css">'
+        );
+
         $("img").unveil();
-    });
+      });
     </script>
-</body>
+  </body>
 </html>

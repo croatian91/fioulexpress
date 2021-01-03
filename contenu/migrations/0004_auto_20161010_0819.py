@@ -9,13 +9,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('contenu', '0003_actualite_url'),
+        ("contenu", "0003_actualite_url"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='actualite',
-            name='contenu',
-            field=ckeditor_uploader.fields.RichTextUploadingField(blank=True, null=True),
+            model_name="actualite",
+            name="contenu",
+            field=ckeditor_uploader.fields.RichTextUploadingField(
+                blank=True, null=True
+            ),
         ),
     ]

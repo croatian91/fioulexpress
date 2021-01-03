@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fioulexpress', '0002_prospect'),
+        ("fioulexpress", "0002_prospect"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='commande',
-            name='livraison_ttc',
+            model_name="commande",
+            name="livraison_ttc",
             field=models.DecimalField(decimal_places=4, default=0, max_digits=10),
         ),
     ]

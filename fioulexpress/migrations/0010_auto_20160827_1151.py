@@ -8,28 +8,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fioulexpress', '0009_auto_20160827_1130'),
+        ("fioulexpress", "0009_auto_20160827_1130"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='config',
-            name='google_analytics_ua',
+            model_name="config",
+            name="google_analytics_ua",
             field=models.CharField(blank=True, max_length=25, null=True),
         ),
         migrations.AddField(
-            model_name='config',
-            name='meta_description',
+            model_name="config",
+            name="meta_description",
             field=models.CharField(blank=True, max_length=500, null=True),
         ),
         migrations.AddField(
-            model_name='config',
-            name='meta_img',
-            field=models.ImageField(blank=True, null=True, upload_to=b''),
+            model_name="config",
+            name="meta_img",
+            field=models.ImageField(blank=True, null=True, upload_to=b""),
         ),
         migrations.AddField(
-            model_name='config',
-            name='meta_title',
+            model_name="config",
+            name="meta_title",
             field=models.CharField(blank=True, max_length=500, null=True),
         ),
     ]

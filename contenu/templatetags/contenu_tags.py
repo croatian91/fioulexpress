@@ -32,7 +32,7 @@ def html_bloc(nom):
         content = static_for_db_record(content)
         return mark_safe(content)
     except:
-        return ''
+        return ""
 
 
 @register.filter_function
@@ -44,12 +44,12 @@ def markdown(content):
 def templatize(context, content):
     # Replace /static/ and /media/ in URLs
     content = static_for_db_record(content)
-    return Template('{% load contenu_tags %}' + content).render(context)
+    return Template("{% load contenu_tags %}" + content).render(context)
 
 
 @register.simple_tag(takes_context=True)
 def soustraire(context, a, b):
-    return str(round(a - b, 2)).replace('.', ',')
+    return str(round(a - b, 2)).replace(".", ",")
 
 
 @register.simple_tag(takes_context=True)
@@ -63,14 +63,17 @@ def filter_params(context, key, value):
 
 @register.simple_tag(takes_context=True)
 def filter_params_form(context, ignore):
-    ignore = ignore.split(',')
-    params = ''
+    ignore = ignore.split(",")
+    params = ""
     for k in context.request.GET:
         if k not in ignore:
-            params += '<input type="hidden" name="%s" value="%s" />' % (k, context.request.GET.get(k))
+            params += '<input type="hidden" name="%s" value="%s" />' % (
+                k,
+                context.request.GET.get(k),
+            )
     return params
 
 
-@register.inclusion_tag('contenu/tags/footer_actu.html')
+@register.inclusion_tag("contenu/tags/footer_actu.html")
 def footer_actu():
-    return {'actus': Actualite.objects.order_by('-date')[:3]}
+    return {"actus": Actualite.objects.order_by("-date")[:3]}

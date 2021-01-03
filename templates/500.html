@@ -1,72 +1,74 @@
 {% extends 'base.html' %}
-{% load static from staticfiles %}
-{% load thumbnail %}
-{% load contenu_tags %}
+{% load static thumbnail contenu_tags %}
 
 {% block body %}
 <div class="container">
 
-    <div class="commander-du-fioul">
-    
+  <div class="commander-du-fioul">
+
     <!-- bloc hp form -->
-        <section class="hp hp-404 margin-b">
-            <div class=" reassurance-block">
-                <h2 class="reassurance-title">Erreur 500</h2>
-                <p class="reassurance-text">
-                    Le site a rencontré une erreur, les équipes techniques ont été alertées.<br>Veuillez nous excuser pour la gêne occasionnée.
-                </p>
-            </div>
-            <div class="hp-layer">
-                <h1 class="hp-layer-title">Commandez du fioul<br><small class="hp-layer-subtitle">aux meilleurs prix !</small></h1>
-                <form action="/commande/valide_cp/" method="post" id="form-hp-cp">{% csrf_token %}
-                    <input type="tel" name="cp" maxlength="5" class="hp-layer-cp" placeholder="votre code postal">
-                    <button type="submit" class="hp-layer-btn">voir les tarifs</button>
-                </form>
-            </div>
-        </section>
+    <section class="hp hp-404 margin-b">
+      <div class=" reassurance-block">
+        <h2 class="reassurance-title">Erreur 500</h2>
+        <p class="reassurance-text">
+          Le site a rencontré une erreur, les équipes techniques ont été alertées.<br>Veuillez nous excuser pour la gêne
+          occasionnée.
+        </p>
+      </div>
+      <div class="hp-layer">
+        <h1 class="hp-layer-title">Commandez du fioul<br><small class="hp-layer-subtitle">aux meilleurs prix !</small>
+        </h1>
+        <form action="/commande/valide_cp/" method="post" id="form-hp-cp">{% csrf_token %}
+          <input type="tel" name="cp" maxlength="5" class="hp-layer-cp" placeholder="votre code postal">
+          <button type="submit" class="hp-layer-btn">voir les tarifs</button>
+        </form>
+      </div>
+    </section>
     <!-- end bloc hp form -->
-    
+
     <!-- bloc hp reassurance -->
-        <section class="reassurance">
-            <div class="row small-gutter">
-                <div class="col-xs-12 col-sm-4">
-                    <div class="reassurance-block reassurance-block-command icon">
-                        <h2 class="reassurance-title">Commandez en ligne</h2>
-                        <p class="reassurance-text">
-                            Choisissez votre type de fioul,<br>le montant et les délais de livraison.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="reassurance-block reassurance-block-delivery icon">
-                        <h2 class="reassurance-title">Livraison à domicile</h2>
-                        <p class="reassurance-text">
-                            Le livreur vous contacte pour convenir<br>de la date et du créneau horaire de livraison<br>selon vos disponibilités.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="reassurance-block reassurance-block-payment icon">
-                        <h2 class="reassurance-title">Paiement en 2 fois</h2>
-                        <p class="reassurance-text">
-                            Payez un acompte en ligne et le restant<br>directement auprès de votre livreur<br>par chèque, espèces ou carte bancaire.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- end bloc hp reassurance -->
-        
-        <div class="row small-gutter">
-            <div class="col-xs-12 col-md-6">
-                {% html_bloc 'HP - Europenergie' %}
-            </div>
-            <div class="col-xs-12 col-md-6">
-                {% html_bloc 'HP - Contact' %}
-            </div>
+    <section class="reassurance">
+      <div class="row small-gutter">
+        <div class="col-xs-12 col-sm-4">
+          <div class="reassurance-block reassurance-block-command icon">
+            <h2 class="reassurance-title">Commandez en ligne</h2>
+            <p class="reassurance-text">
+              Choisissez votre type de fioul,<br>le montant et les délais de livraison.
+            </p>
+          </div>
         </div>
-    
+        <div class="col-xs-12 col-sm-4">
+          <div class="reassurance-block reassurance-block-delivery icon">
+            <h2 class="reassurance-title">Livraison à domicile</h2>
+            <p class="reassurance-text">
+              Le livreur vous contacte pour convenir<br>de la date et du créneau horaire de livraison<br>selon vos
+              disponibilités.
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="reassurance-block reassurance-block-payment icon">
+            <h2 class="reassurance-title">Paiement en 2 fois</h2>
+            <p class="reassurance-text">
+              Payez un acompte en ligne et le restant<br>directement auprès de votre livreur<br>par chèque, espèces ou
+              carte bancaire.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end bloc hp reassurance -->
+
+    <div class="row small-gutter">
+      <div class="col-xs-12 col-md-6">
+        {% html_bloc 'HP - Europenergie' %}
+      </div>
+      <div class="col-xs-12 col-md-6">
+        {% html_bloc 'HP - Contact' %}
+      </div>
     </div>
+
+  </div>
 
 </div>
 

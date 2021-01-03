@@ -18,249 +18,596 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Adresse',
+            name="Adresse",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom_adresse', models.CharField(default='adresse_par_defaut', max_length=255)),
-                ('prenom', models.CharField(max_length=255)),
-                ('nom', models.CharField(max_length=255)),
-                ('societe', models.CharField(blank=True, max_length=255, null=True)),
-                ('detail_1', models.CharField(max_length=255, verbose_name='Adresse')),
-                ('detail_4', models.CharField(blank=True, max_length=255, null=True, verbose_name='Ville')),
-                ('code_postal', models.CharField(max_length=10, verbose_name='Code postal')),
-                ('pays', models.CharField(default='France', max_length=50)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "nom_adresse",
+                    models.CharField(default="adresse_par_defaut", max_length=255),
+                ),
+                ("prenom", models.CharField(max_length=255)),
+                ("nom", models.CharField(max_length=255)),
+                ("societe", models.CharField(blank=True, max_length=255, null=True)),
+                ("detail_1", models.CharField(max_length=255, verbose_name="Adresse")),
+                (
+                    "detail_4",
+                    models.CharField(
+                        blank=True, max_length=255, null=True, verbose_name="Ville"
+                    ),
+                ),
+                (
+                    "code_postal",
+                    models.CharField(max_length=10, verbose_name="Code postal"),
+                ),
+                ("pays", models.CharField(default="France", max_length=50)),
             ],
         ),
         migrations.CreateModel(
-            name='Client',
+            name="Client",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.EmailField(max_length=254)),
-                ('telephone', models.CharField(max_length=25)),
-                ('token_password', models.CharField(blank=True, max_length=100, null=True)),
-                ('token_date', models.DateField(blank=True, null=True)),
-                ('user', models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254)),
+                ("telephone", models.CharField(max_length=25)),
+                (
+                    "token_password",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
+                ("token_date", models.DateField(blank=True, null=True)),
+                (
+                    "user",
+                    models.OneToOneField(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='CodePostal',
+            name="CodePostal",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('code_postal', models.CharField(max_length=5)),
-                ('commune', models.CharField(max_length=255, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("code_postal", models.CharField(max_length=5)),
+                ("commune", models.CharField(max_length=255, null=True)),
             ],
             options={
-                'verbose_name_plural': 'Codes Postaux',
+                "verbose_name_plural": "Codes Postaux",
             },
         ),
         migrations.CreateModel(
-            name='Commande',
+            name="Commande",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('qte', models.IntegerField(default=1000)),
-                ('commentaire', models.TextField(blank=True, null=True)),
-                ('commission_ttc', models.DecimalField(decimal_places=4, default=0, max_digits=10)),
-                ('commission_ht', models.DecimalField(decimal_places=4, default=0, max_digits=10)),
-                ('total_ttc', models.DecimalField(decimal_places=4, default=0, max_digits=10)),
-                ('total_ht', models.DecimalField(decimal_places=4, default=0, max_digits=10)),
-                ('adresse_facturation', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='fioulexpress.Adresse')),
-                ('adresse_livraison', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='fioulexpress.Adresse')),
-                ('client', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.Client')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("qte", models.IntegerField(default=1000)),
+                ("commentaire", models.TextField(blank=True, null=True)),
+                (
+                    "commission_ttc",
+                    models.DecimalField(decimal_places=4, default=0, max_digits=10),
+                ),
+                (
+                    "commission_ht",
+                    models.DecimalField(decimal_places=4, default=0, max_digits=10),
+                ),
+                (
+                    "total_ttc",
+                    models.DecimalField(decimal_places=4, default=0, max_digits=10),
+                ),
+                (
+                    "total_ht",
+                    models.DecimalField(decimal_places=4, default=0, max_digits=10),
+                ),
+                (
+                    "adresse_facturation",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="+",
+                        to="fioulexpress.Adresse",
+                    ),
+                ),
+                (
+                    "adresse_livraison",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="+",
+                        to="fioulexpress.Adresse",
+                    ),
+                ),
+                (
+                    "client",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="fioulexpress.Client",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Config',
+            name="Config",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(default='Standard', max_length=100)),
-                ('commission', models.DecimalField(decimal_places=4, default=0, max_digits=10)),
-                ('heure_limite_livraison', models.IntegerField(default=19)),
-                ('actif', models.BooleanField(default=False)),
-                ('taux_tva', models.DecimalField(decimal_places=4, default=0.2, max_digits=10)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nom", models.CharField(default="Standard", max_length=100)),
+                (
+                    "commission",
+                    models.DecimalField(decimal_places=4, default=0, max_digits=10),
+                ),
+                ("heure_limite_livraison", models.IntegerField(default=19)),
+                ("actif", models.BooleanField(default=False)),
+                (
+                    "taux_tva",
+                    models.DecimalField(decimal_places=4, default=0.2, max_digits=10),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Distributeur',
+            name="Distributeur",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(max_length=255)),
-                ('informations', models.TextField(blank=True)),
-                ('user', models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nom", models.CharField(max_length=255)),
+                ("informations", models.TextField(blank=True)),
+                (
+                    "user",
+                    models.OneToOneField(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='JourFerie',
+            name="JourFerie",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateField()),
             ],
         ),
         migrations.CreateModel(
-            name='Message',
+            name="Message",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('sujet', models.CharField(max_length=255)),
-                ('destinataire', models.CharField(max_length=255)),
-                ('data', models.TextField(blank=True, null=True)),
-                ('a_envoyer', models.BooleanField(default=True, verbose_name='\xe0 envoyer')),
-                ('envoye', models.BooleanField(default=False, verbose_name='envoy\xe9')),
-                ('external_id', models.CharField(blank=True, max_length=100, null=True)),
-                ('client', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.Client')),
-                ('commande', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.Commande')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("sujet", models.CharField(max_length=255)),
+                ("destinataire", models.CharField(max_length=255)),
+                ("data", models.TextField(blank=True, null=True)),
+                (
+                    "a_envoyer",
+                    models.BooleanField(default=True, verbose_name="\xe0 envoyer"),
+                ),
+                (
+                    "envoye",
+                    models.BooleanField(default=False, verbose_name="envoy\xe9"),
+                ),
+                (
+                    "external_id",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
+                (
+                    "client",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="fioulexpress.Client",
+                    ),
+                ),
+                (
+                    "commande",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="fioulexpress.Commande",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Panier',
+            name="Panier",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('qte', models.IntegerField(default=1000)),
-                ('commentaire', models.TextField(blank=True, null=True)),
-                ('adresse_facturation', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='fioulexpress.Adresse')),
-                ('adresse_livraison', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='fioulexpress.Adresse')),
-                ('client', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.Client')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("qte", models.IntegerField(default=1000)),
+                ("commentaire", models.TextField(blank=True, null=True)),
+                (
+                    "adresse_facturation",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="+",
+                        to="fioulexpress.Adresse",
+                    ),
+                ),
+                (
+                    "adresse_livraison",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="+",
+                        to="fioulexpress.Adresse",
+                    ),
+                ),
+                (
+                    "client",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="fioulexpress.Client",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='TarifDecote',
+            name="TarifDecote",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('min', models.IntegerField(default=500)),
-                ('max', models.IntegerField(default=1000)),
-                ('decote', models.DecimalField(decimal_places=4, default=0, max_digits=10)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("min", models.IntegerField(default=500)),
+                ("max", models.IntegerField(default=1000)),
+                (
+                    "decote",
+                    models.DecimalField(decimal_places=4, default=0, max_digits=10),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='TarifFioul',
+            name="TarifFioul",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('prix_ttc', models.DecimalField(decimal_places=4, default=0, max_digits=10)),
-                ('actif', models.BooleanField(default=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "prix_ttc",
+                    models.DecimalField(decimal_places=4, default=0, max_digits=10),
+                ),
+                ("actif", models.BooleanField(default=True)),
             ],
         ),
         migrations.CreateModel(
-            name='TarifLivraison',
+            name="TarifLivraison",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('extra', models.DecimalField(decimal_places=4, default=0, max_digits=10)),
-                ('actif', models.BooleanField(default=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "extra",
+                    models.DecimalField(decimal_places=4, default=0, max_digits=10),
+                ),
+                ("actif", models.BooleanField(default=True)),
             ],
         ),
         migrations.CreateModel(
-            name='TypeFioul',
+            name="TypeFioul",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nom", models.CharField(max_length=255)),
             ],
             options={
-                'verbose_name': 'type de fioul',
-                'verbose_name_plural': 'types de fiouls',
+                "verbose_name": "type de fioul",
+                "verbose_name_plural": "types de fiouls",
             },
         ),
         migrations.CreateModel(
-            name='TypeLivraison',
+            name="TypeLivraison",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(max_length=255)),
-                ('duree', models.IntegerField(default=1)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nom", models.CharField(max_length=255)),
+                ("duree", models.IntegerField(default=1)),
             ],
             options={
-                'verbose_name': 'type de livraison',
-                'verbose_name_plural': 'types de livraisons',
+                "verbose_name": "type de livraison",
+                "verbose_name_plural": "types de livraisons",
             },
         ),
         migrations.CreateModel(
-            name='TypeMessage',
+            name="TypeMessage",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(max_length=255)),
-                ('template_id', models.CharField(blank=True, max_length=255, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nom", models.CharField(max_length=255)),
+                (
+                    "template_id",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Zone',
+            name="Zone",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(max_length=255)),
-                ('telephone', models.CharField(max_length=20, null=True)),
-                ('email', models.EmailField(max_length=255, null=True)),
-                ('jours_livraison', multiselectfield.db.fields.MultiSelectField(blank=True, choices=[('0', 'lundi'), ('1', 'mardi'), ('2', 'mercredi'), ('3', 'jeudi'), ('4', 'vendredi'), ('5', 'samedi'), ('6', 'dimanche')], max_length=13, null=True)),
-                ('types_paiement', multiselectfield.db.fields.MultiSelectField(blank=True, choices=[('0', 'ch\xe8que'), ('1', 'esp\xe8ces'), ('2', 'CB')], max_length=5, null=True)),
-                ('distributeur', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.Distributeur')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nom", models.CharField(max_length=255)),
+                ("telephone", models.CharField(max_length=20, null=True)),
+                ("email", models.EmailField(max_length=255, null=True)),
+                (
+                    "jours_livraison",
+                    multiselectfield.db.fields.MultiSelectField(
+                        blank=True,
+                        choices=[
+                            ("0", "lundi"),
+                            ("1", "mardi"),
+                            ("2", "mercredi"),
+                            ("3", "jeudi"),
+                            ("4", "vendredi"),
+                            ("5", "samedi"),
+                            ("6", "dimanche"),
+                        ],
+                        max_length=13,
+                        null=True,
+                    ),
+                ),
+                (
+                    "types_paiement",
+                    multiselectfield.db.fields.MultiSelectField(
+                        blank=True,
+                        choices=[("0", "ch\xe8que"), ("1", "esp\xe8ces"), ("2", "CB")],
+                        max_length=5,
+                        null=True,
+                    ),
+                ),
+                (
+                    "distributeur",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="fioulexpress.Distributeur",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='tariflivraison',
-            name='type_livraison',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.TypeLivraison'),
+            model_name="tariflivraison",
+            name="type_livraison",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="fioulexpress.TypeLivraison",
+            ),
         ),
         migrations.AddField(
-            model_name='tariflivraison',
-            name='zone',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.Zone'),
+            model_name="tariflivraison",
+            name="zone",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="fioulexpress.Zone"
+            ),
         ),
         migrations.AddField(
-            model_name='tariffioul',
-            name='type_fioul',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.TypeFioul'),
+            model_name="tariffioul",
+            name="type_fioul",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="fioulexpress.TypeFioul"
+            ),
         ),
         migrations.AddField(
-            model_name='tariffioul',
-            name='zone',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.Zone'),
+            model_name="tariffioul",
+            name="zone",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="fioulexpress.Zone"
+            ),
         ),
         migrations.AddField(
-            model_name='tarifdecote',
-            name='zone',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.Zone'),
+            model_name="tarifdecote",
+            name="zone",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="fioulexpress.Zone"
+            ),
         ),
         migrations.AddField(
-            model_name='panier',
-            name='type_fioul',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.TypeFioul'),
+            model_name="panier",
+            name="type_fioul",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="fioulexpress.TypeFioul",
+            ),
         ),
         migrations.AddField(
-            model_name='panier',
-            name='type_livraison',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.TypeLivraison'),
+            model_name="panier",
+            name="type_livraison",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="fioulexpress.TypeLivraison",
+            ),
         ),
         migrations.AddField(
-            model_name='panier',
-            name='zone',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.Zone'),
+            model_name="panier",
+            name="zone",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="fioulexpress.Zone"
+            ),
         ),
         migrations.AddField(
-            model_name='message',
-            name='type',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.TypeMessage'),
+            model_name="message",
+            name="type",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="fioulexpress.TypeMessage",
+            ),
         ),
         migrations.AddField(
-            model_name='message',
-            name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="message",
+            name="user",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AddField(
-            model_name='commande',
-            name='type_fioul',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.TypeFioul'),
+            model_name="commande",
+            name="type_fioul",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="fioulexpress.TypeFioul",
+            ),
         ),
         migrations.AddField(
-            model_name='commande',
-            name='type_livraison',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.TypeLivraison'),
+            model_name="commande",
+            name="type_livraison",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="fioulexpress.TypeLivraison",
+            ),
         ),
         migrations.AddField(
-            model_name='commande',
-            name='zone',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.Zone'),
+            model_name="commande",
+            name="zone",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="fioulexpress.Zone"
+            ),
         ),
         migrations.AddField(
-            model_name='codepostal',
-            name='zone',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.Zone'),
+            model_name="codepostal",
+            name="zone",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="fioulexpress.Zone",
+            ),
         ),
         migrations.AddField(
-            model_name='adresse',
-            name='client',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='fioulexpress.Client'),
+            model_name="adresse",
+            name="client",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="fioulexpress.Client",
+            ),
         ),
     ]

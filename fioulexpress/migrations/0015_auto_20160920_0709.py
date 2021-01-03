@@ -8,13 +8,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fioulexpress', '0014_auto_20160918_1635'),
+        ("fioulexpress", "0014_auto_20160918_1635"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='commande',
-            name='statut',
-            field=models.CharField(choices=[('0', 'valid\xe9e'), ('1', 'annul\xe9e'), ('2', 'en attente')], default='0', max_length=2),
+            model_name="commande",
+            name="statut",
+            field=models.CharField(
+                choices=[("0", "valid\xe9e"), ("1", "annul\xe9e"), ("2", "en attente")],
+                default="0",
+                max_length=2,
+            ),
         ),
     ]

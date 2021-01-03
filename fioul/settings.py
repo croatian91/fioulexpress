@@ -28,123 +28,122 @@ SECRET_KEY = os.getenv("SECRET_KEY", None)
 DEBUG = os.getenv("DEBUG", False)
 THUMBNAIL_DEBUG = os.getenv("THUMBNAIL_DEBUG", False)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'dal',
-    'dal_select2',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'fioulexpress',
-    'import_export',
-    'contenu',
-    'sorl.thumbnail',
-    'markdownx',
-    'ckeditor',
-    'ckeditor_uploader',
-    'debug_toolbar',
+    "dal",
+    "dal_select2",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "fioulexpress",
+    "import_export",
+    "contenu",
+    "sorl.thumbnail",
+    "markdownx",
+    "ckeditor",
+    "ckeditor_uploader",
+    "debug_toolbar",
 ]
 
-MIDDLEWARE_CLASSES = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
-ROOT_URLCONF = 'fioul.urls'
+ROOT_URLCONF = "fioul.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates', ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'fioulexpress.context_processors.config_processor',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [
+            "templates",
+        ],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "fioulexpress.context_processors.config_processor",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'fioul.wsgi.application'
+WSGI_APPLICATION = "fioul.wsgi.application"
 
 
 # Dev database settings, no password, to be overridden by prod settings
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("DB_NAME"),
-        'USER': os.getenv("DB_USER"),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
     }
 }
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 SESSION_COOKIE_AGE = 3600
 
 
 def get_cache():
-  import os
-  try:
-    servers = os.environ['MEMCACHIER_SERVERS']
-    username = os.environ['MEMCACHIER_USERNAME']
-    password = os.environ['MEMCACHIER_PASSWORD']
-    return {
-      'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-        # TIMEOUT is not the connection timeout! It's the default expiration
-        # timeout that should be applied to keys! Setting it to `None`
-        # disables expiration.
-        'TIMEOUT': None,
-        'LOCATION': servers,
-        'OPTIONS': {
-          'binary': True,
-          'username': username,
-          'password': password,
-          'behaviors': {
-            # Enable faster IO
-            'no_block': True,
-            'tcp_nodelay': True,
-            # Keep connection alive
-            'tcp_keepalive': True,
-            # Timeout settings
-            'connect_timeout': 2000, # ms
-            'send_timeout': 750 * 1000, # us
-            'receive_timeout': 750 * 1000, # us
-            '_poll_timeout': 2000, # ms
-            # Better failover
-            'ketama': True,
-            'remove_failed': 1,
-            'retry_timeout': 2,
-            'dead_timeout': 30,
-          }
+    import os
+
+    try:
+        servers = os.environ["MEMCACHIER_SERVERS"]
+        username = os.environ["MEMCACHIER_USERNAME"]
+        password = os.environ["MEMCACHIER_PASSWORD"]
+        return {
+            "default": {
+                "BACKEND": "django.core.cache.backends.memcached.PyLibMCCache",
+                # TIMEOUT is not the connection timeout! It's the default expiration
+                # timeout that should be applied to keys! Setting it to `None`
+                # disables expiration.
+                "TIMEOUT": None,
+                "LOCATION": servers,
+                "OPTIONS": {
+                    "binary": True,
+                    "username": username,
+                    "password": password,
+                    "behaviors": {
+                        # Enable faster IO
+                        "no_block": True,
+                        "tcp_nodelay": True,
+                        # Keep connection alive
+                        "tcp_keepalive": True,
+                        # Timeout settings
+                        "connect_timeout": 2000,  # ms
+                        "send_timeout": 750 * 1000,  # us
+                        "receive_timeout": 750 * 1000,  # us
+                        "_poll_timeout": 2000,  # ms
+                        # Better failover
+                        "ketama": True,
+                        "remove_failed": 1,
+                        "retry_timeout": 2,
+                        "dead_timeout": 30,
+                    },
+                },
+            }
         }
-      }
-    }
-  except:
-    return {
-      'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
-      }
-    }
+    except:
+        return {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}}
+
 
 CACHES = get_cache()
 
@@ -153,16 +152,16 @@ CACHES = get_cache()
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -170,9 +169,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'fr-fr'
+LANGUAGE_CODE = "fr-fr"
 
-TIME_ZONE = 'Europe/Paris'
+TIME_ZONE = "Europe/Paris"
 
 USE_I18N = True
 
@@ -183,32 +182,32 @@ USE_TZ = True
 
 # THUMBNAIL_HIGH_RESOLUTION = True
 
-CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
-CKEDITOR_UPLOAD_PATH = 'media/ck/'
-CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_JQUERY_URL = "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
+CKEDITOR_UPLOAD_PATH = "media/ck/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_BROWSE_SHOW_DIRS = True
 
 # Email settings
-FIOUL_MJ_URL = 'https://api.mailjet.com/v3/send'
-FIOUL_MJ_USER = 'f0ce962d189483385c8bd795a3215454'
-FIOUL_MJ_PASS = '5f80c237d76c0e5173a166923d2c9264'
-FIOUL_CONTACT_EMAIL = 'admin@fioulexpress.fr'
-FIOUL_ADMIN_EMAIL = 'fioul@m-dev.fr'
-FIOUL_CONTACT_NAME = 'Fioul Express'
-FIOUL_DEBUG_EMAIL = 'fioulexpress.test@gmail.com'
+FIOUL_MJ_URL = "https://api.mailjet.com/v3/send"
+FIOUL_MJ_USER = "f0ce962d189483385c8bd795a3215454"
+FIOUL_MJ_PASS = "5f80c237d76c0e5173a166923d2c9264"
+FIOUL_CONTACT_EMAIL = "admin@fioulexpress.fr"
+FIOUL_ADMIN_EMAIL = "fioul@m-dev.fr"
+FIOUL_CONTACT_NAME = "Fioul Express"
+FIOUL_DEBUG_EMAIL = "fioulexpress.test@gmail.com"
 
 # Monetico payment settings
 # Dev and Staging payment
 if DEBUG:
-    MONETICO_URL = 'https://p.monetico-services.com/test/paiement.cgi'
+    MONETICO_URL = "https://p.monetico-services.com/test/paiement.cgi"
 else:
-    MONETICO_URL = 'https://p.monetico-services.com/paiement.cgi'
-MONETICO_TPE = '6322728'
-MONETICO_CLE = '5B0DC68462EE4770386BD18F6A04E31A5F54899E'
-MONETICO_SOCIETE = 'fioulexpreIFRAME'
+    MONETICO_URL = "https://p.monetico-services.com/paiement.cgi"
+MONETICO_TPE = "6322728"
+MONETICO_CLE = "5B0DC68462EE4770386BD18F6A04E31A5F54899E"
+MONETICO_SOCIETE = "fioulexpreIFRAME"
 
 # Debug toolbar settings
-INTERNAL_IPS = ['127.0.0.1']
+INTERNAL_IPS = ["127.0.0.1"]
 
 
 def show_toolbar(request):
@@ -217,22 +216,23 @@ def show_toolbar(request):
 
 DEBUG_TOOLBAR_CONFIG = {
     # ...
-    'SHOW_TOOLBAR_CALLBACK': 'fioul.settings.show_toolbar',
+    "SHOW_TOOLBAR_CALLBACK": "fioul.settings.show_toolbar",
 }
 
-if not os.getenv('DEV', False):
+if not os.getenv("DEV", False):
     # Use Heroku memcache
     CACHES = {
-        'default': {
-            'BACKEND': 'django_bmemcached.memcached.BMemcached',
-            'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
-            'OPTIONS': {
-                        'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
-                        'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
-                }
+        "default": {
+            "BACKEND": "django_bmemcached.memcached.BMemcached",
+            "LOCATION": os.environ.get("MEMCACHEDCLOUD_SERVERS").split(","),
+            "OPTIONS": {
+                "username": os.environ.get("MEMCACHEDCLOUD_USERNAME"),
+                "password": os.environ.get("MEMCACHEDCLOUD_PASSWORD"),
+            },
         }
     }
-    # Force SSL
+
+if not DEBUG:
     SECURE_SSL_REDIRECT = True
 
 # Activate Django-Heroku.
@@ -242,8 +242,8 @@ django_on_heroku.settings(locals())
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-AWS_S3_HOST = 's3.eu-west-3.amazonaws.com'
-AWS_S3_REGION_NAME = 'eu-west-3'
+AWS_S3_HOST = "s3.eu-west-3.amazonaws.com"
+AWS_S3_REGION_NAME = "eu-west-3"
 S3_USE_SIGV4 = True
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", None)
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", None)
@@ -257,5 +257,5 @@ STATIC_ROOT = "staticfiles"
 
 MEDIA_URL = "{}/media/".format(AWS_STATIC_URL)
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'fioul.storage_backends.StaticStorage'
-DEFAULT_FILE_STORAGE = 'fioul.storage_backends.PublicMediaStorage'
+STATICFILES_STORAGE = "fioul.storage_backends.StaticStorage"
+DEFAULT_FILE_STORAGE = "fioul.storage_backends.PublicMediaStorage"

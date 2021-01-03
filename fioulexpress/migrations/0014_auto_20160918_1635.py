@@ -8,18 +8,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fioulexpress', '0013_zone_ville'),
+        ("fioulexpress", "0013_zone_ville"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='commande',
-            name='monetico_id',
+            model_name="commande",
+            name="monetico_id",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AddField(
-            model_name='commande',
-            name='panier_id',
+            model_name="commande",
+            name="panier_id",
             field=models.IntegerField(blank=True, null=True),
         ),
     ]

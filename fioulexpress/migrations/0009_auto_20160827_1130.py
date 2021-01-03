@@ -8,16 +8,24 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fioulexpress', '0008_auto_20160827_1057'),
+        ("fioulexpress", "0008_auto_20160827_1057"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='typefioul',
-            options={'ordering': ['position'], 'verbose_name': 'type de fioul', 'verbose_name_plural': 'types de fiouls'},
+            name="typefioul",
+            options={
+                "ordering": ["position"],
+                "verbose_name": "type de fioul",
+                "verbose_name_plural": "types de fiouls",
+            },
         ),
         migrations.AlterModelOptions(
-            name='typelivraison',
-            options={'ordering': ['position'], 'verbose_name': 'type de livraison', 'verbose_name_plural': 'types de livraisons'},
+            name="typelivraison",
+            options={
+                "ordering": ["position"],
+                "verbose_name": "type de livraison",
+                "verbose_name_plural": "types de livraisons",
+            },
         ),
     ]

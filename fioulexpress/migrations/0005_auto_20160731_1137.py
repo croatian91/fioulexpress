@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fioulexpress', '0004_auto_20160731_1129'),
+        ("fioulexpress", "0004_auto_20160731_1129"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='commande',
-            name='date_livraison',
+            model_name="commande",
+            name="date_livraison",
             field=models.DateField(),
         ),
     ]

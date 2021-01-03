@@ -8,32 +8,32 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fioulexpress', '0011_distributeur_actif'),
+        ("fioulexpress", "0011_distributeur_actif"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='tariffioul',
-            options={'ordering': ['type_fioul__position']},
+            name="tariffioul",
+            options={"ordering": ["type_fioul__position"]},
         ),
         migrations.AddField(
-            model_name='zone',
-            name='adresse',
+            model_name="zone",
+            name="adresse",
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.AddField(
-            model_name='zone',
-            name='code_postal',
+            model_name="zone",
+            name="code_postal",
             field=models.CharField(max_length=5, null=True),
         ),
         migrations.AddField(
-            model_name='zone',
-            name='raison_sociale',
+            model_name="zone",
+            name="raison_sociale",
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.AddField(
-            model_name='zone',
-            name='siret',
+            model_name="zone",
+            name="siret",
             field=models.CharField(max_length=14, null=True),
         ),
     ]

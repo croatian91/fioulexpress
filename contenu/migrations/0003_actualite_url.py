@@ -8,14 +8,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('contenu', '0002_auto_20160725_1309'),
+        ("contenu", "0002_auto_20160725_1309"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='actualite',
-            name='url',
-            field=models.SlugField(default='-', max_length=200),
+            model_name="actualite",
+            name="url",
+            field=models.SlugField(default="-", max_length=200),
             preserve_default=False,
         ),
     ]

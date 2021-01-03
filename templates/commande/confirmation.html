@@ -1,6 +1,5 @@
 {% extends 'commande/base.html' %}
-{% load static from staticfiles %}
-{% load contenu_tags %}
+{% load static contenu_tags %}
 
 {% block commande_devis_href %}{% url 'client-commande-devis' %}{% endblock %}
 {% block commande_livraison_href %}{% url 'client-commande-livraison' %}{% endblock %}
@@ -8,88 +7,96 @@
 {% block page_name %}payment-page{% endblock %}
 {% block commande %}
 <div class="confirmation-container">
-    <h2 class="confirmation-title">
-        <span class="confirmation-title-first">Félicitations !</span><br>
-        Votre commande est validée.
-    </h2>
-    <div class="confirmation">
-        <p>
-            <span class="bold">Fioul Express vous remercie de votre confiance.</span><br>
-            <span class="italic">Une confirmation de commande vient de vous être envoyée<br>à l'adresse suivante : {{panier.client.email}}</span>
-        </p>
-        <p class="bold">
-            Le distributeur va prendre contact avec vous pour organiser la<br>livraison en fonction de vos disponibilités.
-        </p>
-        <p class="bold">
-            Vous pouvez également le joindre par email à<br>
-            <a href="mailto:{{panier.zone.email}}" class="confirmation-link">{{panier.zone.email}}</a> ou par téléphone au <a href="tel:{{panier.zone.telephone}}" class="confirmation-link">{{panier.zone.telephone}}</a>
-        </p>
-    </div>
+  <h2 class="confirmation-title">
+    <span class="confirmation-title-first">Félicitations !</span><br>
+    Votre commande est validée.
+  </h2>
+  <div class="confirmation">
+    <p>
+      <span class="bold">Fioul Express vous remercie de votre confiance.</span><br>
+      <span class="italic">Une confirmation de commande vient de vous être envoyée<br>à l'adresse suivante :
+        {{panier.client.email}}</span>
+    </p>
+    <p class="bold">
+      Le distributeur va prendre contact avec vous pour organiser la<br>livraison en fonction de vos disponibilités.
+    </p>
+    <p class="bold">
+      Vous pouvez également le joindre par email à<br>
+      <a href="mailto:{{panier.zone.email}}" class="confirmation-link">{{panier.zone.email}}</a> ou par téléphone au <a
+        href="tel:{{panier.zone.telephone}}" class="confirmation-link">{{panier.zone.telephone}}</a>
+    </p>
+  </div>
 </div>
 <div class="checkout-block checkout-block-infos checkout-block-confirmation">
-    <div class="checkout-block-title liseret">
-        <span class="checkout-block-title-text">Vos coordonnées</span>
-    </div>
-    <ul class="confirmation-coordonnees">
-        <li class="confirmation-coordonnees-item clearfix">
-            <span class="confirmation-coordonnees-label">Destinataire</span>
-            <span class="confirmation-coordonnees-value">{{panier.adresse_livraison.prenom}} {{panier.adresse_livraison.nom}}</span>
-        </li>
-        <li class="confirmation-coordonnees-item clearfix address">
-            <span class="confirmation-coordonnees-label">Adresse de livraison</span>
-            <span class="confirmation-coordonnees-value">{{panier.adresse_livraison.detail_1}}<br>{{panier.adresse_livraison.code_postal}} {{panier.adresse_livraison.detail_4}}</span>
-        </li>
-        <li class="confirmation-coordonnees-item clearfix">
-            <span class="confirmation-coordonnees-label">Téléphone</span>
-            <span class="confirmation-coordonnees-value">{{panier.client.telephone}}</span>
-        </li>
-    </ul>
-    <div class="confirmation-notes-title">Note pour le livreur :</div>
-    <div class="confirmation-notes-text">{{panier.commentaire}}</div>
+  <div class="checkout-block-title liseret">
+    <span class="checkout-block-title-text">Vos coordonnées</span>
+  </div>
+  <ul class="confirmation-coordonnees">
+    <li class="confirmation-coordonnees-item clearfix">
+      <span class="confirmation-coordonnees-label">Destinataire</span>
+      <span class="confirmation-coordonnees-value">{{panier.adresse_livraison.prenom}}
+        {{panier.adresse_livraison.nom}}</span>
+    </li>
+    <li class="confirmation-coordonnees-item clearfix address">
+      <span class="confirmation-coordonnees-label">Adresse de livraison</span>
+      <span
+        class="confirmation-coordonnees-value">{{panier.adresse_livraison.detail_1}}<br>{{panier.adresse_livraison.code_postal}}
+        {{panier.adresse_livraison.detail_4}}</span>
+    </li>
+    <li class="confirmation-coordonnees-item clearfix">
+      <span class="confirmation-coordonnees-label">Téléphone</span>
+      <span class="confirmation-coordonnees-value">{{panier.client.telephone}}</span>
+    </li>
+  </ul>
+  <div class="confirmation-notes-title">Note pour le livreur :</div>
+  <div class="confirmation-notes-text">{{panier.commentaire}}</div>
 </div>
 
 {% endblock %}
 
 {% block devis_footer %}
 <div class="checkout-devis-total checkout-devis-deposit">
-    <div id="commande-devis-acompte" class="row">
-        <div class="col-xs-12 col-sm-6 col-lg-7">
-            <div class="checkout-devis-total-label">
-                Montant de l'acompte :<br>
-                <small>(paiement en ligne par carte bleue)</small>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-lg-5">
-            <div class="checkout-devis-total-price">
-                <span id="commande-total" class="checkout-devis-total-amount">{{panier_valeur.acompte|floatformat:2}}</span><span class="checkout-devis-total-devise">€</span>
-            </div>
-        </div>
+  <div id="commande-devis-acompte" class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-7">
+      <div class="checkout-devis-total-label">
+        Montant de l'acompte :<br>
+        <small>(paiement en ligne par carte bleue)</small>
+      </div>
     </div>
+    <div class="col-xs-12 col-sm-6 col-lg-5">
+      <div class="checkout-devis-total-price">
+        <span id="commande-total"
+          class="checkout-devis-total-amount">{{panier_valeur.acompte|floatformat:2}}</span><span
+          class="checkout-devis-total-devise">€</span>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="checkout-devis-total checkout-devis-delivery">
-    <div id="commande-devis-reste-a-payer" class="row">
-        <div class="col-xs-12 col-sm-6 col-lg-7">
-            <div class="checkout-devis-total-label">
-                à payer à la livraison :<br>
-                <small>(paiement accepté : {{panier.zone.paiements_acceptes}})</small>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-lg-5">
-            <div class="checkout-devis-total-price">
-                <span id="commande-total" class="checkout-devis-total-amount">{{panier_valeur.reste|floatformat:2}}</span><span class="checkout-devis-total-devise">€</span>
-            </div>
-        </div>
+  <div id="commande-devis-reste-a-payer" class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-7">
+      <div class="checkout-devis-total-label">
+        à payer à la livraison :<br>
+        <small>(paiement accepté : {{panier.zone.paiements_acceptes}})</small>
+      </div>
     </div>
+    <div class="col-xs-12 col-sm-6 col-lg-5">
+      <div class="checkout-devis-total-price">
+        <span id="commande-total" class="checkout-devis-total-amount">{{panier_valeur.reste|floatformat:2}}</span><span
+          class="checkout-devis-total-devise">€</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
-ga('require', 'ecommerce');
+  ga('require', 'ecommerce');
 
-ga('ecommerce:addTransaction', {
-  'id': '{{panier.id}}',
-  'revenue': '{{panier_valeur.acompte_ht|safe}}'
-});
-ga('ecommerce:send');
+  ga('ecommerce:addTransaction', {
+    'id': '{{panier.id}}',
+    'revenue': '{{panier_valeur.acompte_ht|safe}}'
+  });
+  ga('ecommerce:send');
 </script>
 {% endblock %}
 

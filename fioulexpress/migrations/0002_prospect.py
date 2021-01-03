@@ -8,17 +8,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fioulexpress', '0001_initial'),
+        ("fioulexpress", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Prospect',
+            name="Prospect",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.EmailField(max_length=254)),
-                ('code_postal', models.CharField(max_length=10, verbose_name='Code postal')),
-                ('date', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254)),
+                (
+                    "code_postal",
+                    models.CharField(max_length=10, verbose_name="Code postal"),
+                ),
+                ("date", models.DateTimeField(auto_now_add=True)),
             ],
         ),
     ]

@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fioulexpress', '0015_auto_20160920_0709'),
+        ("fioulexpress", "0015_auto_20160920_0709"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='zone',
-            name='actif',
+            model_name="zone",
+            name="actif",
             field=models.BooleanField(default=True),
         ),
     ]

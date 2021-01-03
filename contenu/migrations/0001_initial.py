@@ -11,39 +11,71 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Actualite',
+            name="Actualite",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('titre', models.CharField(max_length=100)),
-                ('date', models.DateField()),
-                ('image_principale', sorl.thumbnail.fields.ImageField(upload_to='actu')),
-                ('contenu', ckeditor_uploader.fields.RichTextUploadingField()),
-                ('seo_title', models.CharField(blank=True, max_length=255, null=True)),
-                ('seo_description', models.CharField(blank=True, max_length=1000, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("titre", models.CharField(max_length=100)),
+                ("date", models.DateField()),
+                (
+                    "image_principale",
+                    sorl.thumbnail.fields.ImageField(upload_to="actu"),
+                ),
+                ("contenu", ckeditor_uploader.fields.RichTextUploadingField()),
+                ("seo_title", models.CharField(blank=True, max_length=255, null=True)),
+                (
+                    "seo_description",
+                    models.CharField(blank=True, max_length=1000, null=True),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Bloc',
+            name="Bloc",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(max_length=100)),
-                ('contenu', models.TextField(blank=True, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nom", models.CharField(max_length=100)),
+                ("contenu", models.TextField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Page',
+            name="Page",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('titre', models.CharField(max_length=100)),
-                ('adresse', models.CharField(max_length=255, unique=True)),
-                ('contenu', ckeditor_uploader.fields.RichTextUploadingField()),
-                ('seo_title', models.CharField(blank=True, max_length=255, null=True)),
-                ('seo_description', models.CharField(blank=True, max_length=1000, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("titre", models.CharField(max_length=100)),
+                ("adresse", models.CharField(max_length=255, unique=True)),
+                ("contenu", ckeditor_uploader.fields.RichTextUploadingField()),
+                ("seo_title", models.CharField(blank=True, max_length=255, null=True)),
+                (
+                    "seo_description",
+                    models.CharField(blank=True, max_length=1000, null=True),
+                ),
             ],
         ),
     ]

@@ -1,82 +1,97 @@
 {% extends 'base.html' %}
-{% load static from staticfiles %}
+{% load static %}
 
 {% block body %}
 <div class="container {% block page_name %}{% endblock %}">
-    <div class="checkout-stepbar row no-gutter">
-        <div class="col-xs-12 col-sm-4">
-            <a href="{% block commande_devis_href %}#{% endblock %}" class="checkout-stepbar-item {% block commande_devis_actif %}{% endblock %}">Devis</a>
-        </div>
-        <div class="col-xs-12 col-sm-4">
-            <a href="{% block commande_livraison_href %}#{% endblock %}" class="checkout-stepbar-item {% block commande_livraison_actif %}{% endblock %}">Vos coordonnées</a>
-        </div>
-        <div class="col-xs-12 col-sm-4">
-            <a href="#" class="checkout-stepbar-item {% block commande_paiement_actif %}{% endblock %}">Paiement acompte</a>
-        </div>
+  <div class="checkout-stepbar row no-gutter">
+    <div class="col-xs-12 col-sm-4">
+      <a href="{% block commande_devis_href %}#{% endblock %}"
+        class="checkout-stepbar-item {% block commande_devis_actif %}{% endblock %}">Devis</a>
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-6">
-            {% block commande %}
-            {% endblock %}
-            {% block action_suivant %}
-                <div class="checkout-continue-container">
-                    <a href="{% block action_suivant_href %}#{% endblock %}" class="checkout-continue" id="commande-continue">Continuer</a>
-                </div>
-            {% endblock %}
-        </div>
-        <div class="col-xs-12 col-md-6">
-            {% block devis %}
-                <div class="checkout-devis">
-                    <h2 class="checkout-devis-title">Votre devis</h2>
-                    <ul class="checkout-devis-infos">
-                        <li class="checkout-devis-infos-item clearfix">
-                            <span class="checkout-devis-infos-label">Votre code postal</span><span class="checkout-devis-infos-value">{{request.session.client_cp}}</span>
-                        </li>
-                        <li class="checkout-devis-infos-item clearfix">
-                            <span class="checkout-devis-infos-label">Votre type de combustible</span><span id="commande-fioul" class="checkout-devis-infos-value">{{request.session.panier_valeur.fioul_nom}}</span>
-                        </li>
-                        <li class="checkout-devis-infos-item clearfix">
-                            <span class="checkout-devis-infos-label">Votre commande</span><span class="checkout-devis-infos-value"><span id="commande-qte">{{request.session.panier_valeur.qte}}</span> Litres</span>
-                        </li>
-                        <li class="checkout-devis-infos-item clearfix">
-                            <span class="checkout-devis-infos-label">Livraison</span>
-                            <span id="commande-livraison" class="checkout-devis-infos-value">{{request.session.panier_valeur.livraison_nom}}</span>
-                        </li>
-                        <li class="checkout-devis-infos-item clearfix" style="border:none;">
-                            <span class="checkout-devis-infos-value" style="font-size:15px;font-weight:normal;font-style:italic;font-family:Droid Serif,​serif;">
-                                au plus tard le
-                                <span class="bold" id="commande-livraison-date">{{request.session.panier_valeur.livraison_date}}</span>
-                            </span>
-                        </li>
-                        <li class="checkout-devis-infos-price-container">
-                            <div class="checkout-devis-infos-price">
-                                Prix au litre :<br><span id="commande-prix-litre" class="checkout-devis-infos-price-amount">{{request.session.panier_valeur.prix_litre}}</span><span class="checkout-devis-infos-price-devise">€</span> TTC
-                            </div>
-                        </li>
-                        {% comment %}
-                        <li class="checkout-devis-infos-item clearfix">
-                            <span id="commande-livraison-prix" class="checkout-devis-infos-value">{{request.session.panier_valeur.livraison_prix}}</span>
-                            
-                        </li>
-                        {% endcomment %}
-                    </ul>
-                    <div class="checkout-devis-total">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-5">
-                                <div class="checkout-devis-total-label">Coût total :</div>
-                            </div>
-                            <div class="col-xs-12 col-sm-7">
-                                <div class="checkout-devis-total-price">
-                                    <span id="commande-total" class="checkout-devis-total-amount">{{request.session.panier_valeur.total_ttc}}</span><span class="checkout-devis-total-devise">€</span> TTC<br>
-                                    <span class="checkout-devis-total-ht">soit <span id="commande-total-ht">{{request.session.panier_valeur.total_ht}}</span>€ <span class="checkout-devis-total-ht-mention">HT</span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% block devis_footer %}{% endblock %}
-                </div>
-            {% endblock %}
-        </div>
+    <div class="col-xs-12 col-sm-4">
+      <a href="{% block commande_livraison_href %}#{% endblock %}"
+        class="checkout-stepbar-item {% block commande_livraison_actif %}{% endblock %}">Vos coordonnées</a>
     </div>
+    <div class="col-xs-12 col-sm-4">
+      <a href="#" class="checkout-stepbar-item {% block commande_paiement_actif %}{% endblock %}">Paiement acompte</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      {% block commande %}
+      {% endblock %}
+      {% block action_suivant %}
+      <div class="checkout-continue-container">
+        <a href="{% block action_suivant_href %}#{% endblock %}" class="checkout-continue"
+          id="commande-continue">Continuer</a>
+      </div>
+      {% endblock %}
+    </div>
+    <div class="col-xs-12 col-md-6">
+      {% block devis %}
+      <div class="checkout-devis">
+        <h2 class="checkout-devis-title">Votre devis</h2>
+        <ul class="checkout-devis-infos">
+          <li class="checkout-devis-infos-item clearfix">
+            <span class="checkout-devis-infos-label">Votre code postal</span><span
+              class="checkout-devis-infos-value">{{request.session.client_cp}}</span>
+          </li>
+          <li class="checkout-devis-infos-item clearfix">
+            <span class="checkout-devis-infos-label">Votre type de combustible</span><span id="commande-fioul"
+              class="checkout-devis-infos-value">{{request.session.panier_valeur.fioul_nom}}</span>
+          </li>
+          <li class="checkout-devis-infos-item clearfix">
+            <span class="checkout-devis-infos-label">Votre commande</span><span class="checkout-devis-infos-value"><span
+                id="commande-qte">{{request.session.panier_valeur.qte}}</span> Litres</span>
+          </li>
+          <li class="checkout-devis-infos-item clearfix">
+            <span class="checkout-devis-infos-label">Livraison</span>
+            <span id="commande-livraison"
+              class="checkout-devis-infos-value">{{request.session.panier_valeur.livraison_nom}}</span>
+          </li>
+          <li class="checkout-devis-infos-item clearfix" style="border:none;">
+            <span class="checkout-devis-infos-value"
+              style="font-size:15px;font-weight:normal;font-style:italic;font-family:Droid Serif,​serif;">
+              au plus tard le
+              <span class="bold" id="commande-livraison-date">{{request.session.panier_valeur.livraison_date}}</span>
+            </span>
+          </li>
+          <li class="checkout-devis-infos-price-container">
+            <div class="checkout-devis-infos-price">
+              Prix au litre :<br><span id="commande-prix-litre"
+                class="checkout-devis-infos-price-amount">{{request.session.panier_valeur.prix_litre}}</span><span
+                class="checkout-devis-infos-price-devise">€</span> TTC
+            </div>
+          </li>
+          {% comment %}
+          <li class="checkout-devis-infos-item clearfix">
+            <span id="commande-livraison-prix"
+              class="checkout-devis-infos-value">{{request.session.panier_valeur.livraison_prix}}</span>
+
+          </li>
+          {% endcomment %}
+        </ul>
+        <div class="checkout-devis-total">
+          <div class="row">
+            <div class="col-xs-12 col-sm-5">
+              <div class="checkout-devis-total-label">Coût total :</div>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+              <div class="checkout-devis-total-price">
+                <span id="commande-total"
+                  class="checkout-devis-total-amount">{{request.session.panier_valeur.total_ttc}}</span><span
+                  class="checkout-devis-total-devise">€</span> TTC<br>
+                <span class="checkout-devis-total-ht">soit <span
+                    id="commande-total-ht">{{request.session.panier_valeur.total_ht}}</span>€ <span
+                    class="checkout-devis-total-ht-mention">HT</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% block devis_footer %}{% endblock %}
+      </div>
+      {% endblock %}
+    </div>
+  </div>
 </div>
 {% endblock %}

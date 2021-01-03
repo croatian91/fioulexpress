@@ -19,33 +19,33 @@ from contenu.views import *
 
 
 urlpatterns = [
-    url(r'^$', home),
-    url(r'^markdownx/', include('markdownx.urls')),
-    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-    url(r'^admin/', admin.site.urls),
+    url(r"^$", home),
+    url(r"^markdownx/", include("markdownx.urls")),
+    url(r"^ckeditor/", include("ckeditor_uploader.urls")),
+    url(r"^admin/", admin.site.urls),
 ]
 
 # Interface distributeur
 urlpatterns += [
     url(
-        r'^distributeur/commande/$',
+        r"^distributeur/commande/$",
         distrib_commandes,
-        name='distrib-commandes',
+        name="distrib-commandes",
     ),
     url(
-        r'^distributeur/commande/(?P<id_commande>\d+)/annuler/$',
+        r"^distributeur/commande/(?P<id_commande>\d+)/annuler/$",
         distrib_commande_annuler,
-        name='distrib-commande-annuler',
+        name="distrib-commande-annuler",
     ),
     url(
-        r'^distributeur/commande/(?P<commande_id>\d+)/pdf/$',
+        r"^distributeur/commande/(?P<commande_id>\d+)/pdf/$",
         admin_commande_pdf,
-        name='distrib-commande-pdf',
+        name="distrib-commande-pdf",
     ),
     url(
-        r'^distributeur/commande/(?P<id_commande>\d+)/$',
+        r"^distributeur/commande/(?P<id_commande>\d+)/$",
         distrib_commande_detail,
-        name='distrib-commande-detail',
+        name="distrib-commande-detail",
     ),
     # url(
     #    r'^distributeur/inscription/$',
@@ -53,119 +53,118 @@ urlpatterns += [
     #    name='distrib-inscription',
     # ),
     url(
-        r'^distributeur/produits/$',
+        r"^distributeur/produits/$",
         distrib_produits,
-        name='distrib-produits',
+        name="distrib-produits",
     ),
     url(
-        r'^distributeur/livraisons/$',
+        r"^distributeur/livraisons/$",
         distrib_livraisons,
-        name='distrib-livraisons',
+        name="distrib-livraisons",
     ),
     url(
-        r'^distributeur/creer_zone/$',
+        r"^distributeur/creer_zone/$",
         distrib_zone_add,
-        name='distrib-zone-add',
+        name="distrib-zone-add",
     ),
     url(
-        r'^distributeur/remove_cp/(?P<cp>.+)/$',
+        r"^distributeur/remove_cp/(?P<cp>.+)/$",
         distrib_remove_cp,
-        name='distrib-remove-cp',
+        name="distrib-remove-cp",
     ),
     url(
-        r'^distributeur/import_cp/$',
+        r"^distributeur/import_cp/$",
         distrib_import_cp,
-        name='distrib-import-cp',
+        name="distrib-import-cp",
     ),
     url(
-        r'^distributeur/se_connecter_distrib/(?P<id_distributeur>\d+)/$',
+        r"^distributeur/se_connecter_distrib/(?P<id_distributeur>\d+)/$",
         admin_se_connecter_distrib,
-        name='se-connecter-distrib',
+        name="se-connecter-distrib",
     ),
     url(
-        r'^distributeur/$',
+        r"^distributeur/$",
         distrib_hp,
-        name='distrib-hp',
+        name="distrib-hp",
     ),
-    url(r'^distributeur/', admin.site.urls),
 ]
 
 # Interface client
 urlpatterns += [
     url(
-        r'^commande/valide_cp/$',
+        r"^commande/valide_cp/$",
         client_valide_cp,
-        name='client-valide-cp',
+        name="client-valide-cp",
     ),
     url(
-        r'^commande/devis/$',
+        r"^commande/devis/$",
         client_commande_devis,
-        name='client-commande-devis',
+        name="client-commande-devis",
     ),
     url(
-        r'^commande/valoriser/$',
+        r"^commande/valoriser/$",
         client_commande_valoriser,
-        name='client-commande-valoriser',
+        name="client-commande-valoriser",
     ),
     url(
-        r'^commande/livraison/$',
+        r"^commande/livraison/$",
         client_commande_livraison,
-        name='client-commande-livraison',
+        name="client-commande-livraison",
     ),
     url(
-        r'^commande/paiement/$',
+        r"^commande/paiement/$",
         client_commande_paiement,
-        name='client-commande-paiement',
+        name="client-commande-paiement",
     ),
     url(
-        r'^commande/confirmation/$',
+        r"^commande/confirmation/$",
         client_commande_confirmation,
-        name='client-commande-confirmation',
+        name="client-commande-confirmation",
     ),
     url(
-        r'^commande/monetico_ok/$',
+        r"^commande/monetico_ok/$",
         client_commande_monetico_ok,
-        name='client-commande-monetico-ok',
+        name="client-commande-monetico-ok",
     ),
     url(
-        r'^commande/monetico_ko/$',
+        r"^commande/monetico_ko/$",
         client_commande_monetico_ko,
-        name='client-commande-monetico-ko',
+        name="client-commande-monetico-ko",
     ),
     url(
-        r'^client/connexion/$',
+        r"^client/connexion/$",
         client_connexion,
-        name='client-connexion',
+        name="client-connexion",
     ),
     url(
-        r'^client/deconnexion/$',
+        r"^client/deconnexion/$",
         client_deconnexion,
-        name='client-deconnexion',
+        name="client-deconnexion",
     ),
     url(
-        r'^client/motdepasse/$',
+        r"^client/motdepasse/$",
         client_recuperation_mot_passe,
-        name='client-motdepasse',
+        name="client-motdepasse",
     ),
     url(
-        r'^client/maj_motdepasse/(?P<token>.+)/$',
+        r"^client/maj_motdepasse/(?P<token>.+)/$",
         client_maj_mot_passe,
-        name='client-motdepasse-maj',
+        name="client-motdepasse-maj",
     ),
     url(
-        r'^prospect/inscrire/$',
+        r"^prospect/inscrire/$",
         prospect_inscrire,
-        name='prospect-inscrire',
+        name="prospect-inscrire",
     ),
     url(
-        r'^monetico_s2s/$',
+        r"^monetico_s2s/$",
         monetico_s2s,
-        name='monetico-s2s-old',
+        name="monetico-s2s-old",
     ),
     url(
-        r'^commande/monetico_s2s/$',
+        r"^commande/monetico_s2s/$",
         monetico_s2s,
-        name='monetico-s2s',
+        name="monetico-s2s",
     ),
 ]
 
@@ -173,32 +172,32 @@ urlpatterns += [
 
 urlpatterns += [
     url(
-        r'^actu/$',
+        r"^actu/$",
         actu_liste,
-        name='actu-liste',
+        name="actu-liste",
     ),
     url(
-        r'^actu/(?P<actu_url>.+)/$',
+        r"^actu/(?P<actu_url>.+)/$",
         actu_detail,
-        name='actu-detail',
+        name="actu-detail",
     ),
     url(
-        r'^sitemap.xml$',
+        r"^sitemap.xml$",
         sitemap,
-        name='sitemap',
+        name="sitemap",
     ),
 ]
 
 urlpatterns += [
     url(
-        r'^distributeur-autocomplete/$',
+        r"^distributeur-autocomplete/$",
         DistributeurAutocomplete.as_view(),
-        name='distributeur-autocomplete',
+        name="distributeur-autocomplete",
     ),
     url(
-        r'^typetarif-autocomplete/$',
+        r"^typetarif-autocomplete/$",
         TarifFioulAutocomplete.as_view(),
-        name='typetarif-autocomplete',
+        name="typetarif-autocomplete",
     ),
 ]
 
@@ -206,9 +205,9 @@ urlpatterns += [
 # Your other patterns here
 urlpatterns += [
     url(
-        r'^(?P<page_adresse>.+)/$',
+        r"^(?P<page_adresse>.+)/$",
         page_detail,
-        name='page-detail',
+        name="page-detail",
     ),
 ]
 
@@ -216,6 +215,7 @@ urlpatterns += [
 # Debug toolbar
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns = [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
+        url(r"^__debug__/", include(debug_toolbar.urls)),
     ] + urlpatterns

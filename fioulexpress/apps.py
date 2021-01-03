@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class FioulexpressConfig(AppConfig):
-    name = 'fioulexpress'
+    name = "fioulexpress"

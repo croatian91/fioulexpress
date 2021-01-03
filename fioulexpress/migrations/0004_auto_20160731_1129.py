@@ -9,20 +9,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fioulexpress', '0003_commande_livraison_ttc'),
+        ("fioulexpress", "0003_commande_livraison_ttc"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='commande',
-            name='date',
-            field=models.DateTimeField(auto_now_add=True, default=datetime.datetime(2016, 7, 31, 11, 29, 33, 908449)),
+            model_name="commande",
+            name="date",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                default=datetime.datetime(2016, 7, 31, 11, 29, 33, 908449),
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='commande',
-            name='date_livraison',
-            field=models.DateTimeField(default=datetime.datetime(2016, 7, 31, 11, 29, 37, 324358)),
+            model_name="commande",
+            name="date_livraison",
+            field=models.DateTimeField(
+                default=datetime.datetime(2016, 7, 31, 11, 29, 37, 324358)
+            ),
             preserve_default=False,
         ),
     ]

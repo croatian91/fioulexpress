@@ -8,18 +8,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fioulexpress', '0007_config_email_admin'),
+        ("fioulexpress", "0007_config_email_admin"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='typefioul',
-            name='position',
+            model_name="typefioul",
+            name="position",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='typelivraison',
-            name='position',
+            model_name="typelivraison",
+            name="position",
             field=models.IntegerField(default=0),
         ),
     ]
