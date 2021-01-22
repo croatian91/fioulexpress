@@ -10,7 +10,8 @@ from django.contrib.auth import authenticate, login, logout
 from .models import *
 from django.utils.encoding import force_text
 from django.shortcuts import redirect
-
+from django.db.models import F
+import tablib
 
 # Register your models here.
 
@@ -398,16 +399,24 @@ class AdresseInline(admin.StackedInline):
 
 
 class ClientResource(resources.ModelResource):
-    prenom = import_export.fields.Field()
-    nom = import_export.fields.Field()
+    def export(self, queryset=None, *args, **kwargs):
+        headers = ["prenom", "nom", "email"]
+        queryset = (
+            Client.objects.filter(adresse__nom_adresse="adresse_par_defaut")
+            .annotate(
+                prenom=F("adresse__prenom"),
+                nom=F("adresse__nom"),
+            )
+            .select_related("adresse")
+            .values(*headers)
+        )
+        data = tablib.Dataset(headers=headers)
 
-    def dehydrate_prenom(self, client):
-        adresse = client.adresse_set.filter(nom_adresse="adresse_par_defaut")
-        return adresse and adresse[0].prenom or ""
+        for o in queryset:
+            row = [o[k] for k in headers]
+            data.append(row)
 
-    def dehydrate_nom(self, client):
-        adresse = client.adresse_set.filter(nom_adresse="adresse_par_defaut")
-        return adresse and adresse[0].nom or ""
+        return data
 
     class Meta:
         model = Client

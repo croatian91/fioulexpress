@@ -259,3 +259,6 @@ MEDIA_URL = "{}/media/".format(AWS_STATIC_URL)
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = "fioul.storage_backends.StaticStorage"
 DEFAULT_FILE_STORAGE = "fioul.storage_backends.PublicMediaStorage"
+
+# import_export
+IMPORT_EXPORT_CHUNK_SIZE = 3000
