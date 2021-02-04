@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from .models import *
 from django.utils.encoding import force_text
 from django.shortcuts import redirect
+from django.utils.html import format_html
 from django.db.models import F
 import tablib
 
@@ -329,6 +330,15 @@ class DistributeurAdmin(admin.ModelAdmin):
     list_editable = ["actif"]
     list_filter = ["actif"]
     # inlines = [ZoneInline, TarifLivraisonInline, TarifFioulInline]
+
+    def admin_se_connecter_distributeur(self, instance):
+        return format_html(
+            '<a href="%s" target="_blank">Se connecter</a>'
+            % reverse("se-connecter-distrib", kwargs={"id_distributeur": instance.id})
+        )
+
+    admin_se_connecter_distributeur.allow_tags = True
+    admin_se_connecter_distributeur.short_description = ""
 
 
 admin.site.register(Distributeur, DistributeurAdmin)

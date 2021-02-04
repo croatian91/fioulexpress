@@ -52,14 +52,6 @@ class Distributeur(models.Model):
     def __str__(self):
         return self.nom
 
-    def admin_se_connecter_distributeur(self):
-        return '<a href="%s" target="_blank">Se connecter</a>' % reverse(
-            "se-connecter-distrib", kwargs={"id_distributeur": self.id}
-        )
-
-    admin_se_connecter_distributeur.allow_tags = True
-    admin_se_connecter_distributeur.short_description = " "
-
 
 class JourFerie(models.Model):
     date = models.DateField()

@@ -687,7 +687,7 @@ def client_valide_cp(request):
         or not code_postal.zone.distributeur.actif
     ):
         msg = render_to_string(
-            "commande/prospect_inscription_form.html", RequestContext(request)
+            "commande/prospect_inscription_form.html", request=request
         )
         messages.add_message(request, messages.INFO, msg)
         return redirect("/")
