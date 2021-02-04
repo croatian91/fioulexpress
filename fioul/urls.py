@@ -87,6 +87,7 @@ urlpatterns += [
         distrib_hp,
         name="distrib-hp",
     ),
+    url(r"^distributeur/", admin.site.urls),
 ]
 
 # Interface client
