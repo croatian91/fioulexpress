@@ -69,7 +69,7 @@
             {{livraison.extra|floatformat:0}} euro{% if livraison.extra >= 2 or livraison.extra <= -2 %}s{% endif %} {%
               endif %} {% endcomment %} </div>
               <div class="command-choice-infos">au plus tard le <span class="bold"
-                  id="commande-livraison-date-{{livraison.type_livraison.id}}">{{livraison.date_livraison|date:'l jF'}}</span></div>
+                  id="commande-livraison-date-{{livraison.type_livraison.id}}">{{livraison.date_livraison|date:'l j F'}}</span></div>
         </li>
         {% endfor %}
       </ul>

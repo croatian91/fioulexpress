@@ -52,7 +52,9 @@
                 class="actus-item-date-day">{{actu.date.day}}</span><br>{{actu.date|date:'b'}}</span>
           </div>
           <h2 class="actus-item-title">{{actu.titre}}</h2>
-          <p class="actus-item-text">{{actu.contenu|striptags|truncatewords:10}}</p>
+          {% autoescape off %}
+            <p class="actus-item-text">{{actu.contenu|striptags|truncatewords:10}}</p>
+          {% endautoescape %}
         </div>
       </div>
       {% endfor %}
