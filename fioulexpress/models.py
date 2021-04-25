@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import json, uuid
+import json
+import uuid
 
 from django.conf import settings
 from django.db import models
@@ -122,6 +123,7 @@ class TarifLivraison(models.Model):
 class TypeFioul(models.Model):
     nom = models.CharField(max_length=255)
     position = models.IntegerField(default=0)
+    tooltip = models.TextField(blank=True, null=True)
 
     class Meta:
         verbose_name = "type de fioul"
