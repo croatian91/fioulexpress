@@ -34,12 +34,14 @@
         <li class="command-choice">
           <input {% if forloop.first %}checked="checked" {% endif %} type="radio" value="{{tarif.type_fioul.id}}"
             name="type_fioul" id="type_fioul_{{tarif.type_fioul.id}}" class="custom-radio" />
-          <label for="type_fioul_{{tarif.type_fioul.id}}">{{tarif.type_fioul.nom}}</label>
-          {% if tarif.type_fioul.tooltip %}
-          <div class="tooltip">?
-            <div class="tooltiptext">{{ tarif.type_fioul.tooltip | safe }}</div>
-          </div>
-          {% endif %}
+          <label for="type_fioul_{{tarif.type_fioul.id}}">
+            {{tarif.type_fioul.nom}}
+            {% if tarif.type_fioul.tooltip %}
+            <div class="tooltip">?
+              <div class="tooltiptext">{{ tarif.type_fioul.tooltip | safe }}</div>
+            </div>
+            {% endif %}
+          </label>
         </li>
         {% endfor %}
       </ul>
@@ -113,14 +115,14 @@
     position: relative;
     display: inline-block;
     z-index: 99999;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     border: 2px solid #2b5c73;
     border-radius: 17px;
     background-color: #fff;
     text-align: center;
     line-height: 18px;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 700;
     color: #2b5c73;
   }
