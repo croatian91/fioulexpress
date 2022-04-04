@@ -18,4 +18,4 @@ for ligne in open("/tmp/zone.csv").readlines()[1:]:
     l = ligne.split(",")
     z, c = CodePostal.objects.get_or_create(code_postal=l[1], commune=l[0])
 # transaction.commit()
-print l
+print(l)

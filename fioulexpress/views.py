@@ -199,7 +199,7 @@ def distrib_commandes(request):
                     "Statut",
                     "Commande ID",
                     "Référence Monetico",
-                    u"Numéro d'autorisation",
+                    "Numéro d'autorisation",
                     "Date",
                     "Date de livraison",
                     "Quantité",
@@ -518,7 +518,7 @@ def distrib_remove_cp(request, cp):
                     messages.add_message(
                         request,
                         messages.SUCCESS,
-                        u"Le code postal %s a été enlevé" % cp,
+                        "Le code postal %s a été enlevé" % cp,
                     )
     return redirect(reverse("distrib-livraisons") + "?zone=" + str(zone_active.id))
 
@@ -562,20 +562,20 @@ def distrib_import_cp(request):
                 messages.add_message(
                     request,
                     messages.SUCCESS,
-                    u"Nombre de codes postaux importés : %s" % nb_importes,
+                    "Nombre de codes postaux importés : %s" % nb_importes,
                 )
             if len(non_importe) > 1:
                 messages.add_message(
                     request,
                     messages.WARNING,
-                    u"Les codes postaux %s sont déjà attribués à l'un de nos distributeurs. Pour toute question, veuillez contactez admin@fioulexpres.fr"
+                    "Les codes postaux %s sont déjà attribués à l'un de nos distributeurs. Pour toute question, veuillez contactez admin@fioulexpres.fr"
                     % ",".join(non_importe),
                 )
             if len(non_importe) == 1:
                 messages.add_message(
                     request,
                     messages.WARNING,
-                    u"Le code postal %s est déjà attribué à l'un de nos distributeurs. Pour toute question, veuillez contactez admin@fioulexpres.fr"
+                    "Le code postal %s est déjà attribué à l'un de nos distributeurs. Pour toute question, veuillez contactez admin@fioulexpres.fr"
                     % non_importe[0],
                 )
     return redirect(reverse("distrib-livraisons") + "?zone=" + str(zone_active.id))
@@ -735,11 +735,11 @@ def client_commande_valoriser(request):
 
     livraison_prix = request.session["panier_valeur"]["livraison_ttc"]
     if livraison_prix >= 0:
-        request.session["panier_valeur"]["livraison_prix"] = u"+ %s€" % localize(
+        request.session["panier_valeur"]["livraison_prix"] = "+ %s€" % localize(
             floatformat(livraison_prix, 2)
         )
     else:
-        request.session["panier_valeur"]["livraison_prix"] = u"- %s€" % localize(
+        request.session["panier_valeur"]["livraison_prix"] = "- %s€" % localize(
             floatformat(livraison_prix * -1, 2)
         )
 

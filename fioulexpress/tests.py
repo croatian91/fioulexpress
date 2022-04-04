@@ -83,4 +83,4 @@ class CasperTests(StaticLiveServerTestCase):
             ).real,
             0,
         )
-        print Client.objects.all()
+        print(Client.objects.all())
