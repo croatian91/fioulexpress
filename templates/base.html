@@ -139,6 +139,22 @@
             </ul>
           </nav>
         </div>
+        {% if False %}
+        <div class="alert-delay-delivery">
+          <h1 style="margin-bottom: 10px;">
+            SITUATION EN UKRAINE
+          </h1>
+          <p>
+            En raison de la situation géopolitique actuelle et face à la pénurie de combustibles en France, les prix et les délais ne sont absolument plus garantis.
+          </p>
+          <p>
+            Le prix indiqué lors de la commande est indicatif mais ne sera pas assuré. Nous vous donnerons le prix réel le jour de livraison et celui-ci sera certainement modifié si nous sommes obligés de reporter les rendez-vous.
+          </p>
+          <p>
+            De plus, en raison de l’afflux de commandes et de l’incertitude des réapprovisionnements dans les dépôts pétroliers, nos délais habituels sont considérablement rallongés, nous vous remercions pour votre patience et votre compréhension en cette période exceptionnelle.
+          </p>
+        </div>
+        {% endif %}
         <p class="header-contact">
           Une question ? Contactez-nous au
           <a href="tel:0141282790" class="header-contact-link"
@@ -278,5 +294,17 @@
         $("img").unveil();
       });
     </script>
+    <style>
+    .alert-delay-delivery {
+      color: #e15543;
+      line-height: 1.7;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 3px solid #0083c4;
+      border-radius: 8px;
+    }
+    </style>
   </body>
 </html>
