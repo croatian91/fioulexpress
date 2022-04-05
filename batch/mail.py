@@ -34,6 +34,8 @@ def main():
             "Vars": json.loads(msg.data),
         }
         print("DEBUG, send emails")
+        print("FIOUL_MJ_USER: ", settings.FIOUL_MJ_USER)
+        print("FIOUL_MJ_PASS: ", settings.FIOUL_MJ_PASS)
         r = requests.post(
             settings.FIOUL_MJ_URL,
             auth=(settings.FIOUL_MJ_USER, settings.FIOUL_MJ_PASS),
@@ -44,6 +46,8 @@ def main():
             msg.external_id = r.json().get("Sent", [{}])[0].get("MessageID", "")
             msg.envoye = True
             msg.save()
+        else:
+            print(r.status_code, r.text)
 
 
 if __name__ == "__main__":
