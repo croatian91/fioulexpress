@@ -199,10 +199,13 @@ FIOUL_DEBUG_EMAIL = os.getenv("FIOUL_DEBUG_EMAIL", "fioulexpress.test@gmail.com"
 # Monetico payment settings
 # Dev and Staging payment
 if DEBUG:
-    MONETICO_URL = "https://p.monetico-services.com/test/paiement.cgi"
+    MONETICO_URL = os.getenv(
+        "MONETICO_URL_DEBUG", "https://p.monetico-services.com/test/paiement.cgi"
+    )
 else:
-    MONETICO_URL = "https://p.monetico-services.com/paiement.cgi"
-MONETICO_URL = os.getenv("MONETICO_URL", "https://p.monetico-services.com/paiement.cgi")
+    MONETICO_URL = os.getenv(
+        "MONETICO_URL", "https://p.monetico-services.com/paiement.cgi"
+    )
 MONETICO_TPE = os.getenv("MONETICO_TPE")
 MONETICO_CLE = os.getenv("MONETICO_CLE")
 MONETICO_SOCIETE = os.getenv("MONETICO_SOCIETE")
