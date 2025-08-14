@@ -1,10 +1,11 @@
 import base64
-import hmac, hashlib
+import hashlib
+import hmac
 import json
+from datetime import datetime
 from encodings import hex_codec
 
 from django.conf import settings
-from django.utils.datetime_safe import datetime
 from django.utils.http import urlencode
 
 

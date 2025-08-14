@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
-from dal import autocomplete
 import import_export
+import tablib
+from dal import autocomplete
+from django import forms
+from django.contrib import admin
+from django.contrib.auth import login
+from django.db.models import F
+from django.shortcuts import redirect
+from django.utils.encoding import force_str
+from django.utils.html import format_html
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from import_export.results import RowResult
-from django import forms
-from django.contrib import admin
-from django.contrib.auth import authenticate, login, logout
+
 from .models import *
-from django.utils.encoding import force_text
-from django.shortcuts import redirect
-from django.utils.html import format_html
-from django.db.models import F
-import tablib
 
 # Register your models here.
 
@@ -88,7 +89,7 @@ class ZoneResource(resources.ModelResource):
                     )
                     if zones:
                         row_result.import_type = RowResult.IMPORT_TYPE_UPDATE
-                        row_result.object_repr = force_text(zones[0])
+                        row_result.object_repr = force_str(zones[0])
                         row_result.object_id = zones[0].id
                         row_result.diff = self.get_diff(zones[0], zones[0], dry_run)
                     else:
