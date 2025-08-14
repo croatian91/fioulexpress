@@ -4,7 +4,7 @@ django-autocomplete-light
 django-ckeditor
 django-import-export
 django-multiselectfield
-sorl-thumbnail
+sorl-thumbnail<12.11.0
 django-markdownx
 WeasyPrint
 python-binary-memcached
